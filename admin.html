@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administrador – Biblioteca Virtual ISTUO</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #eeecea;
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TOPBAR */
+.topbar {
+  background: #1a2a3a;
+  color: white;
+  padding: 0 1.5rem;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  flex-shrink: 0;
+}
+.logo { display: flex; align-items: center; gap: 0.65rem; font-size: 0.88rem; font-weight: 700; color: white; }
+.logo-icon { width: 30px; height: 30px; background: #e07030; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; }
+.admin-badge {
+  background: #e07030; color: white;
+  font-size: 0.66rem; font-weight: 700;
+  padding: 0.12rem 0.5rem; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.07em;
+}
+.topbar-r { display: flex; align-items: center; gap: 0.65rem; }
+.btn-top {
+  padding: 0.3rem 0.85rem;
+  border-radius: 6px; font-size: 0.78rem; font-weight: 600;
+  cursor: pointer; font-family: 'Segoe UI', Arial, sans-serif;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: transparent; color: rgba(255,255,255,0.85);
+  transition: background 0.15s;
+}
+.btn-top:hover { background: rgba(255,255,255,0.1); }
+.btn-top.naranja { background: #e07030; border-color: #e07030; color: white; }
+.btn-top.naranja:hover { background: #c85e20; }
+
+/* LAYOUT */
+.layout { display: flex; flex: 1; height: calc(100vh - 54px); }
+
+/* SIDEBAR */
+.sidebar {
+  width: 210px;
+  background: #162233;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+.sidebar-lbl {
+  padding: 1.2rem 1rem 0.4rem;
+  font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.nav-it {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.83rem; color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+.nav-it:hover { background: rgba(255,255,255,0.06); color: white; }
+.nav-it.active { background: rgba(224,112,48,0.14); color: white; border-left-color: #e07030; }
+.nav-ico { font-size: 1rem; width: 20px; text-align: center; }
+.sidebar-bot { margin-top: auto; padding: 1rem; font-size: 0.68rem; color: rgba(255,255,255,0.22); border-top: 1px solid rgba(255,255,255,0.07); }
+
+/* MAIN SCROLL */
+.main { flex: 1; overflow-y: auto; padding: 1.5rem; }
+
+/* PANEL */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* PANEL HEADER */
+.p-head { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem; }
+.p-title { font-size: 1.1rem; font-weight: 800; color: #1a2a3a; }
+.p-sub { font-size: 0.78rem; color: #999; margin-top: 0.15rem; }
+
+/* STAT CARDS */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.875rem; margin-bottom: 1.5rem; }
+.s-card { background: white; border: 1px solid #e0dfda; border-radius: 10px; padding: 1rem; text-align: center; }
+.s-card strong { display: block; font-size: 1.75rem; font-weight: 800; color: #e07030; }
+.s-card span { font-size: 0.73rem; color: #888; }
+
+/* BOTONES */
+.btn-prim {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 0.58rem 1.1rem;
+  background: #e07030; color: white;
+  border: none; border-radius: 8px;
+  font-size: 0.83rem; font-weight: 700;
+  cursor: pointer; font-family: 'Segoe UI', Arial, sans-serif;
+  transition: background 0.15s;
+}
+.btn-prim:hover { background: #c85e20; }
+.btn-edit {
+  background: #1a2a3a; color: white; border: none;
+  border-radius: 6px; padding: 0.28rem 0.7rem;
+  font-size: 0.75rem; font-weight: 600; cursor: pointer;
+  font-family: 'Segoe UI', Arial, sans-serif; transition: background 0.15s;
+}
+.btn-edit:hover { background: #2a3d52; }
+.btn-del {
+  background: #cc3333; color: white; border: none;
+  border-radius: 6px; padding: 0.28rem 0.7rem;
+  font-size: 0.75rem; font-weight: 600; cursor: pointer;
+  font-family: 'Segoe UI', Arial, sans-serif; transition: background 0.15s;
+}
+.btn-del:hover { background: #aa2222; }
+
+/* TABLA */
+.tbl-wrap { background: white; border: 1px solid #e0dfda; border-radius: 10px; overflow: hidden; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 0.81rem; }
+.tbl th {
+  background: #f6f5f2; padding: 0.62rem 1rem;
+  text-align: left; font-size: 0.7rem; font-weight: 700;
+  color: #555; text-transform: uppercase; letter-spacing: 0.05em;
+  border-bottom: 1px solid #e0dfda;
+}
+.tbl td { padding: 0.62rem 1rem; border-bottom: 1px solid #f0efe8; vertical-align: middle; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:hover td { background: #faf9f6; }
+.td-tit { font-weight: 600; font-size: 0.83rem; }
+.td-desc { color: #888; font-size: 0.75rem; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tipo-b { display: inline-block; font-size: 0.67rem; font-weight: 700; padding: 0.1rem 0.45rem; border-radius: 4px; }
+.tp-pdf  { background: #fde; color: #922; }
+.tp-link { background: #eef; color: #449; }
+.td-acts { display: flex; gap: 0.4rem; }
+
+/* FILTRO */
+.filter-bar {
+  background: white; border: 1px solid #e0dfda; border-radius: 9px;
+  padding: 0.7rem 1rem; margin-bottom: 1rem;
+  display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;
+}
+.filter-bar input,
+.filter-bar select {
+  padding: 0.48rem 0.75rem;
+  border: 1px solid #d0cfca; border-radius: 7px;
+  font-size: 0.83rem; outline: none;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: white; color: #1a1a1a;
+  transition: border-color 0.15s;
+}
+.filter-bar input { flex: 1; min-width: 150px; }
+.filter-bar input:focus, .filter-bar select:focus { border-color: #e07030; }
+
+/* MODAL */
+.m-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.52);
+  z-index: 500;
+  align-items: center; justify-content: center;
+  padding: 1rem;
+}
+.m-overlay.open { display: flex; }
+.m-box {
+  background: white; border-radius: 14px;
+  width: 100%; max-width: 520px;
+  max-height: 92vh; overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+.m-head {
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid #e0dfda;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; background: white; z-index: 10;
+}
+.m-head h3 { font-size: 0.98rem; font-weight: 800; color: #1a2a3a; }
+.m-close {
+  background: transparent; border: none;
+  font-size: 1.35rem; cursor: pointer; color: #aaa; line-height: 1;
+}
+.m-close:hover { color: #1a1a1a; }
+.m-body { padding: 1.25rem 1.5rem; }
+.m-foot {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e0dfda;
+  display: flex; justify-content: flex-end; gap: 0.75rem;
+  position: sticky; bottom: 0; background: white;
+}
+.btn-cancel {
+  padding: 0.58rem 1rem;
+  background: transparent; border: 1px solid #d0cfca;
+  border-radius: 7px; font-size: 0.83rem; font-weight: 600;
+  cursor: pointer; color: #666;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  transition: background 0.15s;
+}
+.btn-cancel:hover { background: #f5f4f0; }
+
+/* FORM */
+.f-field { margin-bottom: 1rem; }
+.f-field label {
+  display: block; font-size: 0.73rem; font-weight: 700;
+  color: #666; text-transform: uppercase; letter-spacing: 0.05em;
+  margin-bottom: 0.35rem;
+}
+.f-field input,
+.f-field select,
+.f-field textarea {
+  width: 100%;
+  padding: 0.58rem 0.875rem;
+  border: 1px solid #d0cfca; border-radius: 8px;
+  font-size: 0.87rem; color: #1a1a1a; outline: none;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: white;
+  transition: border-color 0.15s;
+}
+.f-field input:focus,
+.f-field select:focus,
+.f-field textarea:focus { border-color: #e07030; }
+.f-field textarea { resize: vertical; min-height: 72px; }
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; }
+.f-hint { font-size: 0.71rem; color: #999; margin-top: 0.3rem; }
+
+/* TIPO TOGGLE */
+.tipo-tog { display: flex; gap: 0.5rem; }
+.tipo-btn {
+  flex: 1; padding: 0.48rem; text-align: center;
+  border: 1px solid #d0cfca; border-radius: 7px;
+  background: white; cursor: pointer; font-size: 0.8rem; font-weight: 600; color: #888;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  transition: all 0.15s;
+}
+.tipo-btn.on { border-color: #e07030; background: #fff4ee; color: #e07030; }
+
+/* RECIENTE */
+.reciente-item {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.55rem 0; border-bottom: 1px solid #f0efe8;
+}
+.reciente-item:last-child { border-bottom: none; }
+.r-ico {
+  width: 36px; height: 36px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.r-tit { font-size: 0.82rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.r-sub { font-size: 0.72rem; color: #888; }
+
+/* TOAST */
+.toast {
+  position: fixed; bottom: 1.5rem; right: 1.5rem;
+  background: #1a2a3a; color: white;
+  padding: 0.72rem 1.2rem; border-radius: 10px;
+  font-size: 0.83rem; font-weight: 600;
+  z-index: 999; box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transform: translateY(80px); opacity: 0;
+  transition: all 0.28s;
+}
+.toast.ok  { border-left: 4px solid #2ecc71; }
+.toast.err { border-left: 4px solid #e74c3c; }
+.toast.vis { transform: translateY(0); opacity: 1; }
+
+/* VACÍO */
+.vacio { text-align: center; padding: 2.5rem; color: #bbb; }
+.vacio .ico { font-size: 2.2rem; margin-bottom: 0.6rem; }
+
+@media (max-width: 680px) {
+  .sidebar { display: none; }
+  .f-row { grid-template-columns: 1fr; }
+  .main { padding: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="logo">
+    <div class="logo-icon">&#9881;</div>
+    Panel de Administraci&oacute;n
+    <span class="admin-badge">Admin</span>
+  </div>
+  <div class="topbar-r">
+    <button class="btn-top naranja" onclick="window.open('biblioteca.html','_blank')">&#128064; Vista estudiante</button>
+    <button class="btn-top" onclick="cerrarSesion()">Salir</button>
+  </div>
+</div>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sidebar-lbl">Men&uacute;</div>
+    <div class="nav-it active" onclick="verPanel('dashboard',this)"><span class="nav-ico">&#128202;</span>Dashboard</div>
+    <div class="nav-it" onclick="verPanel('libros',this)"><span class="nav-ico">&#128218;</span>Libros / Recursos</div>
+    <div class="nav-it" onclick="verPanel('carreras',this)"><span class="nav-ico">&#127979;</span>Carreras</div>
+    <div class="nav-it" onclick="verPanel('estudiantes',this)"><span class="nav-ico">&#128101;</span>Estudiantes</div>
+    <div class="sidebar-bot">Biblioteca Virtual &copy; 2025</div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- DASHBOARD -->
+    <div class="panel active" id="panel-dashboard">
+      <div class="p-head">
+        <div>
+          <div class="p-title">&#128075; Bienvenido, Administrador</div>
+          <div class="p-sub">Resumen general del sistema</div>
+        </div>
+      </div>
+      <div class="stat-grid" id="dashStats"></div>
+      <div style="background:white;border:1px solid #e0dfda;border-radius:10px;padding:1.25rem;">
+        <div style="font-size:0.87rem;font-weight:700;color:#1a2a3a;margin-bottom:0.875rem;">&#128218; &Uacute;ltimos libros agregados</div>
+        <div id="recentList"></div>
+      </div>
+    </div>
+
+    <!-- LIBROS -->
+    <div class="panel" id="panel-libros">
+      <div class="p-head">
+        <div>
+          <div class="p-title">&#128218; Libros y Recursos</div>
+          <div class="p-sub">Administra el acervo bibliogr&aacute;fico</div>
+        </div>
+        <button class="btn-prim" onclick="abrirModalLibro(0)">&#43; Agregar libro</button>
+      </div>
+      <div class="filter-bar">
+        <input type="text" id="filtroBuscar" placeholder="&#128269; Buscar..." oninput="renderLibrosAdmin()">
+        <select id="filtroCarrera" onchange="renderLibrosAdmin()"></select>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr>
+            <th>T&iacute;tulo</th><th>Materia</th><th>Carrera</th>
+            <th>Autor</th><th>A&ntilde;o</th><th>Tipo</th><th>Acciones</th>
+          </tr></thead>
+          <tbody id="librosTbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CARRERAS -->
+    <div class="panel" id="panel-carreras">
+      <div class="p-head">
+        <div>
+          <div class="p-title">&#127979; Carreras</div>
+          <div class="p-sub">Gestiona las carreras del instituto</div>
+        </div>
+        <button class="btn-prim" onclick="abrirModalCarrera(0)">&#43; Nueva carrera</button>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Icono</th><th>Nombre</th><th>Color</th><th>Libros</th><th>Acciones</th></tr></thead>
+          <tbody id="carrerasTbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ESTUDIANTES -->
+    <div class="panel" id="panel-estudiantes">
+      <div class="p-head">
+        <div>
+          <div class="p-title">&#128101; Estudiantes</div>
+          <div class="p-sub">Gestiona usuarios del sistema</div>
+        </div>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <button class="btn-prim" onclick="abrirModalEst(0)">&#43; Nuevo estudiante</button>
+          <button class="btn-prim" onclick="abrirModal('mCsv')" style="background:#2a7a3a;">&#128196; Carga masiva CSV</button>
+        </div>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Nombre</th><th>Usuario</th><th>Carrera</th><th>Rol</th><th>Acciones</th></tr></thead>
+          <tbody id="estTbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- MODAL LIBRO -->
+<div class="m-overlay" id="mLibro" onclick="cerrarOverlay(event,'mLibro')">
+  <div class="m-box">
+    <div class="m-head">
+      <h3 id="mLibroTit">Agregar libro</h3>
+      <button class="m-close" onclick="cerrarModal('mLibro')">&#10005;</button>
+    </div>
+    <div class="m-body">
+      <input type="hidden" id="libroId">
+      <div class="f-row">
+        <div class="f-field">
+          <label>Carrera *</label>
+          <select id="libroCarrera"></select>
+        </div>
+        <div class="f-field">
+          <label>Materia *</label>
+          <input type="text" id="libroMateria" placeholder="Ej: Motores I &amp; II">
+        </div>
+      </div>
+      <div class="f-field">
+        <label>T&iacute;tulo *</label>
+        <input type="text" id="libroTitulo" placeholder="T&iacute;tulo completo del libro">
+      </div>
+      <div class="f-row">
+        <div class="f-field">
+          <label>Autor</label>
+          <input type="text" id="libroAutor" placeholder="Nombre del autor">
+        </div>
+        <div class="f-field">
+          <label>A&ntilde;o</label>
+          <input type="text" id="libroAnio" placeholder="2024">
+        </div>
+      </div>
+      <div class="f-field">
+        <label>Descripci&oacute;n</label>
+        <textarea id="libroDesc" placeholder="Breve descripci&oacute;n del contenido..."></textarea>
+      </div>
+      <div class="f-field">
+        <label>Tipo de recurso</label>
+        <div class="tipo-tog">
+          <button class="tipo-btn on" id="tipoLink" onclick="setTipo('link')">&#128279; Enlace web</button>
+          <button class="tipo-btn"    id="tipoPdf"  onclick="setTipo('pdf')">&#128196; Subir PDF</button>
+        </div>
+      </div>
+      <div id="campoUrl">
+        <div class="f-field">
+          <label>URL del recurso *</label>
+          <input type="text" id="libroRecurso" placeholder="https://...">
+          <div class="f-hint">Pega la URL del sitio de descarga. Se abrira en nueva pestana.</div>
+        </div>
+      </div>
+      <div id="campoPdf" style="display:none">
+        <div class="f-field">
+          <label>Archivo PDF *</label>
+          <div id="pdfDropZone"
+               style="border:2px dashed #d0cfca;border-radius:9px;padding:1.5rem 1rem;text-align:center;cursor:pointer;background:#fafaf8;transition:border-color 0.2s;"
+               onclick="document.getElementById('pdfFileInput').click()"
+               ondragover="event.preventDefault();document.getElementById('pdfDropZone').style.borderColor='#e07030';"
+               ondragleave="document.getElementById('pdfDropZone').style.borderColor='#d0cfca';"
+               ondrop="handlePdfDrop(event)">
+            <div style="font-size:2rem;line-height:1;margin-bottom:0.4rem;">&#128196;</div>
+            <div style="font-size:0.83rem;font-weight:600;color:#555;">Haz clic o arrastra el PDF aqui</div>
+            <div style="font-size:0.72rem;color:#aaa;margin-top:0.2rem;">Solo .pdf &middot; Max recomendado 5 MB</div>
+          </div>
+          <input type="file" id="pdfFileInput" accept=".pdf" style="display:none" onchange="handlePdfSelect(event)">
+          <div id="pdfNombreBox" style="display:none;margin-top:0.6rem;padding:0.5rem 0.75rem;background:#f0f9f0;border:1px solid #c0ddc0;border-radius:7px;">
+            <span style="font-size:0.8rem;color:#2a6a2a;font-weight:600;">&#10003; </span>
+            <span id="pdfNombreTxt" style="font-size:0.8rem;color:#2a6a2a;"></span>
+            <button onclick="quitarPdf()" style="float:right;background:transparent;border:none;cursor:pointer;color:#999;font-size:1.1rem;line-height:1;padding:0;">&#10005;</button>
+          </div>
+          <div class="f-hint" style="margin-top:0.4rem;">El PDF se guarda en el navegador. Se abre en visor interno para los estudiantes.</div>
+        </div>
+      </div>
+    </div>
+    <div class="m-foot">
+      <button class="btn-cancel" onclick="cerrarModal('mLibro')">Cancelar</button>
+      <button class="btn-prim"   onclick="guardarLibro()">&#10003; Guardar libro</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CARRERA -->
+<div class="m-overlay" id="mCarrera" onclick="cerrarOverlay(event,'mCarrera')">
+  <div class="m-box">
+    <div class="m-head">
+      <h3 id="mCarreraTit">Nueva carrera</h3>
+      <button class="m-close" onclick="cerrarModal('mCarrera')">&#10005;</button>
+    </div>
+    <div class="m-body">
+      <input type="hidden" id="carreraId">
+      <div class="f-field">
+        <label>Nombre *</label>
+        <input type="text" id="carreraNom" placeholder="Ej: Mecatr&oacute;nica Automotriz">
+      </div>
+      <div class="f-row">
+        <div class="f-field">
+          <label>Color de acento</label>
+          <input type="color" id="carreraColor" value="#e07030" style="height:42px;cursor:pointer;padding:0.2rem;">
+        </div>
+        <div class="f-field">
+          <label>Icono (emoji)</label>
+          <input type="text" id="carreraIco" placeholder="&#128663;" maxlength="6">
+        </div>
+      </div>
+    </div>
+    <div class="m-foot">
+      <button class="btn-cancel" onclick="cerrarModal('mCarrera')">Cancelar</button>
+      <button class="btn-prim"   onclick="guardarCarrera()">&#10003; Guardar carrera</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL ESTUDIANTE -->
+<div class="m-overlay" id="mEst" onclick="cerrarOverlay(event,'mEst')">
+  <div class="m-box">
+    <div class="m-head">
+      <h3 id="mEstTit">Nuevo estudiante</h3>
+      <button class="m-close" onclick="cerrarModal('mEst')">&#10005;</button>
+    </div>
+    <div class="m-body">
+      <input type="hidden" id="estId">
+      <div class="f-field">
+        <label>Nombre completo *</label>
+        <input type="text" id="estNom" placeholder="Ej: Ana Mart&iacute;nez">
+      </div>
+      <div class="f-row">
+        <div class="f-field">
+          <label>Usuario *</label>
+          <input type="text" id="estUser" placeholder="usuario123">
+        </div>
+        <div class="f-field">
+          <label>Contrase&ntilde;a *</label>
+          <input type="password" id="estPwd" placeholder="contrase&ntilde;a">
+        </div>
+      </div>
+      <div class="f-row">
+        <div class="f-field">
+          <label>Carrera</label>
+          <select id="estCarrera"></select>
+        </div>
+        <div class="f-field">
+          <label>Rol</label>
+          <select id="estRol">
+            <option value="student">Estudiante</option>
+            <option value="admin">Administrador</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="m-foot">
+      <button class="btn-cancel" onclick="cerrarModal('mEst')">Cancelar</button>
+      <button class="btn-prim"   onclick="guardarEst()">&#10003; Guardar</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL CSV ESTUDIANTES -->
+<div class="m-overlay" id="mCsv" onclick="cerrarOverlay(event,'mCsv')">
+  <div class="m-box">
+    <div class="m-head">
+      <h3>&#128196; Carga masiva de estudiantes (CSV)</h3>
+      <button class="m-close" onclick="cerrarModal('mCsv')">&#10005;</button>
+    </div>
+    <div class="m-body">
+      <div style="background:#f0f4ff;border:1px solid #c0ccee;border-radius:8px;padding:0.875rem;margin-bottom:1rem;">
+        <div style="font-size:0.8rem;font-weight:700;color:#2a3a7a;margin-bottom:0.4rem;">Formato requerido del CSV:</div>
+        <div style="font-family:monospace;font-size:0.76rem;color:#445;background:white;border:1px solid #dde;border-radius:6px;padding:0.5rem 0.75rem;line-height:1.7;">
+          nombre,usuario,contrasena,carrera<br>
+          Juan Perez,jperez,pass123,Mecatronica Automotriz<br>
+          Ana Lopez,alopez,pass456,Seguridad y Prevencion
+        </div>
+        <div style="font-size:0.72rem;color:#667;margin-top:0.4rem;">Primera fila = encabezados (se ignoran). Los campos son: nombre, usuario, contrasena, carrera.</div>
+      </div>
+      <div class="f-field">
+        <label>Seleccionar archivo CSV</label>
+        <div id="csvDropZone" style="border:2px dashed #d0cfca;border-radius:9px;padding:1.25rem;text-align:center;cursor:pointer;background:#fafaf8;"
+             onclick="document.getElementById('csvFileInput').click()"
+             ondragover="event.preventDefault();this.style.borderColor='#e07030';"
+             ondragleave="this.style.borderColor='#d0cfca';"
+             ondrop="handleCsvDrop(event)">
+          <div style="font-size:1.8rem;margin-bottom:0.3rem;">&#128203;</div>
+          <div style="font-size:0.82rem;font-weight:600;color:#555;">Haz clic o arrastra el archivo CSV</div>
+          <div style="font-size:0.72rem;color:#aaa;margin-top:0.2rem;">Solo archivos .csv</div>
+        </div>
+        <input type="file" id="csvFileInput" accept=".csv,text/csv" style="display:none" onchange="handleCsvSelect(event)">
+      </div>
+      <div id="csvPreviewBox" style="display:none">
+        <div style="font-size:0.8rem;font-weight:700;color:#1a2a3a;margin-bottom:0.5rem;" id="csvResumen"></div>
+        <div style="max-height:220px;overflow-y:auto;border:1px solid #e0dfda;border-radius:8px;">
+          <table style="width:100%;border-collapse:collapse;font-size:0.76rem;" id="csvPreviewTable">
+            <thead style="background:#f6f5f2;position:sticky;top:0;">
+              <tr>
+                <th style="padding:0.45rem 0.75rem;text-align:left;border-bottom:1px solid #e0dfda;">#</th>
+                <th style="padding:0.45rem 0.75rem;text-align:left;border-bottom:1px solid #e0dfda;">Nombre</th>
+                <th style="padding:0.45rem 0.75rem;text-align:left;border-bottom:1px solid #e0dfda;">Usuario</th>
+                <th style="padding:0.45rem 0.75rem;text-align:left;border-bottom:1px solid #e0dfda;">Contrase&ntilde;a</th>
+                <th style="padding:0.45rem 0.75rem;text-align:left;border-bottom:1px solid #e0dfda;">Carrera</th>
+                <th style="padding:0.45rem 0.75rem;text-align:left;border-bottom:1px solid #e0dfda;">Estado</th>
+              </tr>
+            </thead>
+            <tbody id="csvPreviewBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="m-foot">
+      <button class="btn-cancel" onclick="cerrarModal('mCsv')">Cancelar</button>
+      <button class="btn-prim" id="btnImportarCsv" onclick="importarCsv()" style="display:none">&#10003; Importar estudiantes</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toastEl"></div>
+
+<script>
+/* ====== AUTH ====== */
+function cerrarSesion() { sessionStorage.removeItem('bv_session'); window.location.href = 'index.html'; }
+(function() {
+  var s = sessionStorage.getItem('bv_session');
+  if (!s) { window.location.href = 'index.html'; return; }
+  var u = JSON.parse(s);
+  if (u.role !== 'admin') { window.location.href = 'biblioteca.html'; }
+})();
+
+/* ====== STORAGE HELPERS ====== */
+function getUsers()    { return JSON.parse(localStorage.getItem('bv_users')    || '[]'); }
+function setUsers(d)   { localStorage.setItem('bv_users',    JSON.stringify(d)); }
+function getLibros()   { return JSON.parse(localStorage.getItem('bv_libros')   || '[]'); }
+function setLibros(d)  { localStorage.setItem('bv_libros',   JSON.stringify(d)); }
+function getCarreras() { return JSON.parse(localStorage.getItem('bv_carreras') || '[]'); }
+function setCarreras(d){ localStorage.setItem('bv_carreras', JSON.stringify(d)); }
+function nextId(arr)   { return arr.length ? Math.max.apply(null, arr.map(function(x){ return x.id; })) + 1 : 1; }
+
+/* ====== UI HELPERS ====== */
+function toast(msg, tipo) {
+  var el = document.getElementById('toastEl');
+  el.textContent = msg;
+  el.className = 'toast ' + (tipo || 'ok') + ' vis';
+  setTimeout(function(){ el.classList.remove('vis'); }, 3000);
+}
+function verPanel(nom, el) {
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('panel-' + nom).classList.add('active');
+  document.querySelectorAll('.nav-it').forEach(function(n){ n.classList.remove('active'); });
+  if (el) el.classList.add('active');
+  if (nom === 'dashboard')   renderDash();
+  if (nom === 'libros')      renderLibrosAdmin();
+  if (nom === 'carreras')    renderCarreras();
+  if (nom === 'estudiantes') renderEst();
+}
+function cerrarModal(id) { document.getElementById(id).classList.remove('open'); }
+function abrirModal(id)  { document.getElementById(id).classList.add('open'); }
+function cerrarOverlay(e, id) { if (e.target === document.getElementById(id)) cerrarModal(id); }
+
+/* ====== TIPO TOGGLE ====== */
+var tipoActual = 'link';
+var pdfBase64Actual = '';
+var pdfNombreActual = '';
+
+function setTipo(t) {
+  tipoActual = t;
+  document.getElementById('tipoLink').classList.toggle('on', t === 'link');
+  document.getElementById('tipoPdf').classList.toggle('on',  t === 'pdf');
+  document.getElementById('campoUrl').style.display  = (t === 'link') ? '' : 'none';
+  document.getElementById('campoPdf').style.display  = (t === 'pdf')  ? '' : 'none';
+}
+
+function handlePdfSelect(e) {
+  var file = e.target.files[0];
+  if (file) procesarPdf(file);
+}
+function handlePdfDrop(e) {
+  e.preventDefault();
+  document.getElementById('pdfDropZone').style.borderColor = '#d0cfca';
+  var file = e.dataTransfer.files[0];
+  if (file && file.type === 'application/pdf') procesarPdf(file);
+  else toast('Solo se permiten archivos PDF.', 'err');
+}
+function procesarPdf(file) {
+  var reader = new FileReader();
+  reader.onload = function(ev) {
+    pdfBase64Actual = ev.target.result;
+    pdfNombreActual = file.name;
+    var nt = document.getElementById('pdfNombreTxt');
+    var nb = document.getElementById('pdfNombreBox');
+    if (nt) nt.textContent = file.name + ' (' + (file.size/1024/1024).toFixed(2) + ' MB)';
+    if (nb) nb.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+function quitarPdf() {
+  pdfBase64Actual = '';
+  pdfNombreActual = '';
+  var fi = document.getElementById('pdfFileInput');
+  if (fi) fi.value = '';
+  var nb = document.getElementById('pdfNombreBox');
+  if (nb) nb.style.display = 'none';
+  var nt = document.getElementById('pdfNombreTxt');
+  if (nt) nt.textContent = '';
+}
+
+/* ====== LLENAR SELECTS ====== */
+function llenarSelects() {
+  var carreras = getCarreras();
+  var opts = carreras.map(function(c){ return '<option value="' + c.id + '">' + c.nombre + '</option>'; }).join('');
+  ['libroCarrera'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.innerHTML = opts;
+  });
+  var filtro = document.getElementById('filtroCarrera');
+  if (filtro) filtro.innerHTML = '<option value="">Todas las carreras</option>' + opts;
+  var estC = document.getElementById('estCarrera');
+  if (estC) estC.innerHTML = '<option value="">Sin asignar</option>' + opts;
+}
+
+/* ====== DASHBOARD ====== */
+function renderDash() {
+  var libros = getLibros(); var carreras = getCarreras();
+  var users  = getUsers(); var ests = users.filter(function(u){ return u.role === 'student'; });
+  var mats   = {};
+  libros.forEach(function(l){ mats[l.materia] = 1; });
+
+  document.getElementById('dashStats').innerHTML =
+    '<div class="s-card"><strong>' + libros.length   + '</strong><span>Total libros</span></div>' +
+    '<div class="s-card"><strong>' + carreras.length  + '</strong><span>Carreras</span></div>' +
+    '<div class="s-card"><strong>' + ests.length      + '</strong><span>Estudiantes</span></div>' +
+    '<div class="s-card"><strong>' + Object.keys(mats).length + '</strong><span>Materias</span></div>';
+
+  var last5 = libros.slice(-5).reverse();
+  var rl = document.getElementById('recentList');
+  if (!last5.length) {
+    rl.innerHTML = '<div class="vacio"><div class="ico">&#128218;</div><p>No hay libros a\u00fan.</p></div>';
+    return;
+  }
+  rl.innerHTML = last5.map(function(l) {
+    var c = carreras.filter(function(x){ return x.id === l.carreraId; })[0];
+    var col = c ? c.color : '#888';
+    var ico = c ? c.icono : '&#128218;';
+    return '<div class="reciente-item">' +
+      '<div class="r-ico" style="background:' + col + '22;color:' + col + '">' + ico + '</div>' +
+      '<div style="flex:1;min-width:0;"><div class="r-tit">' + l.titulo + '</div>' +
+      '<div class="r-sub">' + l.materia + ' &middot; ' + l.autor + '</div></div>' +
+      '<span class="tipo-b ' + (l.tipo==='pdf'?'tp-pdf':'tp-link') + '">' + l.tipo.toUpperCase() + '</span>' +
+      '</div>';
+  }).join('');
+}
+
+/* ====== LIBROS ADMIN ====== */
+function renderLibrosAdmin() {
+  llenarSelects();
+  var libros   = getLibros();
+  var carreras = getCarreras();
+  var q  = (document.getElementById('filtroBuscar').value || '').toLowerCase();
+  var cf = parseInt(document.getElementById('filtroCarrera').value) || 0;
+
+  var f = libros.filter(function(l) {
+    var mq = !q || l.titulo.toLowerCase().indexOf(q)>-1 || l.autor.toLowerCase().indexOf(q)>-1 || l.materia.toLowerCase().indexOf(q)>-1;
+    var mc = !cf || l.carreraId === cf;
+    return mq && mc;
+  });
+
+  var tbody = document.getElementById('librosTbody');
+  if (!f.length) {
+    tbody.innerHTML = '<tr><td colspan="7"><div class="vacio"><div class="ico">&#128218;</div><p>No hay libros. Agrega el primero con el bot\u00f3n +</p></div></td></tr>';
+    return;
+  }
+  tbody.innerHTML = f.map(function(l) {
+    var c = carreras.filter(function(x){ return x.id === l.carreraId; })[0];
+    return '<tr>' +
+      '<td><div class="td-tit">' + l.titulo + '</div><div class="td-desc">' + l.descripcion + '</div></td>' +
+      '<td>' + l.materia + '</td>' +
+      '<td style="font-size:0.79rem">' + (c ? c.nombre : '-') + '</td>' +
+      '<td style="font-size:0.79rem">' + l.autor + '</td>' +
+      '<td style="font-size:0.79rem">' + l.anio + '</td>' +
+      '<td><span class="tipo-b ' + (l.tipo==='pdf'?'tp-pdf':'tp-link') + '">' + l.tipo.toUpperCase() + '</span></td>' +
+      '<td><div class="td-acts">' +
+        '<button class="btn-edit" onclick="abrirModalLibro(' + l.id + ')">Editar</button>' +
+        '<button class="btn-del"  onclick="eliminarLibro(' + l.id + ')">Eliminar</button>' +
+      '</div></td>' +
+    '</tr>';
+  }).join('');
+}
+
+function abrirModalLibro(id) {
+  llenarSelects();
+  quitarPdf();
+  if (id === 0) {
+    document.getElementById('libroId').value = '';
+    document.getElementById('libroCarrera').selectedIndex = 0;
+    document.getElementById('libroMateria').value  = '';
+    document.getElementById('libroTitulo').value   = '';
+    document.getElementById('libroAutor').value    = '';
+    document.getElementById('libroAnio').value     = '';
+    document.getElementById('libroDesc').value     = '';
+    document.getElementById('libroRecurso').value  = '';
+    setTipo('link');
+    document.getElementById('mLibroTit').textContent = 'Agregar libro';
+  } else {
+    var l = getLibros().filter(function(x){ return x.id === id; })[0];
+    if (!l) return;
+    document.getElementById('libroId').value        = l.id;
+    document.getElementById('libroCarrera').value   = l.carreraId;
+    document.getElementById('libroMateria').value   = l.materia;
+    document.getElementById('libroTitulo').value    = l.titulo;
+    document.getElementById('libroAutor').value     = l.autor;
+    document.getElementById('libroAnio').value      = l.anio;
+    document.getElementById('libroDesc').value      = l.descripcion;
+    if (l.tipo === 'pdf') {
+      setTipo('pdf');
+      if (l.recurso && l.recurso.startsWith('data:')) {
+        pdfBase64Actual = l.recurso;
+        pdfNombreActual = l.titulo + '.pdf';
+        var nt2 = document.getElementById('pdfNombreTxt');
+        var nb2 = document.getElementById('pdfNombreBox');
+        if (nt2) nt2.textContent = '[PDF guardado anteriormente]';
+        if (nb2) nb2.style.display = 'block';
+      } else {
+        /* PDF externo via URL que se migró */
+        document.getElementById('libroRecurso').value = l.recurso;
+        setTipo('link');
+      }
+    } else {
+      document.getElementById('libroRecurso').value = l.recurso;
+      setTipo('link');
+    }
+    document.getElementById('mLibroTit').textContent = 'Editar libro';
+  }
+  abrirModal('mLibro');
+}
+
+function guardarLibro() {
+  var titulo    = document.getElementById('libroTitulo').value.trim();
+  var carreraId = parseInt(document.getElementById('libroCarrera').value);
+  var materia   = document.getElementById('libroMateria').value.trim();
+  if (!titulo || !carreraId || !materia) { toast('Completa los campos obligatorios (*).', 'err'); return; }
+
+  var recurso = '';
+  if (tipoActual === 'pdf') {
+    if (!pdfBase64Actual) { toast('Selecciona un archivo PDF.', 'err'); return; }
+    recurso = pdfBase64Actual;
+  } else {
+    recurso = document.getElementById('libroRecurso').value.trim();
+    if (!recurso) { toast('Ingresa la URL del recurso.', 'err'); return; }
+  }
+
+  var libros  = getLibros();
+  var existId = parseInt(document.getElementById('libroId').value) || 0;
+  var libro   = {
+    id:          existId || nextId(libros),
+    carreraId:   carreraId,
+    materia:     materia,
+    titulo:      titulo,
+    autor:       document.getElementById('libroAutor').value.trim() || 'Desconocido',
+    descripcion: document.getElementById('libroDesc').value.trim(),
+    anio:        document.getElementById('libroAnio').value.trim() || 'S/F',
+    tipo:        tipoActual,
+    recurso:     recurso,
+    nombreArchivo: (tipoActual === 'pdf') ? pdfNombreActual : ''
+  };
+  if (existId) {
+    var idx = -1;
+    for (var i=0;i<libros.length;i++) if (libros[i].id===existId) { idx=i; break; }
+    if (idx > -1) libros[idx] = libro;
+  } else {
+    libros.push(libro);
+  }
+  setLibros(libros);
+  cerrarModal('mLibro');
+  renderLibrosAdmin();
+  renderDash();
+  toast(existId ? 'Libro actualizado.' : 'Libro agregado correctamente.');
+}
+
+function eliminarLibro(id) {
+  if (!confirm('\u00bfEliminar este libro?')) return;
+  setLibros(getLibros().filter(function(x){ return x.id !== id; }));
+  renderLibrosAdmin(); renderDash();
+  toast('Libro eliminado.', 'err');
+}
+
+/* ====== CARRERAS ====== */
+function renderCarreras() {
+  var carreras = getCarreras(); var libros = getLibros();
+  var tbody = document.getElementById('carrerasTbody');
+  if (!carreras.length) {
+    tbody.innerHTML = '<tr><td colspan="5"><div class="vacio"><div class="ico">&#127979;</div><p>No hay carreras a\u00fan.</p></div></td></tr>';
+    return;
+  }
+  tbody.innerHTML = carreras.map(function(c) {
+    var cnt = libros.filter(function(l){ return l.carreraId === c.id; }).length;
+    return '<tr>' +
+      '<td style="font-size:1.4rem;text-align:center">' + c.icono + '</td>' +
+      '<td><strong style="font-size:0.84rem">' + c.nombre + '</strong></td>' +
+      '<td><span style="display:inline-block;width:22px;height:22px;border-radius:5px;background:' + c.color + '"></span></td>' +
+      '<td style="font-size:0.82rem">' + cnt + ' recurso' + (cnt!==1?'s':'') + '</td>' +
+      '<td><div class="td-acts">' +
+        '<button class="btn-edit" onclick="abrirModalCarrera(' + c.id + ')">Editar</button>' +
+        '<button class="btn-del"  onclick="eliminarCarrera(' + c.id + ')">Eliminar</button>' +
+      '</div></td>' +
+    '</tr>';
+  }).join('');
+}
+
+function abrirModalCarrera(id) {
+  if (id === 0) {
+    document.getElementById('carreraId').value    = '';
+    document.getElementById('carreraNom').value   = '';
+    document.getElementById('carreraColor').value = '#e07030';
+    document.getElementById('carreraIco').value   = '';
+    document.getElementById('mCarreraTit').textContent = 'Nueva carrera';
+  } else {
+    var c = getCarreras().filter(function(x){ return x.id === id; })[0];
+    if (!c) return;
+    document.getElementById('carreraId').value    = c.id;
+    document.getElementById('carreraNom').value   = c.nombre;
+    document.getElementById('carreraColor').value = c.color;
+    document.getElementById('carreraIco').value   = c.icono;
+    document.getElementById('mCarreraTit').textContent = 'Editar carrera';
+  }
+  abrirModal('mCarrera');
+}
+
+function guardarCarrera() {
+  var nombre = document.getElementById('carreraNom').value.trim();
+  if (!nombre) { toast('Ingresa el nombre de la carrera.', 'err'); return; }
+  var carreras = getCarreras();
+  var existId  = parseInt(document.getElementById('carreraId').value) || 0;
+  var c = {
+    id:     existId || nextId(carreras),
+    nombre: nombre,
+    color:  document.getElementById('carreraColor').value,
+    icono:  document.getElementById('carreraIco').value.trim() || '&#127979;'
+  };
+  if (existId) {
+    var idx = -1;
+    for (var i=0;i<carreras.length;i++) if (carreras[i].id===existId) { idx=i; break; }
+    if (idx > -1) carreras[idx] = c;
+  } else {
+    carreras.push(c);
+  }
+  setCarreras(carreras);
+  cerrarModal('mCarrera'); renderCarreras(); renderDash();
+  toast(existId ? 'Carrera actualizada.' : 'Carrera agregada.');
+}
+
+function eliminarCarrera(id) {
+  if (!confirm('\u00bfEliminar esta carrera? Tambi\u00e9n se eliminar\u00e1n sus libros.')) return;
+  setCarreras(getCarreras().filter(function(x){ return x.id !== id; }));
+  setLibros(getLibros().filter(function(x){ return x.carreraId !== id; }));
+  renderCarreras(); renderDash();
+  toast('Carrera eliminada.', 'err');
+}
+
+/* ====== ESTUDIANTES ====== */
+function renderEst() {
+  llenarSelects();
+  var users    = getUsers(); var carreras = getCarreras();
+  var tbody    = document.getElementById('estTbody');
+  tbody.innerHTML = users.map(function(u) {
+    var esAdmin = u.role === 'admin';
+    return '<tr>' +
+      '<td><strong style="font-size:0.84rem">' + u.name + '</strong></td>' +
+      '<td style="font-size:0.8rem;font-family:monospace">' + u.username + '</td>' +
+      '<td style="font-size:0.79rem">' + (u.carrera || '&mdash;') + '</td>' +
+      '<td><span style="font-size:0.68rem;font-weight:700;padding:0.12rem 0.48rem;border-radius:4px;background:' +
+        (esAdmin ? '#fff4e6' : '#edf7ed') + ';color:' + (esAdmin ? '#b05000' : '#2a6a2a') + '">' +
+        (esAdmin ? 'Admin' : 'Estudiante') + '</span></td>' +
+      '<td><div class="td-acts">' +
+        '<button class="btn-edit" onclick="abrirModalEst(' + u.id + ')">Editar</button>' +
+        (!esAdmin ? '<button class="btn-del" onclick="eliminarEst(' + u.id + ')">Eliminar</button>' : '') +
+      '</div></td>' +
+    '</tr>';
+  }).join('');
+}
+
+function abrirModalEst(id) {
+  llenarSelects();
+  if (id === 0) {
+    document.getElementById('estId').value   = '';
+    document.getElementById('estNom').value  = '';
+    document.getElementById('estUser').value = '';
+    document.getElementById('estPwd').value  = '';
+    document.getElementById('estRol').value  = 'student';
+    document.getElementById('mEstTit').textContent = 'Nuevo estudiante';
+  } else {
+    var u = getUsers().filter(function(x){ return x.id === id; })[0];
+    if (!u) return;
+    document.getElementById('estId').value   = u.id;
+    document.getElementById('estNom').value  = u.name;
+    document.getElementById('estUser').value = u.username;
+    document.getElementById('estPwd').value  = u.password;
+    document.getElementById('estRol').value  = u.role;
+    // Set carrera select
+    var estC = document.getElementById('estCarrera');
+    for (var i=0; i<estC.options.length; i++) {
+      if (estC.options[i].text === u.carrera) { estC.selectedIndex = i; break; }
+    }
+    document.getElementById('mEstTit').textContent = 'Editar usuario';
+  }
+  abrirModal('mEst');
+}
+
+function guardarEst() {
+  var nombre = document.getElementById('estNom').value.trim();
+  var user   = document.getElementById('estUser').value.trim();
+  var pwd    = document.getElementById('estPwd').value.trim();
+  if (!nombre || !user || !pwd) { toast('Completa nombre, usuario y contrase\u00f1a.', 'err'); return; }
+
+  var users   = getUsers();
+  var existId = parseInt(document.getElementById('estId').value) || 0;
+  var estC    = document.getElementById('estCarrera');
+  var carreraNom = estC.options[estC.selectedIndex] ? estC.options[estC.selectedIndex].text : '';
+  if (carreraNom === 'Sin asignar') carreraNom = '';
+
+  if (!existId) {
+    for (var i=0; i<users.length; i++) {
+      if (users[i].username === user) { toast('Ese nombre de usuario ya existe.', 'err'); return; }
+    }
+  }
+
+  var u = { id: existId || nextId(users), name: nombre, username: user, password: pwd,
+    role: document.getElementById('estRol').value, carrera: carreraNom };
+
+  if (existId) {
+    var idx = -1;
+    for (var j=0;j<users.length;j++) if (users[j].id===existId) { idx=j; break; }
+    if (idx > -1) users[idx] = u;
+  } else {
+    users.push(u);
+  }
+  setUsers(users);
+  cerrarModal('mEst'); renderEst(); renderDash();
+  toast(existId ? 'Usuario actualizado.' : 'Estudiante agregado correctamente.');
+}
+
+function eliminarEst(id) {
+  if (!confirm('\u00bfEliminar este estudiante?')) return;
+  setUsers(getUsers().filter(function(x){ return x.id !== id; }));
+  renderEst(); renderDash();
+  toast('Estudiante eliminado.', 'err');
+}
+
+/* ====== CSV MASIVO ====== */
+var csvFilas = [];
+
+function handleCsvSelect(e) {
+  var file = e.target.files[0];
+  if (file) procesarCsv(file);
+}
+function handleCsvDrop(e) {
+  e.preventDefault();
+  document.getElementById('csvDropZone').style.borderColor = '#d0cfca';
+  var file = e.dataTransfer.files[0];
+  if (file) procesarCsv(file);
+  else toast('Arrastra un archivo CSV.', 'err');
+}
+function procesarCsv(file) {
+  var reader = new FileReader();
+  reader.onload = function(ev) {
+    var texto = ev.target.result;
+    var lineas = texto.split(/\r?\n/).filter(function(l){ return l.trim() !== ''; });
+    if (lineas.length < 2) { toast('El CSV debe tener al menos una fila de datos.', 'err'); return; }
+    var users = getUsers();
+    csvFilas = [];
+    for (var i = 1; i < lineas.length; i++) {
+      var cols = parseCsvLine(lineas[i]);
+      if (cols.length < 3) continue;
+      var nombre    = (cols[0] || '').trim();
+      var usuario   = (cols[1] || '').trim();
+      var contrasena= (cols[2] || '').trim();
+      var carrera   = (cols[3] || '').trim();
+      var estado = '';
+      if (!nombre || !usuario || !contrasena) { estado = 'Faltan datos'; }
+      else if (users.find(function(u){ return u.username === usuario; })) { estado = 'Usuario duplicado'; }
+      else { estado = 'Listo'; }
+      csvFilas.push({ nombre: nombre, usuario: usuario, contrasena: contrasena, carrera: carrera, estado: estado });
+    }
+    mostrarCsvPreview();
+  };
+  reader.readAsText(file, 'UTF-8');
+}
+function parseCsvLine(line) {
+  var result = []; var cur = ''; var inq = false;
+  for (var i = 0; i < line.length; i++) {
+    var ch = line[i];
+    if (ch === '"') { inq = !inq; }
+    else if (ch === ',' && !inq) { result.push(cur); cur = ''; }
+    else { cur += ch; }
+  }
+  result.push(cur);
+  return result;
+}
+function mostrarCsvPreview() {
+  var listos = csvFilas.filter(function(f){ return f.estado === 'Listo'; }).length;
+  var errores = csvFilas.length - listos;
+  document.getElementById('csvResumen').innerHTML =
+    '<span style="color:#2a6a2a">&#10003; ' + listos + ' listos para importar</span>' +
+    (errores > 0 ? ' &nbsp; <span style="color:#a03030">&#9888; ' + errores + ' con errores (se omitirán)</span>' : '');
+  var tbody = document.getElementById('csvPreviewBody');
+  tbody.innerHTML = csvFilas.map(function(f, i) {
+    var ok = f.estado === 'Listo';
+    return '<tr style="background:' + (ok ? 'white' : '#fff8f0') + '">' +
+      '<td style="padding:0.4rem 0.75rem;color:#888">' + (i+1) + '</td>' +
+      '<td style="padding:0.4rem 0.75rem">' + f.nombre + '</td>' +
+      '<td style="padding:0.4rem 0.75rem;font-family:monospace">' + f.usuario + '</td>' +
+      '<td style="padding:0.4rem 0.75rem">&#8226;&#8226;&#8226;&#8226;&#8226;</td>' +
+      '<td style="padding:0.4rem 0.75rem;font-size:0.75rem">' + (f.carrera || '&mdash;') + '</td>' +
+      '<td style="padding:0.4rem 0.75rem"><span style="font-size:0.68rem;font-weight:700;padding:0.1rem 0.45rem;border-radius:4px;background:' +
+        (ok ? '#edf7ed' : '#fde') + ';color:' + (ok ? '#2a6a2a' : '#922') + '">' + f.estado + '</span></td>' +
+    '</tr>';
+  }).join('');
+  document.getElementById('csvPreviewBox').style.display = '';
+  document.getElementById('btnImportarCsv').style.display = listos > 0 ? '' : 'none';
+}
+function importarCsv() {
+  var users = getUsers();
+  var importados = 0;
+  csvFilas.forEach(function(f) {
+    if (f.estado !== 'Listo') return;
+    users.push({
+      id: nextId(users),
+      name: f.nombre,
+      username: f.usuario,
+      password: f.contrasena,
+      role: 'student',
+      carrera: f.carrera
+    });
+    importados++;
+  });
+  setUsers(users);
+  cerrarModal('mCsv');
+  csvFilas = [];
+  document.getElementById('csvFileInput').value = '';
+  document.getElementById('csvPreviewBox').style.display = 'none';
+  document.getElementById('btnImportarCsv').style.display = 'none';
+  renderEst(); renderDash();
+  toast(importados + ' estudiante' + (importados !== 1 ? 's' : '') + ' importado' + (importados !== 1 ? 's' : '') + ' correctamente.');
+}
+
+/* ====== INICIO ====== */
+renderDash();
+llenarSelects();
+</script>
+</body>
+</html>

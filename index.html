@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biblioteca Virtual – ISTUO</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #0a1628;
+  color: #f0ede8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* FONDO ANIMADO */
+.bg-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  animation: flotar 20s infinite ease-in-out;
+}
+.bg-circle.c1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(224,112,48,0.15), transparent 70%);
+  top: -150px; left: -150px;
+  animation-duration: 22s;
+}
+.bg-circle.c2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(42,157,143,0.12), transparent 70%);
+  bottom: -100px; right: -100px;
+  animation-duration: 28s;
+  animation-delay: -10s;
+}
+.bg-circle.c3 {
+  width: 250px; height: 250px;
+  background: radial-gradient(circle, rgba(58,106,181,0.1), transparent 70%);
+  top: 45%; left: 55%;
+  animation-duration: 18s;
+  animation-delay: -5s;
+}
+@keyframes flotar {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(25px, -25px) scale(1.04); }
+  66%       { transform: translate(-15px, 15px) scale(0.97); }
+}
+
+/* ESTRUCTURA */
+.page {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* HEADER */
+header {
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.logo-icon {
+  width: 38px; height: 38px;
+  background: #e07030;
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.logo-text {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1.25;
+}
+.logo-text small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.7rem;
+  color: rgba(240,237,232,0.5);
+}
+
+/* HERO */
+.hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+.hero-inner { max-width: 540px; width: 100%; }
+
+.badge-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(224,112,48,0.15);
+  border: 1px solid rgba(224,112,48,0.35);
+  color: #e8a060;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: white;
+  margin-bottom: 0.75rem;
+}
+.hero h1 span { color: #e07030; }
+
+.hero-desc {
+  font-size: 0.95rem;
+  color: rgba(240,237,232,0.6);
+  line-height: 1.65;
+  margin-bottom: 2rem;
+}
+
+/* CARD LOGIN */
+.login-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: left;
+}
+.login-card h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.field { margin-bottom: 1rem; }
+.field label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(240,237,232,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.4rem;
+}
+.field input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 9px;
+  color: white;
+  font-size: 0.92rem;
+  outline: none;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  transition: border-color 0.2s;
+}
+.field input::placeholder { color: rgba(255,255,255,0.3); }
+.field input:focus { border-color: rgba(224,112,48,0.7); }
+
+.btn-login {
+  width: 100%;
+  padding: 0.8rem;
+  background: #e07030;
+  color: white;
+  border: none;
+  border-radius: 9px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+}
+.btn-login:hover { background: #c85e20; }
+.btn-login:active { transform: scale(0.99); }
+
+.error-box {
+  display: none;
+  background: rgba(220,50,50,0.15);
+  border: 1px solid rgba(220,50,50,0.35);
+  color: #ff8888;
+  font-size: 0.8rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 0.75rem;
+}
+.error-box.visible { display: block; }
+
+/* STATS */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  flex-wrap: wrap;
+}
+.stat-item { text-align: center; }
+.stat-item strong {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #e07030;
+}
+.stat-item span {
+  font-size: 0.72rem;
+  color: rgba(240,237,232,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.72rem;
+  color: rgba(240,237,232,0.2);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 2rem; }
+  .login-card { padding: 1.5rem; }
+  header, .stats-bar { padding-left: 1rem; padding-right: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-wrap">
+  <div class="bg-circle c1"></div>
+  <div class="bg-circle c2"></div>
+  <div class="bg-circle c3"></div>
+</div>
+
+<div class="page">
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">&#128218;</div>
+      <div class="logo-text">
+        ISTUO
+        <small>Instituto Superior Tecnol&oacute;gico Universitario &ldquo;Oriente&rdquo;</small>
+      </div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-inner">
+
+      <div class="badge-top">&#127979; Plataforma Acad&eacute;mica</div>
+
+      <h1>Biblioteca<br><span>Virtual</span></h1>
+
+      <p class="hero-desc">
+        Accede a los recursos bibliogr&aacute;ficos de tu carrera: libros, manuales t&eacute;cnicos
+        y materiales de estudio organizados por asignatura.
+      </p>
+
+      <div class="login-card">
+        <h2>&#128274;&nbsp; Acceder a la biblioteca</h2>
+
+        <div class="field">
+          <label>Usuario</label>
+          <input type="text" id="inputUser" placeholder="Ingresa tu usuario" autocomplete="username">
+        </div>
+        <div class="field">
+          <label>Contrase&ntilde;a</label>
+          <input type="password" id="inputPass" placeholder="Ingresa tu contrase&ntilde;a" autocomplete="current-password">
+        </div>
+
+        <button class="btn-login" onclick="doLogin()">Ingresar &rarr;</button>
+
+        <div class="error-box" id="msgError">
+          Usuario o contrase&ntilde;a incorrectos. Int&eacute;ntalo de nuevo.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <strong id="cntLibros">0</strong>
+      <span>Libros disponibles</span>
+    </div>
+    <div class="stat-item">
+      <strong id="cntCarreras">0</strong>
+      <span>Carreras</span>
+    </div>
+    <div class="stat-item">
+      <strong id="cntEstudiantes">0</strong>
+      <span>Estudiantes registrados</span>
+    </div>
+  </div>
+
+  <footer>
+    Instituto Superior Tecnol&oacute;gico Universitario &ldquo;Oriente&rdquo; &nbsp;&middot;&nbsp; Biblioteca Virtual &copy; 2025
+  </footer>
+
+</div>
+
+<script>
+/* ---- DATOS INICIALES ---- */
+function initData() {
+  if (!localStorage.getItem('bv_users')) {
+    localStorage.setItem('bv_users', JSON.stringify([
+      { id: 1, username: 'admin',       password: 'admin123', role: 'admin',   name: 'Administrador', carrera: '' },
+      { id: 2, username: 'estudiante1', password: 'est123',   role: 'student', name: 'Juan P\u00e9rez', carrera: 'Mecatr\u00f3nica Automotriz' }
+    ]));
+  }
+  if (!localStorage.getItem('bv_carreras')) {
+    localStorage.setItem('bv_carreras', JSON.stringify([
+      { id: 1, nombre: 'Mecatr\u00f3nica Automotriz',                          color: '#e07030', icono: '&#128663;' },
+      { id: 2, nombre: 'Seguridad y Prevenci\u00f3n de Riesgos Laborales',     color: '#2a9d8f', icono: '&#128737;' }
+    ]));
+  }
+  /* Si ya existe pero tiene menos de 14 libros, era la versión vieja → reemplazar */
+  var librosGuardados = JSON.parse(localStorage.getItem('bv_libros') || '[]');
+  if (librosGuardados.length < 14) { localStorage.removeItem('bv_libros'); }
+
+  if (!localStorage.getItem('bv_libros')) {
+    localStorage.setItem('bv_libros', JSON.stringify([
+      /* ── MATEMÁTICAS ── */
+      { id:1,  carreraId:1, materia:'Matem\u00e1ticas I & II', titulo:'C\u00e1lculo \u2013 James Stewart (8va Edici\u00f3n)', autor:'James Stewart', descripcion:'El texto m\u00e1s usado en carreras de ingenier\u00eda. Cubre l\u00edmites, derivadas, integrales y series con aplicaciones.', anio:'2016', tipo:'link', recurso:'https://libgen.is/search.php?req=calculo+stewart&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def' },
+      { id:2,  carreraId:1, materia:'Matem\u00e1ticas I & II', titulo:'\u00c1lgebra y Trigonometr\u00eda \u2013 Sullivan', autor:'Michael Sullivan', descripcion:'Base algebraica y trigonom\u00e9trica esencial antes del c\u00e1lculo. Ejercicios graduados con soluciones.', anio:'2014', tipo:'link', recurso:'https://infolibros.org/libros-pdf-gratis/matematicas/algebra/' },
+      { id:3,  carreraId:1, materia:'Matem\u00e1ticas I & II', titulo:'C\u00e1lculo Diferencial e Integral \u2013 Granville', autor:'William Anthony Granville', descripcion:'Cl\u00e1sico de referencia para c\u00e1lculo diferencial e integral, ampliamente disponible en repositorios abiertos.', anio:'Cl\u00e1sico', tipo:'link', recurso:'https://archive.org/search?query=granville+calculo+diferencial+integral' },
+      /* ── FÍSICA ── */
+      { id:4,  carreraId:1, materia:'F\u00edsica I & II', titulo:'F\u00edsica para Ciencias e Ingenier\u00eda \u2013 Serway & Jewett (9na Ed.)', autor:'Raymond Serway / John Jewett', descripcion:'Mec\u00e1nica, termodin\u00e1mica, electricidad y magnetismo con enfoque en aplicaciones de ingenier\u00eda.', anio:'2015', tipo:'link', recurso:'https://libgen.is/search.php?req=fisica+serway+jewett&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def' },
+      { id:5,  carreraId:1, materia:'F\u00edsica I & II', titulo:'F\u00edsica Universitaria \u2013 Sears & Zemansky (14va Ed.)', autor:'Young / Freedman', descripcion:'Texto universitario est\u00e1ndar con vectores, cinem\u00e1tica, din\u00e1mica, oscilaciones y ondas.', anio:'2018', tipo:'link', recurso:'https://libgen.is/search.php?req=fisica+universitaria+sears+zemansky&open=0&view=simple' },
+      /* ── DIBUJO TÉCNICO ── */
+      { id:6,  carreraId:1, materia:'Dibujo T\u00e9cnico Aplicado I & II', titulo:'Dibujo en Ingenier\u00eda y Comunicaci\u00f3n Gr\u00e1fica \u2013 Giesecke', autor:'Giesecke / Mitchell / Spencer', descripcion:'Normas ANSI/ISO, proyecciones ortogonales, perspectivas, tolerancias y lectura de planos.', anio:'2012', tipo:'link', recurso:'https://archive.org/search?query=dibujo+tecnico+giesecke+ingenieria' },
+      { id:7,  carreraId:1, materia:'Dibujo T\u00e9cnico Aplicado I & II', titulo:'Manual de Dibujo T\u00e9cnico \u2013 French & Vierck', autor:'Thomas French / Charles Vierck', descripcion:'Manual cl\u00e1sico con trazados, acotaciones, cortes y secciones aplicados a mec\u00e1nica.', anio:'Cl\u00e1sico', tipo:'link', recurso:'https://archive.org/search?query=manual+dibujo+tecnico+french+vierck' },
+      /* ── ELECTRICIDAD BÁSICA ── */
+      { id:8,  carreraId:1, materia:'Electricidad B\u00e1sica', titulo:'Fundamentos de Circuitos El\u00e9ctricos \u2013 Sadiku & Alexander (5ta Ed.)', autor:'Charles Alexander / Matthew Sadiku', descripcion:'Ley de Ohm, nodos, mallas, teoremas, CA/CC, condensadores, inductores. Base para electricidad automotriz.', anio:'2013', tipo:'link', recurso:'https://libgen.is/search.php?req=fundamentos+circuitos+electricos+sadiku&open=0&view=simple' },
+      { id:9,  carreraId:1, materia:'Electricidad B\u00e1sica', titulo:'Electricidad y Electr\u00f3nica \u2013 Boylestad', autor:'Robert Boylestad', descripcion:'Dispositivos electr\u00f3nicos, diodos, transistores y amplificadores. Puente entre electricidad b\u00e1sica y electr\u00f3nica.', anio:'2011', tipo:'link', recurso:'https://libgen.is/search.php?req=boylestad+electronica&open=0&view=simple' },
+      /* ── MECÁNICA DE PATIO ── */
+      { id:10, carreraId:1, materia:'Mec\u00e1nica de Patio I & II', titulo:'Manual Completo de Mec\u00e1nica Automotriz \u2013 INTECAP', autor:'INTECAP Guatemala', descripcion:'Motor, transmisi\u00f3n, suspensi\u00f3n, frenos y direcci\u00f3n. Orientado a t\u00e9cnicos de nivel b\u00e1sico e intermedio.', anio:'2020', tipo:'link', recurso:'https://infolibros.org/libros-pdf-gratis/oficios/mecanica-automotriz/' },
+      { id:11, carreraId:1, materia:'Mec\u00e1nica de Patio I & II', titulo:'Manual de Mec\u00e1nica del Autom\u00f3vil \u2013 Bosch', autor:'Robert Bosch GmbH', descripcion:'Referencia t\u00e9cnica de Bosch: motor, combustible, frenos, suspensi\u00f3n y sistemas auxiliares.', anio:'2018', tipo:'link', recurso:'https://www.mecanicoautomotriz.org/s/manuales' },
+      { id:12, carreraId:1, materia:'Mec\u00e1nica de Patio I & II', titulo:'Mantenimiento Automotriz \u2013 SENA Colombia', autor:'SENA', descripcion:'Procedimientos de mantenimiento preventivo y correctivo. Manual oficial de formaci\u00f3n t\u00e9cnica.', anio:'2019', tipo:'link', recurso:'https://repositorio.sena.edu.co/' },
+      /* ── METODOLOGÍA ── */
+      { id:13, carreraId:1, materia:'Metodolog\u00eda de la Investigaci\u00f3n', titulo:'Metodolog\u00eda de la Investigaci\u00f3n \u2013 Hern\u00e1ndez Sampieri (6ta Ed.)', autor:'Roberto Hern\u00e1ndez Sampieri', descripcion:'El referente latinoamericano para investigaci\u00f3n cuantitativa, cualitativa y mixta. Esencial para el TIC.', anio:'2014', tipo:'link', recurso:'https://archive.org/search?query=hernandez+sampieri+metodologia+investigacion' },
+      /* ── MOTORES ── */
+      { id:14, carreraId:1, materia:'Motores I & II', titulo:'Motor de Combusti\u00f3n Interna \u2013 Payri & Desantes', autor:'Francisco Payri / Jos\u00e9 Desantes', descripcion:'Teor\u00eda del ciclo termodin\u00e1mico, distribuci\u00f3n, lubricaci\u00f3n, refrigeraci\u00f3n y sistemas de combustible en motores.', anio:'2011', tipo:'link', recurso:'https://riunet.upv.es/handle/10251/52191' },
+      { id:15, carreraId:1, materia:'Motores I & II', titulo:'Manual de Motores Di\u00e9sel \u2013 Bosch', autor:'Robert Bosch GmbH', descripcion:'Tipos de motores di\u00e9sel, sistemas de inyecci\u00f3n, turboalimentaci\u00f3n y diagn\u00f3stico.', anio:'2018', tipo:'link', recurso:'https://www.mecanicoautomotriz.org/s/motores' },
+      { id:16, carreraId:1, materia:'Motores I & II', titulo:'Tecnolog\u00eda de los Motores \u2013 Crouse & Anglin', autor:'William Crouse / Donald Anglin', descripcion:'Dise\u00f1o y funcionamiento de motores a gasolina y di\u00e9sel, ciclos 2T y 4T, carburaci\u00f3n e inyecci\u00f3n.', anio:'2010', tipo:'link', recurso:'https://archive.org/search?query=crouse+anglin+motores+automotriz' },
+      /* ── TERMODINÁMICA ── */
+      { id:17, carreraId:1, materia:'Termodin\u00e1mica', titulo:'Termodin\u00e1mica \u2013 Cengel & Boles (7ma Ed.)', autor:'Yunus Cengel / Michael Boles', descripcion:'El texto universitario m\u00e1s completo: leyes, ciclos de potencia, ciclo Otto/Diesel, entrop\u00eda y mezclas.', anio:'2012', tipo:'link', recurso:'https://elsolucionario.net/termodinamica-yunus-cengel-michael-boles-7ed/' },
+      { id:18, carreraId:1, materia:'Termodin\u00e1mica', titulo:'Termodin\u00e1mica T\u00e9cnica y Motores T\u00e9rmicos \u2013 Mataix', autor:'Claudio Mataix', descripcion:'Aplicaci\u00f3n directa de la termodin\u00e1mica a motores de combusti\u00f3n y turbinas.', anio:'Cl\u00e1sico', tipo:'link', recurso:'https://librosysolucionarios.org/fisica/termodinamica/' },
+      { id:19, carreraId:1, materia:'Termodin\u00e1mica', titulo:'Fluidos y Termodin\u00e1mica \u2013 Figueroa', autor:'Douglas Figueroa', descripcion:'Mec\u00e1nica de fluidos y termodin\u00e1mica integradas, con problemas resueltos.', anio:'2010', tipo:'link', recurso:'https://archive.org/details/DouglasFigueroaFluidosYTermodinmica' },
+      /* ── RESISTENCIA DE MATERIALES ── */
+      { id:20, carreraId:1, materia:'Resistencia de Materiales', titulo:'Mec\u00e1nica de Materiales \u2013 Beer & Johnston (7ma Ed.)', autor:'Ferdinand Beer / Russell Johnston', descripcion:'Tensi\u00f3n, deformaci\u00f3n, flexi\u00f3n, torsi\u00f3n, columnas y deflexi\u00f3n en elementos mec\u00e1nicos.', anio:'2014', tipo:'link', recurso:'https://libgen.is/search.php?req=mecanica+materiales+beer+johnston&open=0' },
+      { id:21, carreraId:1, materia:'Resistencia de Materiales', titulo:'Resistencia de Materiales \u2013 Mott', autor:'Robert Mott', descripcion:'Resistencia y dise\u00f1o de elementos de m\u00e1quinas con aplicaciones en estructuras automotrices.', anio:'2009', tipo:'link', recurso:'https://libgen.is/search.php?req=resistencia+materiales+mott&open=0' },
+      /* ── HIDRONEUMÁTICA ── */
+      { id:22, carreraId:1, materia:'Hidroneumática', titulo:'Oleohidr\u00e1ulica \u2013 Serrano Nicol\u00e1s', autor:'Antonio Serrano Nicol\u00e1s', descripcion:'Fundamentos de hidr\u00e1ulica industrial: bombas, v\u00e1lvulas, actuadores, circuitos y control. Aplicado a maquinaria y veh\u00edculos.', anio:'2012', tipo:'link', recurso:'https://libgen.is/search.php?req=oleoneumatica+serrano+nicolas&open=0' },
+      { id:23, carreraId:1, materia:'Hidroneumática', titulo:'Neum\u00e1tica e Hidr\u00e1ulica \u2013 Creus Sol\u00e9', autor:'Antonio Creus Sol\u00e9', descripcion:'Sistemas neum\u00e1ticos e hidr\u00e1ulicos industriales, incluyendo frenos y suspensiones hidr\u00e1ulicas.', anio:'2011', tipo:'link', recurso:'https://libgen.is/search.php?req=neumatica+hidraulica+creus+sole&open=0' },
+      { id:24, carreraId:1, materia:'Hidroneumática', titulo:'Manual de Sistemas de Frenos Hidr\u00e1ulicos \u2013 Bosch', autor:'Robert Bosch GmbH', descripcion:'Sistemas ABS, ESP, frenos de disco/tambor, c\u00e1liper y circuitos hidr\u00e1ulicos automotrices.', anio:'2020', tipo:'link', recurso:'https://www.mecanicoautomotriz.org/s/frenos' },
+      /* ── ELECTRICIDAD DEL AUTOMÓVIL ── */
+      { id:25, carreraId:1, materia:'Electricidad del Autom\u00f3vil', titulo:'Electricidad del Autom\u00f3vil \u2013 Serie completa', autor:'Varios / Aficionados a la Mec\u00e1nica', descripcion:'Bater\u00eda, alternador, motor de arranque, circuitos de iluminaci\u00f3n, aire acondicionado y sistemas auxiliares.', anio:'2020', tipo:'link', recurso:'https://electricidaddelauto1.blogspot.com/p/libros.html' },
+      { id:26, carreraId:1, materia:'Electricidad del Autom\u00f3vil', titulo:'Sistemas El\u00e9ctrico y Electr\u00f3nico del Autom\u00f3vil \u2013 Denton', autor:'Tom Denton', descripcion:'EV, HEV, redes CAN-Bus, sensores, actuadores, diagn\u00f3stico OBD. Versi\u00f3n actualizada con veh\u00edculos el\u00e9ctricos.', anio:'2017', tipo:'link', recurso:'https://libgen.is/search.php?req=sistemas+electrico+electronico+automovil+denton&open=0' },
+      /* ── ELECTRÓNICA DEL AUTOMÓVIL ── */
+      { id:27, carreraId:1, materia:'Electr\u00f3nica del Autom\u00f3vil', titulo:'Manual de Inyecci\u00f3n Electr\u00f3nica Automotriz (completo)', autor:'Varios t\u00e9cnicos automotrices', descripcion:'Encendido electr\u00f3nico, sensores MAF/MAP/O2, inyectores, UCE y diagn\u00f3stico de fallas. 72 p\u00e1gs.', anio:'2019', tipo:'link', recurso:'https://www.mecanicoautomotriz.org/477-manual-mecanica-automotriz-inyeccion-electronica-automotriz' },
+      { id:28, carreraId:1, materia:'Electr\u00f3nica del Autom\u00f3vil', titulo:'Electr\u00f3nica Automotriz \u2013 Kirpal Singh', autor:'Kirpal Singh', descripcion:'Sistemas electr\u00f3nicos del veh\u00edculo moderno: mapas de encendido, control de emisiones, suspensi\u00f3n activa.', anio:'2015', tipo:'link', recurso:'https://libgen.is/search.php?req=automotive+electronics+kirpal&open=0' },
+      { id:29, carreraId:1, materia:'Electr\u00f3nica del Autom\u00f3vil', titulo:'10 Manuales de Electr\u00f3nica y Electricidad Automotriz', autor:'Bosch / Varios fabricantes', descripcion:'Colecci\u00f3n de 10 fasc\u00edculos sobre sensores, actuadores, encendido y diagn\u00f3stico electr\u00f3nico automotriz.', anio:'2018', tipo:'link', recurso:'https://autodidacta.info/mecanica/aprender-todo-sobre-la-electronica-y-electricidad-automotriz/' },
+      /* ── INYECCIÓN ELECTRÓNICA ── */
+      { id:30, carreraId:1, materia:'Inyecci\u00f3n Electr\u00f3nica I & II', titulo:'Sistemas de Inyecci\u00f3n de Combustible \u2013 Bosch (Gasolina)', autor:'Robert Bosch GmbH', descripcion:'Monoinyecci\u00f3n, multipunto, inyecci\u00f3n directa GDI. Sensores, actuadores, diagn\u00f3stico y estrategias de control.', anio:'2020', tipo:'link', recurso:'https://www.mecanicoautomotriz.org/s/inyeccion' },
+      { id:31, carreraId:1, materia:'Inyecci\u00f3n Electr\u00f3nica I & II', titulo:'Sistemas de Inyecci\u00f3n Di\u00e9sel \u2013 Bosch (Common Rail)', autor:'Robert Bosch GmbH', descripcion:'Common Rail, bomba de alta presi\u00f3n, inyectores solenoides/piezoel\u00e9ctricos, presi\u00f3n de riel y diagn\u00f3stico.', anio:'2021', tipo:'link', recurso:'https://www.mecanicoautomotriz.org/s/diesel' },
+      { id:32, carreraId:1, materia:'Inyecci\u00f3n Electr\u00f3nica I & II', titulo:'Manual de Inyecci\u00f3n Peugeot, Renault, Chevrolet y Varios', autor:'Varios fabricantes', descripcion:'Datos de ajuste y diagramas de inyecci\u00f3n para marcas comunes en el Ecuador.', anio:'2017', tipo:'link', recurso:'https://www.mecanicoautomotriz.org/179-manual-inyeccion-electronica-modelos-varios' },
+      /* ── SISTEMAS HÍBRIDOS ── */
+      { id:33, carreraId:1, materia:'Sistemas H\u00edbridos y El\u00e9ctricos', titulo:'Veh\u00edculos El\u00e9ctricos e H\u00edbridos \u2013 Manual completo', autor:'Varios / Editorial Paraninfo', descripcion:'Bater\u00edas, motores el\u00e9ctricos, cargadores, inverter, frenada regenerativa, diagn\u00f3stico HEV/EV.', anio:'2022', tipo:'link', recurso:'https://es.scribd.com/document/920993687/9788428364263' },
+      { id:34, carreraId:1, materia:'Sistemas H\u00edbridos y El\u00e9ctricos', titulo:'Veh\u00edculos H\u00edbridos y El\u00e9ctricos \u2013 L\u00f3pez Mart\u00ednez', autor:'Jos\u00e9 Mar\u00eda L\u00f3pez Mart\u00ednez', descripcion:'Almacenamiento de energ\u00eda, propulsor el\u00e9ctrico, hibridaci\u00f3n serie/paralelo y principios de dise\u00f1o.', anio:'2015', tipo:'link', recurso:'https://www.perlego.com/es/book/2053362/vehculos-hbridos-y-elctricos-pdf' },
+      { id:35, carreraId:1, materia:'Sistemas H\u00edbridos y El\u00e9ctricos', titulo:'Toyota Hybrid System \u2013 Manual T\u00e9cnico Oficial', autor:'Toyota Motor Corporation', descripcion:'Descripci\u00f3n t\u00e9cnica del sistema h\u00edbrido Toyota (Prius/Corolla HEV). Subsistemas, diagn\u00f3stico y seguridad.', anio:'2019', tipo:'link', recurso:'https://archive.org/search?query=toyota+hybrid+system+technical+manual+espanol' },
+      /* ── ENERGÍAS RENOVABLES ── */
+      { id:36, carreraId:1, materia:'Energ\u00edas Renovables', titulo:'Energ\u00edas Renovables \u2013 Lillo Bravo', autor:'Isidoro Lillo Bravo', descripcion:'Solar, e\u00f3lica, biomasa e hidr\u00e1ulica. Base conceptual para entender la electrificaci\u00f3n del transporte.', anio:'2020', tipo:'link', recurso:'https://libgen.is/search.php?req=energias+renovables+lillo&open=0' },
+      { id:37, carreraId:1, materia:'Energ\u00edas Renovables', titulo:'Fundamentos de Energ\u00edas Renovables \u2013 Fern\u00e1ndez Salgado', autor:'Jos\u00e9 Mar\u00eda Fern\u00e1ndez Salgado', descripcion:'T\u00e9cnicas de instalaci\u00f3n y aprovechamiento de energ\u00edas renovables con enfoque tecnol\u00f3gico.', anio:'2018', tipo:'link', recurso:'https://libgen.is/search.php?req=fundamentos+energias+renovables+fernandez&open=0' },
+      /* ── MANTENIMIENTO AUTOMOTRIZ ── */
+      { id:38, carreraId:1, materia:'Mantenimiento Automotriz', titulo:'Mantenimiento de Veh\u00edculos Autom\u00f3viles \u2013 Crouse & Anglin', autor:'William Crouse / Donald Anglin', descripcion:'Manual completo de diagn\u00f3stico, mantenimiento preventivo y reparaci\u00f3n de sistemas automotrices.', anio:'2010', tipo:'link', recurso:'https://archive.org/search?query=crouse+anglin+mantenimiento+automoviles' },
+      { id:39, carreraId:1, materia:'Mantenimiento Automotriz', titulo:'Diagn\u00f3stico Avanzado en Mec\u00e1nica Automotriz \u2013 INTECAP', autor:'INTECAP Guatemala', descripcion:'Diagn\u00f3stico con scanner, frenos, motor, electr\u00f3nica, redes CAN, gases de escape. M\u00f3dulo avanzado.', anio:'2022', tipo:'link', recurso:'https://infolibros.org/libros-pdf-gratis/oficios/mecanica-automotriz/' },
+      /* ── REFRIGERACIÓN ── */
+      { id:40, carreraId:1, materia:'Refrigeraci\u00f3n y Climatizaci\u00f3n', titulo:'Sistemas de Aire Acondicionado Automotriz \u2013 Bosch', autor:'Robert Bosch GmbH', descripcion:'Circuito de refrigeraci\u00f3n, compresor, condensador, evaporador, refrigerantes R134a y R1234yf.', anio:'2019', tipo:'link', recurso:'https://www.mecanicoautomotriz.org/s/aire-acondicionado' },
+      { id:41, carreraId:1, materia:'Refrigeraci\u00f3n y Climatizaci\u00f3n', titulo:'Refrigeraci\u00f3n y Climatizaci\u00f3n del Autom\u00f3vil \u2013 Aficionados a la Mec\u00e1nica', autor:'Aficionados a la Mec\u00e1nica', descripcion:'Funcionamiento, diagn\u00f3stico y recarga del sistema de A/C automotriz. Manual pr\u00e1ctico.', anio:'2020', tipo:'link', recurso:'https://www.aficionadosalamecanica.net/aire-acondicionado-coche.htm' },
+      /* ── CAN-BUS / OBD / PROGRAMACIÓN ── */
+      { id:42, carreraId:1, materia:'Automatizaci\u00f3n Automotriz / Programaci\u00f3n de M\u00f3dulos', titulo:'Redes de Comunicaci\u00f3n Automotriz \u2013 Protocolo CAN Bus', autor:'Vector Academy / Bosch', descripcion:'Redes CAN, LIN, FlexRay y MOST. ECUs, gateway, diagn\u00f3stico con osciloscopio y scanner.', anio:'2021', tipo:'link', recurso:'https://www.mecanicoautomotriz.org/s/electronica' },
+      { id:43, carreraId:1, materia:'Automatizaci\u00f3n Automotriz / Programaci\u00f3n de M\u00f3dulos', titulo:'Diagn\u00f3stico OBD-II \u2013 Manual t\u00e9cnico completo', autor:'Varios / SAE International', descripcion:'Protocolos OBD-II, c\u00f3digos DTC, modos de diagn\u00f3stico, sensores y estrategias de diagn\u00f3stico.', anio:'2020', tipo:'link', recurso:'https://www.mecanicoautomotriz.org/s/diagnostico' },
+      /* ── ADMINISTRACIÓN / CALIDAD ── */
+      { id:44, carreraId:1, materia:'Administraci\u00f3n de Talleres / Control y Gesti\u00f3n de Calidad', titulo:'Organizaci\u00f3n y Administraci\u00f3n de Talleres Automotrices', autor:'Varios autores', descripcion:'Gesti\u00f3n de taller: layouts, tiempos de reparaci\u00f3n, control de inventario, atenci\u00f3n al cliente y costos.', anio:'2018', tipo:'link', recurso:'https://repositorio.utp.edu.pe/' },
+      { id:45, carreraId:1, materia:'Administraci\u00f3n de Talleres / Control y Gesti\u00f3n de Calidad', titulo:'Control de Calidad \u2013 Besterfield (8va Ed.)', autor:'Dale H. Besterfield', descripcion:'Fundamentos de control estad\u00edstico de calidad, normas ISO y mejora continua aplicados a procesos industriales.', anio:'2009', tipo:'link', recurso:'https://libgen.is/search.php?req=control+calidad+besterfield&open=0' },
+      { id:46, carreraId:1, materia:'Administraci\u00f3n de Talleres / Control y Gesti\u00f3n de Calidad', titulo:'Emprendimiento y Plan de Negocio \u2013 SENA', autor:'SENA Colombia', descripcion:'Creaci\u00f3n de empresa, estudio de mercado, plan financiero y marketing para talleres automotrices.', anio:'2021', tipo:'link', recurso:'https://repositorio.sena.edu.co/' },
+      /* ── EQUIPO PESADO ── */
+      { id:47, carreraId:1, materia:'Equipo Pesado', titulo:'Maquinaria de Construcci\u00f3n \u2013 T\u00e9cnica y Mantenimiento', autor:'Jos\u00e9 Mar\u00eda de la Cruz Salinas', descripcion:'Motores di\u00e9sel pesados, trenes de rodaje, sistemas hidr\u00e1ulicos y transmisiones de equipo pesado.', anio:'2015', tipo:'link', recurso:'https://libgen.is/search.php?req=maquinaria+construccion+de+la+cruz&open=0' },
+      { id:48, carreraId:1, materia:'Equipo Pesado', titulo:'Mantenimiento Preventivo para Maquinaria Pesada \u2013 Caterpillar', autor:'Caterpillar Inc.', descripcion:'Sistemas de maquinaria pesada CAT: motor, transmisi\u00f3n, convertidor de par, hidr\u00e1ulicos y el\u00e9ctricos.', anio:'2019', tipo:'link', recurso:'https://archive.org/search?query=caterpillar+mantenimiento+maquinaria+pesada+espanol' },
+      /* ── SOLDADURA / MÁQUINAS HERRAMIENTAS ── */
+      { id:49, carreraId:1, materia:'M\u00e1quinas Herramientas / T\u00e9cnicas de Soldadura', titulo:'Tecnolog\u00eda de M\u00e1quinas Herramientas \u2013 Krar', autor:'Steve Krar / Mario Gill / Peter Smid', descripcion:'Torno, fresadora, rectificadora, taladro. Operaci\u00f3n, mantenimiento y procesos de mecanizado.', anio:'2009', tipo:'link', recurso:'https://libgen.is/search.php?req=tecnologia+maquinas+herramientas+krar&open=0' },
+      { id:50, carreraId:1, materia:'M\u00e1quinas Herramientas / T\u00e9cnicas de Soldadura', titulo:'Manual de Soldadura \u2013 Lincoln Electric', autor:'Lincoln Electric', descripcion:'Soldadura MIG, TIG, electrodo revestido, corte y soldadura en mantenimiento automotriz.', anio:'2020', tipo:'link', recurso:'https://www.lincolnelectric.com/es-mx/support/welding-how-to/Pages/library.aspx' }
+    ]));
+  }
+}
+
+/* ---- ESTADÍSTICAS ---- */
+function updateStats() {
+  var libros     = JSON.parse(localStorage.getItem('bv_libros')   || '[]');
+  var carreras   = JSON.parse(localStorage.getItem('bv_carreras') || '[]');
+  var users      = JSON.parse(localStorage.getItem('bv_users')    || '[]');
+  var estudiantes = users.filter(function(u){ return u.role === 'student'; });
+  document.getElementById('cntLibros').textContent     = libros.length;
+  document.getElementById('cntCarreras').textContent   = carreras.length;
+  document.getElementById('cntEstudiantes').textContent= estudiantes.length;
+}
+
+/* ---- LOGIN ---- */
+function doLogin() {
+  var user  = document.getElementById('inputUser').value.trim();
+  var pass  = document.getElementById('inputPass').value.trim();
+  var users = JSON.parse(localStorage.getItem('bv_users') || '[]');
+  var found = null;
+  for (var i = 0; i < users.length; i++) {
+    if (users[i].username === user && users[i].password === pass) {
+      found = users[i]; break;
+    }
+  }
+  if (found) {
+    sessionStorage.setItem('bv_session', JSON.stringify(found));
+    window.location.href = found.role === 'admin' ? 'admin.html' : 'biblioteca.html';
+  } else {
+    document.getElementById('msgError').classList.add('visible');
+    setTimeout(function(){ document.getElementById('msgError').classList.remove('visible'); }, 3500);
+  }
+}
+
+/* Enter para login */
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doLogin();
+});
+
+initData();
+updateStats();
+</script>
+</body>
+</html>
