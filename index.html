@@ -9,8 +9,8 @@
 
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
-  background: #0a1628;
-  color: #f0ede8;
+  background: #f7f5ee;
+  color: #111;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,31 +24,48 @@ body {
   overflow: hidden;
   pointer-events: none;
 }
+
 .bg-circle {
   position: absolute;
   border-radius: 50%;
   animation: flotar 20s infinite ease-in-out;
 }
+
 .bg-circle.c1 {
   width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(224,112,48,0.15), transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(236,198,0,0.18),
+    transparent 70%
+  );
   top: -150px; left: -150px;
   animation-duration: 22s;
 }
+
 .bg-circle.c2 {
   width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(42,157,143,0.12), transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(79,130,55,0.15),
+    transparent 70%
+  );
   bottom: -100px; right: -100px;
   animation-duration: 28s;
   animation-delay: -10s;
 }
+
 .bg-circle.c3 {
   width: 250px; height: 250px;
-  background: radial-gradient(circle, rgba(58,106,181,0.1), transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(41,73,26,0.10),
+    transparent 70%
+  );
   top: 45%; left: 55%;
   animation-duration: 18s;
   animation-delay: -5s;
 }
+
 @keyframes flotar {
   0%, 100% { transform: translate(0px, 0px) scale(1); }
   33%       { transform: translate(25px, -25px) scale(1.04); }
@@ -70,32 +87,37 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(0,0,0,0.10);
 }
+
 .logo {
   display: flex;
   align-items: center;
   gap: 0.7rem;
 }
+
 .logo-icon {
   width: 38px; height: 38px;
-  background: #e07030;
+  background: #3f6f28;
   border-radius: 9px;
   display: flex; align-items: center; justify-content: center;
   font-size: 1.1rem;
   flex-shrink: 0;
+  color: #ffffff;
 }
+
 .logo-text {
   font-size: 0.88rem;
   font-weight: 700;
-  color: white;
+  color: #111;
   line-height: 1.25;
 }
+
 .logo-text small {
   display: block;
   font-weight: 400;
   font-size: 0.7rem;
-  color: rgba(240,237,232,0.5);
+  color: #777;
 }
 
 /* HERO */
@@ -107,15 +129,16 @@ header {
   padding: 3rem 1.5rem;
   text-align: center;
 }
+
 .hero-inner { max-width: 540px; width: 100%; }
 
 .badge-top {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(224,112,48,0.15);
-  border: 1px solid rgba(224,112,48,0.35);
-  color: #e8a060;
+  background: rgba(236,198,0,0.18);
+  border: 1px solid rgba(236,198,0,0.55);
+  color: #29491a;
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.3rem 0.9rem;
@@ -129,64 +152,76 @@ header {
   font-size: 2.8rem;
   font-weight: 800;
   line-height: 1.15;
-  color: white;
+  color: #111;
   margin-bottom: 0.75rem;
 }
-.hero h1 span { color: #e07030; }
+
+.hero h1 span {
+  color: #3f6f28;
+}
 
 .hero-desc {
   font-size: 0.95rem;
-  color: rgba(240,237,232,0.6);
+  color: #777;
   line-height: 1.65;
   margin-bottom: 2rem;
 }
 
 /* CARD LOGIN */
 .login-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(0,0,0,0.12);
   border-radius: 16px;
   padding: 2rem;
   text-align: left;
 }
+
 .login-card h2 {
   font-size: 1rem;
   font-weight: 700;
-  color: white;
+  color: #111;
   text-align: center;
   margin-bottom: 1.5rem;
 }
 
 .field { margin-bottom: 1rem; }
+
 .field label {
   display: block;
   font-size: 0.75rem;
   font-weight: 600;
-  color: rgba(240,237,232,0.5);
+  color: #777;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-bottom: 0.4rem;
 }
+
 .field input {
   width: 100%;
   padding: 0.7rem 1rem;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
+  background: #f7f5ee;
+  border: 1px solid rgba(0,0,0,0.15);
   border-radius: 9px;
-  color: white;
+  color: #111;
   font-size: 0.92rem;
   outline: none;
   font-family: 'Segoe UI', Arial, sans-serif;
   transition: border-color 0.2s;
 }
-.field input::placeholder { color: rgba(255,255,255,0.3); }
-.field input:focus { border-color: rgba(224,112,48,0.7); }
+
+.field input::placeholder {
+  color: #999;
+}
+
+.field input:focus {
+  border-color: rgba(63,111,40,0.75);
+}
 
 .btn-login {
   width: 100%;
   padding: 0.8rem;
-  background: #e07030;
-  color: white;
+  background: #3f6f28;
+  color: #ffffff;
   border: none;
   border-radius: 9px;
   font-size: 0.95rem;
@@ -196,21 +231,30 @@ header {
   margin-top: 0.5rem;
   transition: background 0.2s;
 }
-.btn-login:hover { background: #c85e20; }
-.btn-login:active { transform: scale(0.99); }
+
+.btn-login:hover {
+  background: #29491a;
+}
+
+.btn-login:active {
+  transform: scale(0.99);
+}
 
 .error-box {
   display: none;
-  background: rgba(220,50,50,0.15);
-  border: 1px solid rgba(220,50,50,0.35);
-  color: #ff8888;
+  background: rgba(236,198,0,0.18);
+  border: 1px solid rgba(236,198,0,0.55);
+  color: #29491a;
   font-size: 0.8rem;
   padding: 0.6rem 0.9rem;
   border-radius: 8px;
   text-align: center;
   margin-top: 0.75rem;
 }
-.error-box.visible { display: block; }
+
+.error-box.visible {
+  display: block;
+}
 
 /* STATS */
 .stats-bar {
@@ -218,19 +262,24 @@ header {
   justify-content: center;
   gap: 2.5rem;
   padding: 1.5rem 2rem;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid rgba(0,0,0,0.08);
   flex-wrap: wrap;
 }
-.stat-item { text-align: center; }
+
+.stat-item {
+  text-align: center;
+}
+
 .stat-item strong {
   display: block;
   font-size: 1.5rem;
   font-weight: 800;
-  color: #e07030;
+  color: #3f6f28;
 }
+
 .stat-item span {
   font-size: 0.72rem;
-  color: rgba(240,237,232,0.4);
+  color: #777;
   text-transform: uppercase;
   letter-spacing: 0.07em;
 }
@@ -239,8 +288,8 @@ footer {
   text-align: center;
   padding: 1rem;
   font-size: 0.72rem;
-  color: rgba(240,237,232,0.2);
-  border-top: 1px solid rgba(255,255,255,0.05);
+  color: #777;
+  border-top: 1px solid rgba(0,0,0,0.08);
 }
 
 @media (max-width: 480px) {
@@ -334,15 +383,40 @@ function initData() {
       { id: 2, username: 'estudiante1', password: 'est123',   role: 'student', name: 'Juan P\u00e9rez', carrera: 'Mecatr\u00f3nica Automotriz' }
     ]));
   }
-  if (!localStorage.getItem('bv_carreras')) {
-    localStorage.setItem('bv_carreras', JSON.stringify([
-      { id: 1, nombre: 'Mecatr\u00f3nica Automotriz',                          color: '#e07030', icono: '&#128663;' },
-      { id: 2, nombre: 'Seguridad y Prevenci\u00f3n de Riesgos Laborales',     color: '#2a9d8f', icono: '&#128737;' }
-    ]));
-  }
+  /* ==================================================
+   CONTROL DE VERSIÓN DE CARRERAS
+   ================================================== */
+
+var VERSION_CARRERAS = '2026-07-08-v2';
+
+var versionCarrerasGuardada = localStorage.getItem(
+  'bv_carreras_version'
+);
+
+if (versionCarrerasGuardada !== VERSION_CARRERAS) {
+
+  localStorage.setItem('bv_carreras', JSON.stringify([
+    {
+      id: 1,
+      nombre: 'Mecatrónica Automotriz',
+      color: '#e07030',
+      icono: '&#128663;'
+    }
+  ]));
+
+  localStorage.setItem(
+    'bv_carreras_version',
+    VERSION_CARRERAS
+  );
+}
   /* Si ya existe pero tiene menos de 14 libros, era la versión vieja → reemplazar */
-  var librosGuardados = JSON.parse(localStorage.getItem('bv_libros') || '[]');
-  if (librosGuardados.length < 14) { localStorage.removeItem('bv_libros'); }
+  var librosGuardados = JSON.parse(
+    localStorage.getItem('bv_libros') || '[]'
+  );
+
+  if (librosGuardados.length < 204) {
+    localStorage.removeItem('bv_libros');
+  }
 
   if (!localStorage.getItem('bv_libros')) {
     localStorage.setItem('bv_libros', JSON.stringify([
@@ -416,7 +490,1874 @@ function initData() {
       { id:48, carreraId:1, materia:'Equipo Pesado', titulo:'Mantenimiento Preventivo para Maquinaria Pesada \u2013 Caterpillar', autor:'Caterpillar Inc.', descripcion:'Sistemas de maquinaria pesada CAT: motor, transmisi\u00f3n, convertidor de par, hidr\u00e1ulicos y el\u00e9ctricos.', anio:'2019', tipo:'link', recurso:'https://archive.org/search?query=caterpillar+mantenimiento+maquinaria+pesada+espanol' },
       /* ── SOLDADURA / MÁQUINAS HERRAMIENTAS ── */
       { id:49, carreraId:1, materia:'M\u00e1quinas Herramientas / T\u00e9cnicas de Soldadura', titulo:'Tecnolog\u00eda de M\u00e1quinas Herramientas \u2013 Krar', autor:'Steve Krar / Mario Gill / Peter Smid', descripcion:'Torno, fresadora, rectificadora, taladro. Operaci\u00f3n, mantenimiento y procesos de mecanizado.', anio:'2009', tipo:'link', recurso:'https://libgen.is/search.php?req=tecnologia+maquinas+herramientas+krar&open=0' },
-      { id:50, carreraId:1, materia:'M\u00e1quinas Herramientas / T\u00e9cnicas de Soldadura', titulo:'Manual de Soldadura \u2013 Lincoln Electric', autor:'Lincoln Electric', descripcion:'Soldadura MIG, TIG, electrodo revestido, corte y soldadura en mantenimiento automotriz.', anio:'2020', tipo:'link', recurso:'https://www.lincolnelectric.com/es-mx/support/welding-how-to/Pages/library.aspx' }
+      { id:50, carreraId:1, materia:'M\u00e1quinas Herramientas / T\u00e9cnicas de Soldadura', titulo:'Manual de Soldadura \u2013 Lincoln Electric', autor:'Lincoln Electric', descripcion:'Soldadura MIG, TIG, electrodo revestido, corte y soldadura en mantenimiento automotriz.', anio:'2020', tipo:'link', recurso:'https://www.lincolnelectric.com/es-mx/support/welding-how-to/Pages/library.aspx' },
+      /*----------------------------------*/
+      /* ── ADMINISTRACIÓN DE TALLERES AUTOMOTRICES ── */
+
+{
+  id:51,
+  carreraId:1,
+  materia:'Administración de Talleres Automotrices',
+  titulo:'Desarrollo de un sistema integral de gestión de citas y monitoreo de vehículos para la Mecánica Automotriz Don Chavo',
+  autor:'Styven Ariel Padilla Torres',
+  descripcion:'Desarrollo e implementación de un sistema web con Laravel y Angular para gestionar citas, asignar recursos y monitorear en tiempo real el avance de los servicios automotrices, mejorando la eficiencia operativa y la experiencia del cliente.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1sqdQxCrPzi5WV_eYL1QE-4GDqV7fhViE/view?usp=sharing'
+},
+
+{
+  id:52,
+  carreraId:1,
+  materia:'Administración de Talleres Automotrices',
+  titulo:'Optimización de procesos y gestión de talleres Full Motos',
+  autor:'Juan Diego Delgado Galindo',
+  descripcion:'Análisis de la gestión, rentabilidad, captación de clientes, procesos internos y talento humano del taller Full Motos, con una propuesta de Cuadro de Mando Integral para optimizar la eficiencia operativa y la toma de decisiones.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1SvS-3BRLSya_97ygOhbm2-MtcLJsIdFH/view?usp=sharing'
+},
+
+{
+  id:53,
+  carreraId:1,
+  materia:'Administración de Talleres Automotrices',
+  titulo:'Bosch Car Service Excellence Handbook',
+  autor:'Bosch Car Service / Robert Bosch GmbH',
+  descripcion:'Manual integral para la gestión de talleres Bosch Car Service que aborda administración operativa, infraestructura, equipamiento, finanzas, inventarios, procesos, calidad, clientes, talento humano, ventas, comunicación y transformación empresarial.',
+  anio:'2021',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/13g14GBfBjivY3bXZxubGcXTYPDx4_Eq3/view?usp=sharing'
+},
+
+{
+  id:54,
+  carreraId:1,
+  materia:'Administración de Talleres Automotrices',
+  titulo:'Modelo de gestión administrativa para la empresa Centro de Soluciones Técnicas CST',
+  autor:'Christian Vladimir Carpio Quito',
+  descripcion:'Propuesta de gestión administrativa para optimizar el funcionamiento de un taller mecánico mediante planificación estratégica, estructura organizacional, manual de funciones, definición de procesos, gestión del talento humano y mejora de la eficiencia operativa.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1yPZ2eu4JbbTfMsJzSJ1SkpYwojWy3evL/view?usp=sharing'
+},
+
+{
+  id:55,
+  carreraId:1,
+  materia:'Administración de Talleres Automotrices',
+  titulo:'Desarrollo de un modelo de gestión para la implementación del Sistema de Gestión de Calidad bajo normas IATF 16949:2016 para taller automotriz multimarca Mecánica Mundial en la ciudad de Ibarra',
+  autor:'Diego Arturo López Nicolalde',
+  descripcion:'Modelo de gestión orientado a implementar un sistema de calidad en un taller automotriz multimarca, utilizando requisitos de la norma IATF 16949:2016, metodología 5S, estandarización de procesos, planificación operativa y evaluación financiera.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1tFx5h-scdvZ7LSDspw_hzUBdhH0cOu1P/view?usp=sharing'
+},
+
+{
+  id:56,
+  carreraId:1,
+  materia:'Administración de Talleres Automotrices',
+  titulo:'Taller móvil automotriz para vehículos livianos en el sector La Aurora vía Salitre con la utilización de una app',
+  autor:'Luis José Murillo Tigrero',
+  descripcion:'Plan de negocios para la creación de un taller móvil de mantenimiento automotriz apoyado por una aplicación, incluyendo análisis de mercado, planificación estratégica, operación técnica, administración, aspectos legales y evaluación financiera.',
+  anio:'2021',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/13ZNS4g02tXheTzaWek1BhDBXu0zESH1W/view?usp=sharing'
+},
+
+{
+  id:57,
+  carreraId:1,
+  materia:'Administración de Talleres Automotrices',
+  titulo:'Plan de negocios para la creación de una empresa comercializadora de repuestos automotrices express para los talleres en el norte de Quito',
+  autor:'José Luis Enríquez Paredes / Marco Sebastián Nolivos Chiriboga',
+  descripcion:'Diseño de un modelo de negocio para comercializar repuestos automotrices con entrega exprés, sustentado en análisis Porter y PESTEL, investigación de mercado, planificación de marketing, propuesta de valor y evaluación financiera.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1FtsTqu_J5NFcVFe1FkQg-51bV11k_WdK/view?usp=sharing'
+},
+
+{
+  id:58,
+  carreraId:1,
+  materia:'Administración de Talleres Automotrices',
+  titulo:'Creación de un taller especializado en cambio de llantas, mantenimiento de lubricantes y detailing automotriz en Loja, con un enfoque integral de calidad',
+  autor:'Santiago Mateo Alejandro Bravo',
+  descripcion:'Proyecto para crear un taller automotriz especializado mediante investigación de mercado, Design Thinking, análisis de necesidades del cliente, gestión de inventarios, optimización del flujo de trabajo, nuevos servicios y estrategias de marketing digital.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1JFDWNu9W0o-EKb62ZN-8DPuV_wN2g_tI/view?usp=sharing'
+},
+
+{
+  id:59,
+  carreraId:1,
+  materia:'Administración de Talleres Automotrices',
+  titulo:'Gestión financiera en talleres automotrices pequeños utilizando herramientas digitales e implementando prácticas eficientes',
+  autor:'Wilson Alexander Ortega Carrillo',
+  descripcion:'Estudio de la gestión financiera de talleres automotrices pequeños y rurales, considerando control de ingresos y egresos, herramientas digitales, indicadores de desempeño, planificación operativa, rentabilidad y prácticas para mejorar la toma de decisiones.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1LM-af9NxVZqW78XwDqDlRFJ-aCFZrnx8/view?usp=sharing'
+},
+
+{
+  id:60,
+  carreraId:1,
+  materia:'Administración de Talleres Automotrices',
+  titulo:'Análisis de la gestión del conocimiento en los talleres de mantenimiento automotriz del sector El Vecino Cuenca - Ecuador',
+  autor:'Daniel Mateo Mendoza Guzmán / Bryan Patricio Vazquez Vazquez',
+  descripcion:'Análisis de la gestión del conocimiento en talleres de mantenimiento automotriz mediante revisión bibliográfica, encuestas y análisis estadístico, orientado a optimizar procesos, fortalecer el aprendizaje organizacional y mejorar la retención del conocimiento del personal.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1oAwHK8yHz7MNy3toFLxqPQO0Xh89sxhd/view?usp=sharing'
+},
+/* ── AUTOMÁTICA AUTOMOTRIZ ── */
+
+{
+  id:61,
+  carreraId:1,
+  materia:'Automática Automotriz',
+  titulo:'Sistemas Automotrices, Automatización Inteligente e Inteligencia Artificial: Aplicaciones, Desafíos y Oportunidades',
+  autor:'Víctor H. Baños-González / Carolina Sánchez Calvillo',
+  descripcion:'Artículo de revisión sobre la integración de sistemas automotrices, automatización inteligente e inteligencia artificial en la industria automotriz, abordando redes neuronales, aprendizaje automático, conducción autónoma, percepción del entorno, seguridad, eficiencia y sostenibilidad.',
+  anio:'2026',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/175ywSt2H58DGh1NYLfpdJLT5O5jSr93e/view?usp=sharing'
+},
+
+{
+  id:62,
+  carreraId:1,
+  materia:'Automática Automotriz',
+  titulo:'JKU-ITS Automobile for Research on Autonomous Vehicles',
+  autor:'Novel Certad / Walter Morales-Alvarez / Georg Novotny / Cristina Olaverri-Monreal',
+  descripcion:'Artículo científico que presenta una plataforma vehicular experimental para investigación en conducción autónoma, equipada con LiDAR, cámara, radar, GPS, IMU, computadora con ROS y un sistema ADAS basado en Openpilot para automatización y control vehicular.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1YCQAFpQX7innkoFP9XRnpxLmnUrDn5ef/view?usp=sharing'
+},
+
+{
+  id:63,
+  carreraId:1,
+  materia:'Automática Automotriz',
+  titulo:'Vehículos Autónomos: Retos de su Implementación',
+  autor:'Lina María Londoño García',
+  descripcion:'Investigación académica sobre inteligencia artificial y vehículos autónomos, niveles de automatización, arquitectura de software, regulación jurídica, ética, privacidad, ciberseguridad, responsabilidad por daños y desafíos para la implementación segura de la conducción autónoma.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1Wy2vMc0ZK2m2XBUAcn-WopInEPwtgQoY/view?usp=sharing'
+},
+
+{
+  id:64,
+  carreraId:1,
+  materia:'Automática Automotriz',
+  titulo:'Conducción Autónoma: ¿Oportunidades para una movilidad segura, eficiente y sostenible para todos?',
+  autor:'Matthias Hartwig / Instituto para la Protección Climática, Energía y Movilidad (IKEM)',
+  descripcion:'E-book dedicado a la evolución de la conducción autónoma, niveles de automatización, sensores, inteligencia artificial, software vehicular, regulación, sostenibilidad, seguridad vial y oportunidades sociales y económicas asociadas a la movilidad automatizada.',
+  anio:'2020',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1aye7G69khYwldWROPJfEXCIsvgDIyTCb/view?usp=sharing'
+},
+
+{
+  id:65,
+  carreraId:1,
+  materia:'Automática Automotriz',
+  titulo:'Estrategias para la Implementación de los Sistemas Avanzados de Asistencia al Conductor (ADAS) en Colombia: Un Análisis Comparativo con Prácticas Internacionales',
+  autor:'Diego Armando Tamayo Zapata / Kelly Johanna Escudero Eguis',
+  descripcion:'Tesis de maestría que analiza la implementación de sistemas ADAS mediante comparación con experiencias internacionales, considerando seguridad vial, infraestructura, regulación, tecnologías de asistencia al conductor y estrategias para su adopción progresiva.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/17iIFBXxCcd4vJO-I2BE23o-Vk8HKJj6k/view?usp=sharing'
+},
+
+{
+  id:66,
+  carreraId:1,
+  materia:'Automática Automotriz',
+  titulo:'Vehículo Autónomo y Conectado: Informe ANFAC',
+  autor:'Asociación Española de Fabricantes de Automóviles y Camiones (ANFAC)',
+  descripcion:'Informe técnico sobre movilidad conectada, cooperativa y automatizada, niveles de automatización, tecnologías embarcadas, conectividad vehicular, marco regulatorio, homologación, ciberseguridad, redes 5G y líneas de acción para el despliegue del vehículo autónomo y conectado.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1fIvZ0BbM-mATgrmZRzdTpvqczlSL3xeS/view?usp=sharing'
+},
+
+{
+  id:67,
+  carreraId:1,
+  materia:'Automática Automotriz',
+  titulo:'Desafíos Éticos y Tecnológicos de los Vehículos Autónomos',
+  autor:'Juan Manuel Alonso Martín',
+  descripcion:'Trabajo académico que estudia los desafíos técnicos, éticos y sociales de los vehículos autónomos, incluyendo sensores, inteligencia artificial, conectividad, ciberseguridad, toma de decisiones, privacidad, responsabilidad, aceptación social y propuestas para una implementación responsable.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1zHP2BHyvyh1AVfNeQQ9ZjYa48_3sn5NV/view?usp=sharing'
+},
+
+{
+  id:68,
+  carreraId:1,
+  materia:'Automática Automotriz',
+  titulo:'Control Longitudinal Multiplataforma Mediante Redes Neuronales',
+  autor:'Javier Iglesias de Frutos',
+  descripcion:'Proyecto de ingeniería orientado al desarrollo y validación de un controlador longitudinal para vehículos automatizados mediante redes neuronales, utilizando arquitecturas densas, convolucionales y recurrentes, ROS, adquisición de datos y pruebas experimentales en automóvil y autobús.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1IiWYjT6oinGihaIF8B939281ONHw1kPY/view?usp=sharing'
+},
+
+{
+  id:69,
+  carreraId:1,
+  materia:'Automática Automotriz',
+  titulo:'Aplicación de Large Vision Models en Conducción Autónoma: Detección de Objetos y Análisis de Viabilidad',
+  autor:'Enrique Ángel Arrabal Ruiz',
+  descripcion:'Trabajo de investigación sobre el uso de modelos visuales de gran escala en conducción autónoma para detección de objetos y descripción semántica de imágenes, evaluando precisión, recall, latencia, velocidad de inferencia y viabilidad para procesamiento en tiempo real.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1CId8zPpGXbpBkG_G16twZ0nx1zH_muYE/view?usp=sharing'
+},
+
+{
+  id:70,
+  carreraId:1,
+  materia:'Automática Automotriz',
+  titulo:'Analizar y Evaluar la Seguridad de los Sistemas ADAS en Vehículos Eléctricos Disponibles en el Mercado Ecuatoriano',
+  autor:'Martín Rafael Brito Herrera / Klever Andrés Tufiño Chicaiza',
+  descripcion:'Trabajo de integración curricular que analiza la seguridad y funcionamiento de sistemas avanzados de asistencia al conductor en vehículos eléctricos comercializados en Ecuador, considerando tecnologías ADAS, criterios de evaluación, desempeño y seguridad vehicular.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1nUpnLk5_3wrraWwrlRdQhoSftY6hW_jD/view?usp=sharing'
+},
+
+{
+  id:71,
+  carreraId:1,
+  materia:'Automática Automotriz',
+  titulo:'Diseño y Construcción de un Sistema de Conducción Mecatrónico para el Vehículo ANTA',
+  autor:'John Kevin González Jara / Iván Francisco Puetate González',
+  descripcion:'Proyecto tecnológico de diseño y construcción de un sistema mecatrónico de conducción para automatizar funciones del vehículo ANTA, integrando componentes mecánicos, electrónicos, actuadores, control, sensórica y sistemas de conducción aplicados a una plataforma vehicular experimental.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1r3jW6-XEQcyFm2ZC9WbVHKMSeRaur9CO/view?usp=sharing'
+},
+/* ── CONTROL Y GESTIÓN DE CALIDAD ── */
+
+{
+  id:72,
+  carreraId:1,
+  materia:'Control y Gestión de Calidad',
+  titulo:'Diseño de un modelo de gestión por procesos basado en la norma ISO 9001:2015 para el Gobierno Autónomo Descentralizado Intercultural y Plurinacional del Municipio de Cayambe',
+  autor:'Alexander Dario Andrango Achinia',
+  descripcion:'Diseño de un modelo de gestión por procesos basado en ISO 9001:2015, orientado al diagnóstico, estandarización y mejora de procesos institucionales. El estudio aborda problemáticas relacionadas con mantenimiento de vehículos, adquisición de repuestos, tiempos de inactividad de equipos, gestión de recursos y procesos administrativos y financieros.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1XSifdMvYObuwStRf5tb6zuUO4D2NJgrm/view?usp=sharing'
+},
+
+{
+  id:73,
+  carreraId:1,
+  materia:'Control y Gestión de Calidad',
+  titulo:'Auditoría de calidad ISO 9001:2015 a la empresa de Carrocerías IMPEDSA ubicada en el cantón Ambato en el periodo 2024',
+  autor:'Camila Deyanira Zambrano Yangua',
+  descripcion:'Auditoría de calidad aplicada a una empresa del sector carrocero para evaluar el cumplimiento de la norma ISO 9001:2015. Utiliza entrevistas, encuestas y listas de verificación, identifica niveles de cumplimiento y no conformidad, y propone acciones correctivas para fortalecer la eficiencia del sistema y la mejora continua.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/135AqwUR-SjrvE4kU-fL1ru1ttVZhZvTC/view?usp=sharing'
+},
+
+{
+  id:74,
+  carreraId:1,
+  materia:'Control y Gestión de Calidad',
+  titulo:'ISO 9001:2015 Sistemas de gestión de la calidad — Requisitos',
+  autor:'Organización Internacional de Normalización (ISO)',
+  descripcion:'Norma internacional en traducción oficial al español que establece los requisitos para implementar, mantener y mejorar un sistema de gestión de la calidad. Desarrolla el contexto de la organización, liderazgo, planificación, apoyo, operación, evaluación del desempeño y mejora.',
+  anio:'2015',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1jBhEC8C8GNjJp4kGIaQIiNqmy0CO9i6b/view?usp=sharing'
+},
+
+{
+  id:75,
+  carreraId:1,
+  materia:'Control y Gestión de Calidad',
+  titulo:'Desarrollo de un modelo de gestión para la implementación del Sistema de Gestión de Calidad bajo normas IATF 16949:2016 para taller automotriz multimarca Mecánica Mundial en la ciudad de Ibarra',
+  autor:'Diego Arturo López Nicolalde',
+  descripcion:'Desarrollo de un modelo de gestión de calidad para un taller automotriz multimarca basado en requisitos de IATF 16949:2016 y la metodología 5S. Incluye diagnóstico normativo, planificación del sistema de gestión, análisis financiero, encuestas a clientes y elaboración de un manual para estandarizar y dar trazabilidad a los procesos de mantenimiento preventivo.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1evPGS_qU0_nq2jhLZj_G4FMrzaMyqyvE/view?usp=sharing'
+},
+
+{
+  id:76,
+  carreraId:1,
+  materia:'Control y Gestión de Calidad',
+  titulo:'Producción y Calidad: Apuntes Teóricos y Exposición de Casos',
+  autor:'Julio Eduardo Becerra M. / Jorge Cáceres T. / José Abel De la Torre T. / María Auxiliadora Guerrero B. / José Luis Herrera S. / Rosa Ysabel Moreno R. / César Antonio Porras R.',
+  descripcion:'Libro académico que integra fundamentos y casos sobre control de procesos, producción por proyectos, gestión de la calidad, evaluación estratégica y Business Intelligence. Incluye herramientas de control, gráficos de proceso, PERT, ruta crítica, principios de calidad, análisis FODA y aplicaciones empresariales.',
+  anio:'2021',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1gYk5xZOjacnAo3QvXZBErS0bn81nL1GW/view?usp=sharing'
+},
+
+{
+  id:77,
+  carreraId:1,
+  materia:'Control y Gestión de Calidad',
+  titulo:'Propuesta de una guía de un sistema de gestión de calidad en base a la norma IATF 16949:2016 para la empresa Importadora Tomebamba Toyota',
+  autor:'Eduardo Sebastián Alvarado Pazos',
+  descripcion:'Propuesta metodológica para implementar IATF 16949:2016 en una empresa del sector automotriz. Integra diagnóstico PESTEL y FODA, evaluación de cumplimiento normativo, caracterización de procesos, política y objetivos de calidad, gestión de riesgos, evaluación de proveedores, formación del personal y estrategias de gestión del cambio.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1CM519mr_hHRTFu-cU3CabMdbskNNwWsw/view?usp=sharing'
+},
+
+{
+  id:78,
+  carreraId:1,
+  materia:'Control y Gestión de Calidad',
+  titulo:'Análisis de procesos técnicos y de calidad mediante ISO 9001 en un concesionario automotriz de Cuenca',
+  autor:'Joel Sebastián Cárdenas Ormaza / Edisson José Jiménez Lojano',
+  descripcion:'Investigación aplicada a los procesos técnicos y de calidad de un concesionario automotriz bajo los lineamientos de ISO 9001:2015. Emplea análisis documental, observación estructurada, listas de verificación y el ciclo PHVA para estandarizar procesos, reducir reingresos al taller, disminuir fallas y fortalecer el control de calidad del servicio posventa.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1AMul46up033woQhUk0Mo98LD7PGX4QnT/view?usp=sharing'
+},
+
+{
+  id:79,
+  carreraId:1,
+  materia:'Control y Gestión de Calidad',
+  titulo:'Análisis de inconformidades del cliente en el servicio de mantenimiento preventivo y propuesta de mejora mediante la metodología de Pareto',
+  autor:'Andy Marcelo Vaca Granda / Alex Xavier Venegas Alvarado',
+  descripcion:'Análisis de las principales inconformidades de clientes en servicios de mantenimiento preventivo automotriz. Utiliza diagramas de Pareto e Ishikawa para jerarquizar problemas, determinar causas raíz y proponer acciones de mejora relacionadas con calidad de trabajos, tiempos de entrega, limpieza vehicular, capacitación y optimización de procesos.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1-HChOkjo6HLak9b7T0juJmo6UsCHB_Jp/view?usp=sharing'
+},
+
+{
+  id:80,
+  carreraId:1,
+  materia:'Control y Gestión de Calidad',
+  titulo:'Implementación de mejora continua en la gestión de procesos en el área de mantenimiento de una concesionaria de vehículos aplicando la metodología Kaizen',
+  autor:'Dominic Javier Hernandez Luna / Tanya Melissa Suquinagua Arichabala',
+  descripcion:'Proyecto de mejora continua aplicado a procesos de recepción, lavandería y servicios posventa de una concesionaria de vehículos. Emplea entrevistas, observación directa, diagramas de Pareto, estudios de tiempos y metodología Kaizen para eliminar actividades improductivas, estandarizar procedimientos y desarrollar manuales de funciones y flujogramas.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1VcnFEdNh2rWb17UjsnjyQml36YAhsk9W/view?usp=sharing'
+},
+
+{
+  id:81,
+  carreraId:1,
+  materia:'Control y Gestión de Calidad',
+  titulo:'ISO 9004:2018 ¿Cómo lograr el éxito sostenido de un sistema de gestión de calidad?',
+  autor:'Marcia Eulalia Sumba Tinizhañay',
+  descripcion:'Capítulo académico sobre la aplicación de ISO 9004:2018 como guía para alcanzar el éxito sostenido de los sistemas de gestión de calidad. Analiza mejora continua, enfoque al cliente, liderazgo, gestión por procesos, toma de decisiones, relaciones organizacionales y aplicación de principios de calidad en organizaciones y entornos sanitarios.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1bEKtn252GIE9CuQesh5vR-at6CowSmZ6/view?usp=sharing'
+},
+/* ── DIBUJO TÉCNICO APLICADO II ── */
+
+{
+  id:82,
+  carreraId:1,
+  materia:'Dibujo Técnico Aplicado II',
+  titulo:'Factibilidad de la implementación de tecnologías BIM y aplicaciones de inteligencia artificial en el diseño de hospitales del MSP en Ecuador: análisis de casos y su impacto en tiempo, costo y calidad',
+  autor:'Mercy Cristina Achupallas España',
+  descripcion:'Investigación sobre la factibilidad de implementar tecnologías BIM e inteligencia artificial en el diseño hospitalario, comparando su aplicación con procesos tradicionales basados en AutoCAD. Analiza coordinación multidisciplinaria, precisión de modelos, detección de conflictos, tiempos de planificación, costos y calidad de los proyectos.',
+  anio:'2026',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1wqI9td5kebP7nO23Wyfkz09HjhTVEYeO/view?usp=sharing'
+},
+
+{
+  id:83,
+  carreraId:1,
+  materia:'Dibujo Técnico Aplicado II',
+  titulo:'Introducción al dibujo asistido por computadora para la ingeniería: una exigencia en la globalidad',
+  autor:'Edwin Rodolfo Pozo Saña / Luis Santiago Choto Chariguaman / Eduardo Harry Medina Quintero / Miguel Ángel Escobar Guachambala',
+  descripcion:'Libro académico sobre la evolución y aplicación del dibujo técnico asistido por computadora en ingeniería. Aborda sistemas CAD, diseño y fabricación de productos, calidad, normas ISO, UNE y ANSI, tolerancias dimensionales y geométricas, representación técnica y exigencias actuales de competitividad.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1SARW9JAq3K9k-Yo3qXWrAPQ3KHq6qfQj/view?usp=sharing'
+},
+
+{
+  id:84,
+  carreraId:1,
+  materia:'Dibujo Técnico Aplicado II',
+  titulo:'Libro de ejercicios prácticos para Dibujo I',
+  autor:'Simón Emilio Sepúlveda Tabares / Carlos Andrés Londoño Echeverri / Jesús Alberto Montoya López',
+  descripcion:'Libro académico de ejercicios prácticos para el aprendizaje del dibujo técnico. Incluye formatos, plegado, cajetín, letra técnica, manejo de escuadras y compás, construcciones geométricas, tangencias, escalas, círculos isométricos, proyección ortogonal, representación de sólidos y dibujo a mano alzada.',
+  anio:'2021',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1fKXmNV0ncmH0L285MlzdL3mDKhFF37qy/view?usp=sharing'
+},
+
+{
+  id:85,
+  carreraId:1,
+  materia:'Dibujo Técnico Aplicado II',
+  titulo:'Lienzos permutables: recopilatorio análogo y reconstrucción digital como recurso de preservación, caso de estudio César Piedra',
+  autor:'Carolina Isabel Añazco Salazar',
+  descripcion:'Trabajo académico sobre recopilación, análisis y reconstrucción digital de documentación gráfica arquitectónica. Estudia la expresión gráfica, el dibujo manual y digital, la ilustración, la representación arquitectónica y el uso de software para conservar información visual de proyectos mediante medios digitales.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1lmcJqob2ymO2DUGiqgAz3V61mCz3DJXt/view?usp=sharing'
+},
+
+{
+  id:86,
+  carreraId:1,
+  materia:'Dibujo Técnico Aplicado II',
+  titulo:'Estrategias para el desarrollo de habilidades espaciales dentro del Dibujo Técnico: vistas y proyecciones con estudiantes de Bachillerato Técnico',
+  autor:'Luz Magaly Morocho Jimbo / Erika Johanna Ochoa Tenesaca',
+  descripcion:'Propuesta didáctica para fortalecer habilidades espaciales vinculadas con vistas y proyecciones en dibujo técnico. Desarrolla sistemas de representación diédrico y axonométrico, interpretación de objetos, razonamiento espacial y estrategias para mejorar el proceso de enseñanza-aprendizaje.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1fH11fvwPzvePJ8bBjiovyFd6GMMgNT90/view?usp=sharing'
+},
+
+{
+  id:87,
+  carreraId:1,
+  materia:'Dibujo Técnico Aplicado II',
+  titulo:'Propuesta para la enseñanza de perspectivas y vistas en dibujo técnico con apoyo de la Realidad Aumentada',
+  autor:'Karen Bibiana Quinde Paccha / Pedro Andrés Guamán León',
+  descripcion:'Investigación y propuesta metodológica para la enseñanza del dibujo técnico mediante realidad aumentada. Integra perspectivas, vistas, razonamiento espacial, sólidos modelados en software 3D SketchUp y visualización interactiva para facilitar la comprensión y manipulación de objetos tridimensionales.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1olX847rs2QzQZ1E8EXYd5QUHn5PQbmR6/view?usp=sharing'
+},
+
+{
+  id:88,
+  carreraId:1,
+  materia:'Dibujo Técnico Aplicado II',
+  titulo:'Sistema de videos tutoriales como recurso didáctico para la implementación del AutoCAD en el aprendizaje de polígonos regulares, en primer año de bachillerato técnico industrial',
+  autor:'Eduardo Javier Uvidia Cóndor / Edgar Gonzalo Villa Padilla',
+  descripcion:'Investigación orientada al uso de AutoCAD en la enseñanza del dibujo técnico y la representación gráfica de polígonos regulares. Propone un sistema de videos tutoriales para fortalecer el aprendizaje autónomo, el manejo de herramientas digitales y la comprensión de procedimientos geométricos.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1_NQa2UqlezkJBRFSV3ZrTrOEx6HBvvQT/view?usp=sharing'
+},
+
+{
+  id:89,
+  carreraId:1,
+  materia:'Dibujo Técnico Aplicado II',
+  titulo:'Implementación de sistemas de protección estructural contra sismos en el galpón de electromecánica',
+  autor:'Anchundia Lucas Winter Stalin / Macias Reyes Víctor Manuel',
+  descripcion:'Proyecto técnico de evaluación y refuerzo estructural de un galpón de electromecánica. Integra inspección, levantamiento técnico, análisis normativo y representación mediante planos en AutoCAD de arriostramientos, conexiones metálicas, sistemas de anclaje y soluciones de protección sísmica.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/11oEGWny-BYCLN3wdxPDJmf7doTTINSxW/view?usp=sharing'
+},
+
+{
+  id:90,
+  carreraId:1,
+  materia:'Dibujo Técnico Aplicado II',
+  titulo:'Diseño y análisis estructural de una banda transportadora de pesos para una empresa de alimentos empleando softwares de ingeniería',
+  autor:'Jean Pierre Cortés Cañola',
+  descripcion:'Proyecto de diseño y análisis de la estructura de soporte de una banda transportadora utilizando software de ingeniería. Emplea modelado y simulación en SolidWorks para evaluar deformaciones, esfuerzos, desplazamientos y factor de seguridad, integrando representación técnica y validación estructural digital.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1-8Td1Ye6gRdN4enHKj0MfHg1aaLFyR49/view?usp=sharing'
+},
+
+{
+  id:91,
+  carreraId:1,
+  materia:'Dibujo Técnico Aplicado II',
+  titulo:'Diseño de la metodología BIM, Building Information Modeling del edificio familiar Castillo Calvo, cantón de Macará, provincia de Loja',
+  autor:'Sergio Alexander Castro Castro / Diego Israel Lupercio Campoverde',
+  descripcion:'Proyecto de implementación de metodología BIM para transformar planos bidimensionales elaborados en AutoCAD en modelos tridimensionales mediante Revit. Integra planos arquitectónicos, estructurales, sanitarios y eléctricos, analizando beneficios frente al método CAD tradicional en coordinación, tiempo, costo y organización del proyecto.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1ioBNP93jJOCuwjAqWTyJBIBqFXuM8MLY/view?usp=sharing'
+},
+/* ── EMPRENDIMIENTO Y GESTIÓN ── */
+
+{
+  id:92,
+  carreraId:1,
+  materia:'Emprendimiento y Gestión',
+  titulo:'Estrategias de gestión financiera para reducir la fragilidad operativa en emprendimientos de la ciudad de Riobamba, año 2025',
+  autor:'Henry Jasmany Tandazo Ortega',
+  descripcion:'Trabajo de investigación sobre estrategias de gestión financiera orientadas a reducir la fragilidad operativa en emprendimientos, abordando planificación financiera, control de recursos, sostenibilidad económica y fortalecimiento administrativo de negocios emergentes.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1V7wrXjAxArdNq8lGa-LuuKE8em_WgkQE/view?usp=sharing'
+},
+
+{
+  id:93,
+  carreraId:1,
+  materia:'Emprendimiento y Gestión',
+  titulo:'Gestión de inventarios en organizaciones de emprendimiento: una aproximación teórica',
+  autor:'Cesar Valenzuela Velasco / Gabriela Benalcázar Dalfo / Zuleyma Delgado Saeteros',
+  descripcion:'Artículo académico que analiza la gestión de inventarios en organizaciones de emprendimiento, destacando su importancia para la competitividad, disponibilidad de recursos, optimización de procesos, control administrativo y mejora del servicio al cliente.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1-00sJIzTgRM1FlWCv8YpW1Bo1ri6eQ7C/view?usp=sharing'
+},
+
+{
+  id:94,
+  carreraId:1,
+  materia:'Emprendimiento y Gestión',
+  titulo:'El emprendimiento en el Ecuador: un análisis desde lo jurídico, financiero y laboral',
+  autor:'Otto Suárez / Julio César Burgos / Valeria Henríquez / María Belén Aguilar / Javier Burgos / José Antonio Burneo / Katrin Vallejo / María Augusta Játiva / Eugenia Moreira-Macías',
+  descripcion:'Libro académico sobre el emprendimiento en Ecuador desde perspectivas jurídicas, financieras, laborales y de gestión. Incluye análisis del entorno de negocios, desarrollo local, exportaciones, recursos humanos y condiciones para fortalecer iniciativas emprendedoras.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1_VUdhp2jNq4WHCHRTAVztH7bDg1HtzeF/view?usp=sharing'
+},
+
+{
+  id:95,
+  carreraId:1,
+  materia:'Emprendimiento y Gestión',
+  titulo:'Proyecto de diseño gráfico aplicado a la gestión empresarial y editorial en MIPYMES',
+  autor:'Instituto Superior Tecnológico de Formación Profesional Administrativa y Comercial',
+  descripcion:'Proyecto institucional orientado a fortalecer la gestión empresarial y editorial de MIPYMES mediante identidad visual, comunicación corporativa, diseño gráfico, posicionamiento de marca y herramientas para mejorar la presentación de productos y servicios.',
+  anio:'2022',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/170Ut0J1RuQYb3VmbGdLryvc_1f8fcykh/view?usp=sharing'
+},
+
+{
+  id:96,
+  carreraId:1,
+  materia:'Emprendimiento y Gestión',
+  titulo:'Plan de negocios: taller móvil automotriz para vehículos livianos en el sector La Aurora vía Salitre con la utilización de una app',
+  autor:'Luis José Murillo Tigrero',
+  descripcion:'Plan de negocios para la creación de un taller móvil automotriz apoyado en una aplicación digital. Desarrolla análisis de mercado, planificación estratégica, propuesta de servicio, operación, estructura organizacional, aspectos legales y evaluación financiera.',
+  anio:'2021',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1u6UQfIyfcjv3QaLV013dj4o7G0E6oZvR/view?usp=sharing'
+},
+
+{
+  id:97,
+  carreraId:1,
+  materia:'Emprendimiento y Gestión',
+  titulo:'Indicadores de desempeño como herramientas para la evaluación de los resultados en los emprendimientos promovidos Cooperazione Internazionale - COOPI',
+  autor:'Rosa Maribel Arcalle Guartatanga / Naomi Pauleth Ajila Chuchuca',
+  descripcion:'Análisis de caso sobre el uso de indicadores de desempeño para evaluar resultados en emprendimientos promovidos por COOPI. Aborda medición de resultados, control de gestión, evaluación administrativa y seguimiento de iniciativas productivas.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1CShwwNb929nFypW0oVXW7_kuWBrm3LsB/view?usp=sharing'
+},
+
+{
+  id:98,
+  carreraId:1,
+  materia:'Emprendimiento y Gestión',
+  titulo:'Plan de negocios para la creación de una empresa comercializadora de repuestos automotrices express para los talleres en el norte de Quito',
+  autor:'José Luis Enríquez Paredes / Marco Sebastián Nolivos Chiriboga',
+  descripcion:'Plan de negocios para una empresa de comercialización exprés de repuestos automotrices. Integra análisis Porter y PESTEL, estudio de mercado, plan de marketing, propuesta de valor, modelo operativo y evaluación financiera para determinar la viabilidad del emprendimiento.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1u6UQfIyfcjv3QaLV013dj4o7G0E6oZvR/view?usp=sharing'
+},
+
+{
+  id:99,
+  carreraId:1,
+  materia:'Emprendimiento y Gestión',
+  titulo:'Creación de un taller especializado en cambio de llantas, mantenimiento de lubricantes y detailing automotriz en Loja, con un enfoque integral de calidad',
+  autor:'Santiago Mateo Alejandro Bravo',
+  descripcion:'Proyecto de creación de un taller automotriz especializado en servicios de cambio de llantas, lubricantes y detailing. Incluye análisis de mercado, enfoque de calidad, planificación administrativa, propuesta operativa, gestión del servicio y estrategias de posicionamiento.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1H9hi0BRcuCQhop5ytj6cFuEb1OndP1ak/view?usp=sharing'
+},
+/* ── EMPRENDIMIENTO Y GESTIÓN — ARCHIVOS NO LEGIBLES ── */
+
+{
+  id:100,
+  carreraId:1,
+  materia:'Emprendimiento y Gestión',
+  titulo:'Taller mÛvil automotriz para vehÌculos livianos en el sector La Aurora vÌa salitre con la utilizaciÛn de una app.',
+  autor:'Murillo Tigrero Luis JosÈ',
+  descripcion:'n/d',
+  anio:'2021',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1XjykIJHG8IKyFXSZLO_XgzO3kOBnhqBE/view?usp=sharing'
+},
+
+{
+  id:101,
+  carreraId:1,
+  materia:'Emprendimiento y Gestión',
+  titulo:'Diseño de un modelo de gestión para emprendimientos BIC del sector de servicios en el Ecuador',
+  autor:'Dennys Alexander Enríquez Hidalgo',
+  descripcion:'n/d',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1PD6vQyBE-FOu6z50CF86VhCelQvzH-GC/view?usp=sharing'
+},
+/* ── ENERGÍAS RENOVABLES ── */
+
+{
+  id:102,
+  carreraId:1,
+  materia:'Energías Renovables',
+  titulo:'Planes de transición energética en América Latina y el Caribe: guía metodológica',
+  autor:'Pablo Carvajal / Rafael Poveda / Marina Gil',
+  descripcion:'Guía metodológica de la CEPAL para orientar la elaboración de planes nacionales de transición energética. Integra dimensiones técnicas, económicas, políticas, institucionales, sociales y ambientales, con énfasis en planificación, gobernanza, financiamiento, comunicación y construcción de sistemas energéticos sostenibles y resilientes.',
+  anio:'2026',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/11qa7Wk9ZhLSXVAth2WHMrys-pHXUHEIW/view?usp=sharing'
+},
+
+{
+  id:103,
+  carreraId:1,
+  materia:'Energías Renovables',
+  titulo:'Geopolítica de la transición energética: seguridad energética',
+  autor:'Agencia Internacional de Energías Renovables (IRENA)',
+  descripcion:'Informe sobre las implicaciones geopolíticas de la transición energética y su relación con la seguridad energética. Analiza diversificación, cadenas de suministro, infraestructura, comercio internacional, resiliencia, interconexiones, almacenamiento, riesgos cibernéticos y transformación de los sistemas energéticos.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1zB6xQSbgAH6O5w-rQUWx3d7_qzh-qJHn/view?usp=sharing'
+},
+
+{
+  id:104,
+  carreraId:1,
+  materia:'Energías Renovables',
+  titulo:'Escenarios para la transición energética: experiencia y buenas prácticas en América Latina y el Caribe',
+  autor:'Agencia Internacional de Energías Renovables (IRENA) / Comisión Económica para América Latina y el Caribe (CEPAL) / GET.transform',
+  descripcion:'Informe regional sobre el uso de escenarios de largo plazo para planificar la transición energética. Presenta experiencias, metodologías y buenas prácticas aplicadas en América Latina y el Caribe para fortalecer la planificación, incorporación de energías renovables y transformación sostenible de los sistemas energéticos.',
+  anio:'2022',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1uuibB5tuXk9eCHeo7iDzHNJQhEgb7DBj/view?usp=sharing'
+},
+
+{
+  id:105,
+  carreraId:1,
+  materia:'Energías Renovables',
+  titulo:'Perspectiva global de las transiciones energéticas 2024: camino hacia 1.5 °C — Resumen ejecutivo',
+  autor:'Agencia Internacional de Energías Renovables (IRENA)',
+  descripcion:'Resumen ejecutivo sobre las transformaciones necesarias para mantener una trayectoria compatible con el objetivo climático de 1.5 °C. Examina electrificación, eficiencia energética, expansión de renovables, infraestructura, inversiones, políticas públicas y evolución del sistema energético mundial.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1OkZioy3VjPaqIkmIBKG4KesEB7m3WaJE/view?usp=sharing'
+},
+
+{
+  id:106,
+  carreraId:1,
+  materia:'Energías Renovables',
+  titulo:'Renewable Energy Statistics 2024',
+  autor:'International Renewable Energy Agency (IRENA)',
+  descripcion:'Compendio estadístico internacional sobre capacidad instalada y evolución de las energías renovables. Presenta datos mundiales y nacionales de energía hidroeléctrica, solar, eólica, bioenergía, geotermia y otras fuentes renovables, permitiendo analizar tendencias y crecimiento del sector energético.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1RGxMokfpAWSxkp-AiZoLu4PECR2VqpWM/view?usp=sharing'
+},
+
+{
+  id:107,
+  carreraId:1,
+  materia:'Energías Renovables',
+  titulo:'Evaluación de la situación para el desarrollo de las energías renovables: Honduras',
+  autor:'Agencia Internacional de Energías Renovables (IRENA)',
+  descripcion:'Evaluación del entorno energético de Honduras y de sus condiciones para ampliar el desarrollo de las energías renovables. Analiza generación eléctrica, energía solar, eólica, hidroeléctrica, biomasa y geotermia, así como políticas, regulación, infraestructura, planificación y oportunidades de inversión.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/14Ic65gwdGHPcO_5pceLYRlWXd4iOdW3K/view?usp=sharing'
+},
+
+{
+  id:108,
+  carreraId:1,
+  materia:'Energías Renovables',
+  titulo:'Rutas de la bioenergía sostenible en América Latina: fomento de la inversión y la sostenibilidad en la bioenergía',
+  autor:'Agencia Internacional de Energías Renovables (IRENA)',
+  descripcion:'Publicación técnica sobre las oportunidades de desarrollo de la bioenergía sostenible en América Latina. Examina inversión, cadenas de valor, sostenibilidad, políticas públicas, disponibilidad de recursos, barreras de mercado y mecanismos para fortalecer proyectos bioenergéticos regionales.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1vVq4gKWKEqKXtRcIxeURNOhjqP58a_to/view?usp=sharing'
+},
+
+{
+  id:109,
+  carreraId:1,
+  materia:'Energías Renovables',
+  titulo:'Costos de generación de energías renovables en 2023 — Resumen ejecutivo',
+  autor:'Agencia Internacional de Energías Renovables (IRENA)',
+  descripcion:'Resumen técnico sobre la evolución mundial de los costos de generación eléctrica mediante tecnologías renovables. Analiza energía solar fotovoltaica, eólica terrestre y marina, energía hidroeléctrica y otras fuentes, considerando costos nivelados de electricidad, inversiones, competitividad y tendencias tecnológicas.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1xwAVenjbnuX_laQEmEkzzdr12_xpyolr/view?usp=sharing'
+},
+
+{
+  id:110,
+  carreraId:1,
+  materia:'Energías Renovables',
+  titulo:'Energías renovables: experiencia y perspectivas en la ruta del Perú hacia la transición energética',
+  autor:'Daniel Schmerler Vainstein / José Carlos Velarde Sacio / Abel Rodríguez González / Ben Solís Sosa',
+  descripcion:'Libro institucional sobre el desarrollo de las energías renovables y la transición energética en Perú. Aborda energía solar, eólica, biomasa, minihidráulica, energía marítima y geotérmica, además de beneficios, retos, políticas de promoción, sistemas fotovoltaicos autónomos, subastas y perspectivas del sector.',
+  anio:'2019',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1t6aE42y9RnBykITdtjQKlnxrdC-9yP45/view?usp=sharing'
+},
+
+{
+  id:111,
+  carreraId:1,
+  materia:'Energías Renovables',
+  titulo:'Eficiencia energética en la transición sostenible e inclusiva de América Latina y el Caribe: progresos y políticas',
+  autor:'Franco Carvajal / Marina Gil / Rafael Poveda',
+  descripcion:'Estudio de la CEPAL sobre el papel de la eficiencia energética en la transición regional. Analiza intensidad energética, desempeño por sectores, reducción de emisiones, seguridad energética, barreras de mercado y conductuales, políticas públicas e instrumentos para acelerar una transición sostenible y equitativa.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1uMDmV8xVJMBOjyx23C5Ys0mK9EK9KzLA/view?usp=sharing'
+},
+
+{
+  id:112,
+  carreraId:1,
+  materia:'Energías Renovables',
+  titulo:'Integración energética en América Latina: avances, escenarios y recomendaciones',
+  autor:'Ignacio Sabbatella / Marina Gil / Rafael Poveda / Ignacio Ñancupil',
+  descripcion:'Estudio regional sobre integración energética y transición en América Latina. Examina interconexión eléctrica, cooperación regional, tensiones geopolíticas, infraestructura, seguridad energética, planificación, escenarios futuros y recomendaciones para impulsar sistemas energéticos sostenibles e integrados.',
+  anio:'2026',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1GUOp1a8F02ycyuGwN1KljfP_w8PcuF_b/view?usp=sharing'
+},
+/* ── EQUIPO PESADO ── */
+
+{
+  id:113,
+  carreraId:1,
+  materia:'Equipo Pesado',
+  titulo:'Propuesta de un sistema de gestión de mantenimiento preventivo para los equipos y maquinaria de una planta panificadora',
+  autor:'Anthony Alexander Guasgua Guasgua',
+  descripcion:'Propuesta de un sistema de gestión de mantenimiento preventivo aplicado a 17 máquinas de una planta panificadora. Utiliza análisis de criticidad, diagrama de Pareto, observación de campo, entrevistas y el ciclo PHVA para identificar fallas recurrentes, priorizar equipos críticos y optimizar la gestión de maquinaria.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1bart_hhcTaqmtxyHFmwngdGq3yS1Hy0i/view?usp=sharing'
+},
+
+{
+  id:114,
+  carreraId:1,
+  materia:'Equipo Pesado',
+  titulo:'Introducción a los sistemas hidráulicos aplicados a maquinarias de construcción',
+  autor:'Javier Milton Solís Santamaría / Santiago Isaac Solís Santamaría / Tannia Magally Solís Santamaría / Alex Santiago Cevallos Carvajal',
+  descripcion:'Libro técnico sobre fundamentos y aplicaciones de los sistemas hidráulicos en maquinaria de construcción. Aborda principios hidráulicos, componentes, bombas y motores, actuadores, circuitos y funcionamiento de sistemas empleados en equipos de construcción y maquinaria pesada.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1MbSDEyX2GL0UR_RzqEcLJnvrFqAT2WzM/view?usp=sharing'
+},
+
+{
+  id:115,
+  carreraId:1,
+  materia:'Equipo Pesado',
+  titulo:'Propuesta integral para un sistema de control y gestión en el uso del combustible en la flota de ASFALTAR EP',
+  autor:'Christian Marcelo Montalván Cabrera / David Gustavo Muñoz Jiménez',
+  descripcion:'Propuesta metodológica para analizar y optimizar el consumo de combustible en vehículos y maquinaria pesada de ASFALTAR EP. Evalúa rendimientos, brechas respecto a parámetros del fabricante y factores operativos, proponiendo telemetría, acceso a red CAN, sensores IoT, integración con CMMS y mantenimiento predictivo.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/18a0O4m-Fzo36jQ_42LLeElGjcEQRR4lL/view?usp=sharing'
+},
+
+{
+  id:116,
+  carreraId:1,
+  materia:'Equipo Pesado',
+  titulo:'Proyecto para fortalecer los servicios del taller de mantenimiento y reparación de camiones en Vihalmotos Grupo Alvarado Ambato - Ecuador',
+  autor:'Verónica Patricia Rosero Cacuango',
+  descripcion:'Proyecto orientado al fortalecimiento administrativo, productivo y financiero de un taller especializado en mantenimiento y reparación de camiones. Analiza mercado, capacitación, planificación, factores clave de éxito, indicadores de eficiencia y eficacia, y propone estrategias para mejorar la sostenibilidad y operación del taller.',
+  anio:'2020',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1iiC09fJQhKdR8v-Ktl125j1npAD98pqL/view?usp=sharing'
+},
+
+{
+  id:117,
+  carreraId:1,
+  materia:'Equipo Pesado',
+  titulo:'Modelo de gestión por procesos como estrategia de optimización del desempeño operativo en la Unidad de Mantenimiento del Gobierno Autónomo Descentralizado Municipal del cantón Sigchos',
+  autor:'José Alexander Castellano Jacome',
+  descripcion:'Investigación que propone un modelo de gestión por procesos para optimizar la estructura organizativa y operativa de una unidad municipal de mantenimiento. Analiza coordinación de actividades, disponibilidad de activos, mantenimiento preventivo y correctivo, contratación, repuestos, responsabilidades y uso eficiente de recursos.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1z78aLdUsEXffAVFSmRukMgAdOB5Vj11c/view?usp=sharing'
+},
+
+{
+  id:118,
+  carreraId:1,
+  materia:'Equipo Pesado',
+  titulo:'Modelo de gestión por procesos como estrategia de optimización del desempeño operativo en la Unidad de Mantenimiento del Gobierno Autónomo Descentralizado Municipal del cantón Sigchos',
+  autor:'José Alexander Castellano Jacome',
+  descripcion:'Investigación que propone un modelo de gestión por procesos para optimizar la estructura organizativa y operativa de una unidad municipal de mantenimiento. Analiza coordinación de actividades, disponibilidad de activos, mantenimiento preventivo y correctivo, contratación, repuestos, responsabilidades y uso eficiente de recursos.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1TQpFXk5pWmeICS8bTfFiUhxjSHXmlbCC/view?usp=sharing'
+},
+
+{
+  id:119,
+  carreraId:1,
+  materia:'Equipo Pesado',
+  titulo:'Análisis de la degradación y vida útil del lubricante hidráulico mediante ensayos de viscosidad y conteo de partículas, en una excavadora de la empresa Cordimapet CIA LTDA',
+  autor:'Anthony Alexander Guerrero Lomas',
+  descripcion:'Estudio aplicado a una excavadora Caterpillar 320 CL para evaluar la degradación y vida útil del aceite hidráulico. Incluye ensayos de viscosidad, conteo de partículas, espectrometría infrarroja y análisis de desgaste en distintos intervalos de operación, con recomendaciones de mantenimiento predictivo y optimización de costos.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1ouCKx96Vp1iT4fOfuy3B2CKI9Q4Klaq3/view?usp=sharing'
+},
+
+{
+  id:120,
+  carreraId:1,
+  materia:'Equipo Pesado',
+  titulo:'Manual de trabajo en el uso de maquinaria y herramientas para la empresa Taller Mecánica Times Cía. Ltda.',
+  autor:'Johny Daniel Carchi Solis',
+  descripcion:'Manual técnico orientado al uso seguro de maquinaria y herramientas en un taller metalmecánico. Incluye inspección de equipos, identificación y evaluación de riesgos, fichas técnicas, procedimientos de utilización, recomendaciones operativas, equipos de protección personal y medidas de prevención de accidentes.',
+  anio:'2022',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1VVIqWFNz-okMLLCGm4a7TwJ_vASewE_g/view?usp=sharing'
+},
+
+{
+  id:121,
+  carreraId:1,
+  materia:'Equipo Pesado',
+  titulo:'Instructivo para la adquisición de maquinaria pesada mediante análisis de especificaciones técnicas y condiciones operativas para el sector público',
+  autor:'Christopher Sebastián Narvaez Pelchor / Juan Francisco Sarmiento Tenesaca',
+  descripcion:'Instructivo técnico para la selección y adquisición de maquinaria pesada en el sector público. Analiza condiciones geográficas, climáticas y operativas, especificaciones de retroexcavadoras, excavadoras y motoniveladoras, normativa ambiental, emisiones Tier IV, contratación pública, mantenimiento preventivo y criterios de sostenibilidad.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1KhCgGyoMdwyrFxKzGgrPhg7HKToHWmjl/view?usp=sharing'
+},
+
+{
+  id:122,
+  carreraId:1,
+  materia:'Equipo Pesado',
+  titulo:'Determinación de la vida útil del equipo caminero del Gobierno Autónomo Descentralizado Municipal del cantón Pucará',
+  autor:'Juan Stalyn Chávez Molina',
+  descripcion:'Análisis técnico, operativo y económico de la vida útil de vehículos pesados y maquinaria vial municipal. Aplica metodología de costo de ciclo de vida, inspecciones físicas, historial de mantenimiento y costos de posesión para determinar puntos óptimos de renovación y fortalecer la gestión de activos bajo principios de ISO 55000.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1QNbah81meVtSU3ih7i-dbLW6s-Gl64tK/view?usp=sharing'
+},
+/* ── INYECCIÓN ELECTRÓNICA I ── */
+
+{
+  id:123,
+  carreraId:1,
+  materia:'Inyección Electrónica I',
+  titulo:'Gestión de Mantenimiento Automotriz',
+  autor:'Ember Zumba Novay',
+  descripcion:'Libro académico sobre gestión del mantenimiento automotriz que desarrolla mantenimiento correctivo, preventivo, predictivo y autónomo, así como sistemas eléctricos y electrónicos del vehículo. Incluye contenidos sobre ECU, sensores CKP, CMP e IAT, inyectores, sistemas de propulsión, diagnóstico e inspección de componentes automotrices.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1YLuYyzRCoudsMyGOtaNmUdF7FQgh3P3f/view?usp=sharing'
+},
+
+{
+  id:124,
+  carreraId:1,
+  materia:'Inyección Electrónica I',
+  titulo:'Influencia de la Frecuencia y Tiempo de Inyección en el Funcionamiento de Inyectores CRDi',
+  autor:'Carlos Mafla-Yépez / César Morales-Bayetero / Jorge Melo-Obando / Paúl Hernández-Rueda / Jesús Mafla-Ortiz',
+  descripcion:'Artículo científico experimental sobre la influencia de la frecuencia y el tiempo de inyección en inyectores electrónicos Common Rail Direct Injection. Analiza entrega y retorno de combustible, presión del riel y comportamiento de los inyectores mediante un equipo de simulación de pulsos y diferentes combinaciones de frecuencia y duración de inyección.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/10MZlWx6f8eKBgFeLW1JV2Kt7kTV3U8wf/view?usp=sharing'
+},
+
+{
+  id:125,
+  carreraId:1,
+  materia:'Inyección Electrónica I',
+  titulo:'Diseño y construcción de un banco de pruebas de computadoras automotrices multimarca para Chevrolet Corsa, Hyundai Accent y Nissan Sentra B13',
+  autor:'Edgar Vinicio Moreno Chiluisa / Lenin Marcelo Pilaguano Pilicita / José Gabriel Pitisaca Valle',
+  descripcion:'Proyecto técnico para diseñar y construir un banco de pruebas destinado al diagnóstico de computadoras automotrices multimarca. Integra fundamentos de inyección electrónica, ECU, sensores, actuadores, sistemas EFI, inyección directa, secuencial, multipunto y monopunto, permitiendo evaluar unidades de control de distintos vehículos.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1FLkN2tnDnU7RqhbFKAjsHRQWFszIfbNc/view?usp=sharing'
+},
+
+{
+  id:126,
+  carreraId:1,
+  materia:'Inyección Electrónica I',
+  titulo:'Implementación y Ajuste de ECU MicroSquirt en un Auto Renault Clio de Competición de Rally para la Maximización del Potencial de Rendimiento y Control Avanzado del Motor',
+  autor:'Luis Fernando Granda Mosquera',
+  descripcion:'Investigación aplicada a la implementación y calibración de una ECU programable MicroSquirt en un Renault Clio de rally. Incluye identificación e integración de sensores, configuración electrónica, desarrollo de mapas de inyección y encendido, pruebas en dinamómetro y ajustes para incrementar potencia, torque y control avanzado del motor.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1nZdB77bFQ2krvzmcyzdIq-LnXzlUX5jx/view?usp=sharing'
+},
+
+{
+  id:127,
+  carreraId:1,
+  materia:'Inyección Electrónica I',
+  titulo:'Conversión de un Vehículo de Rally Forza 1 con Carburador a Inyección para Incrementar su Potencia',
+  autor:'Ricardo Patricio Ruales Villamarin',
+  descripcion:'Proyecto de conversión de un vehículo de competición desde alimentación por carburador hacia un sistema de inyección electrónica. Evalúa potencia, torque, respuesta del motor, consumo y desempeño mediante pruebas en dinamómetro, demostrando mejoras significativas tras implementar y ajustar el sistema electrónico de combustible.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1NVuEYK2JmeP8DIpSbjsSncnPQoSg8RcM/view?usp=sharing'
+},
+
+{
+  id:128,
+  carreraId:1,
+  materia:'Inyección Electrónica I',
+  titulo:'Repotenciación del Banco de Pruebas de un Motor Chevrolet Sail 1.4',
+  autor:'Kevin Xavier Reyes Morán',
+  descripcion:'Proyecto de repotenciación estructural, eléctrica y mecánica de un banco de pruebas para motor Chevrolet Sail 1.4. Integra diagnóstico del sistema de inyección electrónica, sensores, actuadores, inyectores, bobinas, osciloscopio y un tablero de control para simular fallas y evaluar señales eléctricas de componentes del motor.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1rj47hRFwbYttAnT4P0Ix1kwV30qstBkX/view?usp=sharing'
+},
+
+{
+  id:129,
+  carreraId:1,
+  materia:'Inyección Electrónica I',
+  titulo:'Determinación de Averías en el Sistema de Inyección Electrónica de Combustible del Vehículo Mazda 3 Año 2008',
+  autor:'Iván Andrés Medina Piza / Eduardo Alejandro Orellana Jarrín',
+  descripcion:'Investigación orientada al diagnóstico sistemático de averías en el sistema de inyección electrónica de combustible de un Mazda 3. Incluye recopilación de síntomas, inspección de componentes, uso de escáner OBD-II, análisis de códigos de falla, medición de presión de combustible y verificación de sensores, actuadores e inyectores.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/13SpWY9KzRvHN54ZQ5WnYheMIWfH9ZfpS/view?usp=sharing'
+},
+
+{
+  id:130,
+  carreraId:1,
+  materia:'Inyección Electrónica I',
+  titulo:'Diseño y Construcción de un Equipo para Prueba y Diagnóstico Aplicado para Sensores Automotrices del Sistema de Inyección Electrónica de Automóviles',
+  autor:'Isaac Yordano Barrera Narea',
+  descripcion:'Proyecto técnico para diseñar y construir un equipo destinado a comprobar y diagnosticar sensores automotrices utilizados en sistemas de inyección electrónica. El trabajo aborda principios de funcionamiento, señales eléctricas, evaluación de sensores y procedimientos de diagnóstico aplicables al mantenimiento automotriz.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1COOlsrhw6dnDUvBlIvmrauug-Rm_jTCM/view?usp=sharing'
+},
+
+{
+  id:131,
+  carreraId:1,
+  materia:'Inyección Electrónica I',
+  titulo:'Repotenciación Avanzada del Sistema de Inyección Electrónica del Motor de Encendido Provocado en el Dinamómetro Armfield CM11 Mediante Reprogramación de Módulos de Control Electrónico',
+  autor:'Lenny Arturo Aguirre Bajaña / Manuel Wladimir Rivera Alvarado',
+  descripcion:'Proyecto de repotenciación avanzada de un sistema de inyección electrónica mediante reprogramación de módulos de control. Integra análisis del motor de encendido provocado, ECU, calibración electrónica, modificación de parámetros de funcionamiento, diagnóstico y evaluación experimental en el dinamómetro Armfield CM11.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/17kjL-dh_QaGxOyG0NE7IEFvnSOAJ4JgZ/view?usp=sharing'
+},
+
+{
+  id:132,
+  carreraId:1,
+  materia:'Inyección Electrónica I',
+  titulo:'Implementación de un Sistema de Inyección Electrónica en un Motor Carburado como Plataforma de Transición Hacia el Uso de Combustibles Alternativos Basados en Hidrógeno',
+  autor:'Kleber Javier Villón Suarez / Byron Francisco Alcivar Calderón',
+  descripcion:'Proyecto técnico de transformación de un motor originalmente carburado mediante la implementación de un sistema de inyección electrónica. La propuesta establece una plataforma tecnológica para mejorar el control de combustible y facilitar una futura transición hacia combustibles alternativos basados en hidrógeno.',
+  anio:'2026',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1AGpeCSgU5oy26YhHFXDgsQHgTMoUpznw/view?usp=sharing'
+},
+/* ── INYECCIÓN ELECTRÓNICA II ── */
+
+{
+  id:133,
+  carreraId:1,
+  materia:'Inyección Electrónica II',
+  titulo:'Implementación de un Plan de Mantenimiento y Diagnóstico de la Unidad Dosificadora en Motores Diésel Electrónicos',
+  autor:'Erick Alexis Flores López / Anibal Alexander Ulcuango Vistin',
+  descripcion:'Trabajo técnico orientado al mantenimiento y diagnóstico de unidades dosificadoras en sistemas de inyección diésel electrónica. Analiza el funcionamiento de las válvulas ZME y DRV, variaciones de presión en el riel, simulación de fallas, comportamiento del motor y procedimientos para identificar anomalías en el sistema Common Rail.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1miNNT2kuGe858IXv57gAS9TMr55Tiw7X/view?usp=sharing'
+},
+
+{
+  id:134,
+  carreraId:1,
+  materia:'Inyección Electrónica II',
+  titulo:'Influencia de la Frecuencia y Tiempo de Inyección en el Funcionamiento de Inyectores CRDi',
+  autor:'Carlos Mafla-Yépez / César Morales-Bayetero / Jorge Melo-Obando / Paúl Hernández-Rueda / Jesús Mafla-Ortiz',
+  descripcion:'Artículo científico experimental sobre la influencia de la frecuencia y el tiempo de inyección en el comportamiento de inyectores electrónicos CRDi. Evalúa entrega y retorno de combustible, presión del riel y respuesta de los inyectores mediante diferentes combinaciones de frecuencia y duración de pulso.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1b3q_ZD_6djpY_jywMRHDcdIAjocTWpSw/view?usp=sharing'
+},
+
+{
+  id:135,
+  carreraId:1,
+  materia:'Inyección Electrónica II',
+  titulo:'Automotive — Class XII',
+  autor:'Central Board of Secondary Education (CBSE)',
+  descripcion:'Manual académico de ingeniería automotriz que desarrolla sistemas y tecnologías del vehículo, incluyendo gestión electrónica del motor, sistemas EFI, sensores, actuadores, control electrónico, diagnóstico, mantenimiento y fundamentos técnicos aplicados a la formación de técnicos automotrices.',
+  anio:'2021',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1A-dke0AtdoTlf9jKZhUZE7x968WCYh6y/view?usp=sharing'
+},
+
+{
+  id:136,
+  carreraId:1,
+  materia:'Inyección Electrónica II',
+  titulo:'Desarrollo de un Modelo de Mantenimiento Predictivo para Sistemas de Inyección Electrónica CRDi',
+  autor:'William Javier Jácome Collaguazo',
+  descripcion:'Investigación de posgrado orientada al desarrollo de un modelo de mantenimiento predictivo para sistemas de inyección electrónica Common Rail Direct Injection. Integra diagnóstico, análisis de variables operativas, comportamiento de componentes, detección anticipada de fallas y estrategias para mejorar confiabilidad y disponibilidad del sistema.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1AoiQZgjJq5nN7QrexnI10i8X9j9-iEhY/view?usp=sharing'
+},
+
+{
+  id:137,
+  carreraId:1,
+  materia:'Inyección Electrónica II',
+  titulo:'Conversión de un Vehículo de Rally Forza 1 con Carburador a Inyección para Incrementar su Potencia',
+  autor:'Ricardo Patricio Ruales Villamarin',
+  descripcion:'Proyecto de conversión de un vehículo de rally desde alimentación por carburador hacia inyección electrónica. Compara potencia, torque, respuesta del motor, consumo y comportamiento mediante pruebas dinamométricas, evidenciando mejoras significativas tras la implementación y calibración del sistema electrónico.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/10xKMWT3MAh1TjaKoOp9FrxWgzocXU_Cw/view?usp=sharing'
+},
+
+{
+  id:138,
+  carreraId:1,
+  materia:'Inyección Electrónica II',
+  titulo:'Desarrollo e Implementación de Manuales de Usuario y Guías de Práctica para Bancos de Comprobación de Bombas de Inyección e Inyectores Electrónicos en la Carrera de Ingeniería Automotriz Sede Quito',
+  autor:'Estiven Paul Endara Changa / Mauro Andrés Cruz Cespedes',
+  descripcion:'Proyecto técnico que desarrolla manuales de usuario y guías prácticas para bancos de comprobación de bombas de inyección e inyectores electrónicos. Incluye fundamentos de sistemas diésel, bombas lineales, rotativas y electrónicas, procedimientos de ensayo, diagnóstico y utilización de equipos especializados.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1bRlo4xW0WP7YI3oXWbmg8zKZzDKltChq/view?usp=sharing'
+},
+
+{
+  id:139,
+  carreraId:1,
+  materia:'Inyección Electrónica II',
+  titulo:'Análisis, Diagnóstico y Comparativa del Rendimiento del Sensor de Presión Bosch y VDO de un Sistema de Inyección Common Rail en Base a Regulación de Presión Controlada',
+  autor:'Mario Andrés Arias Mariño / Cristofer Mateo Salguero Pacheco',
+  descripcion:'Trabajo experimental sobre sensores de presión Bosch y VDO utilizados en sistemas Common Rail. Analiza principios de funcionamiento, respuesta ante regulación controlada de presión, diagnóstico de señales, comportamiento comparativo y desempeño de componentes esenciales para el control electrónico de la inyección diésel.',
+  anio:'2026',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/137BK44eiwfYK3XkQ6iTInpsh3ZGaJ0fH/view?usp=sharing'
+},
+
+{
+  id:140,
+  carreraId:1,
+  materia:'Inyección Electrónica II',
+  titulo:'Estudio de Factibilidad para la Implementación de un Laboratorio Técnico Automotriz de Inyección a Diésel en el Cantón Gualaceo, Provincia del Azuay',
+  autor:'John Roberto Cajamarca Cajamarca / Andrés Jonnathan Arias Gutiérrez',
+  descripcion:'Estudio de factibilidad para implementar un laboratorio especializado en sistemas de inyección diésel. Incluye análisis del parque automotor, demanda de mantenimiento y reparación, requerimientos de maquinaria y equipos, estructura administrativa, plan de mercado y evaluación financiera.',
+  anio:'2022',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1BZzyvTzV8QAIPS4ajodRX3KTcdIRQwEO/view?usp=sharing'
+},
+
+{
+  id:141,
+  carreraId:1,
+  materia:'Inyección Electrónica II',
+  titulo:'Análisis Comparativo del Consumo de Combustible y Opacidad de Gases en un Motor Diésel CRDi con Respecto a la Altura Geográfica de la Ciudad de Cuenca y a Nivel del Mar',
+  autor:'Edison Fernando Idrovo Guamán / Oscar Fernando Vargas Orellana',
+  descripcion:'Investigación experimental sobre el comportamiento de un motor diésel CRDi en diferentes condiciones altitudinales. Evalúa consumo de combustible, opacidad de gases, carga, velocidad y respuesta del sistema de inyección, considerando recorridos al nivel del mar y en zonas andinas de gran altitud.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1pHRkYXhkxwp0CFyecuSvOtAqpG_CjSWy/view?usp=sharing'
+},
+
+{
+  id:142,
+  carreraId:1,
+  materia:'Inyección Electrónica II',
+  titulo:'Repotenciación Avanzada del Sistema de Inyección Electrónica del Motor de Encendido Provocado en el Dinamómetro Armfield CM11 Mediante Reprogramación de Módulos de Control Electrónico',
+  autor:'Lenny Arturo Aguirre Bajaña / Manuel Wladimir Rivera Alvarado',
+  descripcion:'Proyecto de repotenciación de un motor Volkswagen 1.6 L mediante una ECU programable. Incluye caracterización de sensores y actuadores, diseño de arnés, estrategias Speed Density y Alpha-N, mapas de combustible y encendido, diagnóstico con osciloscopio y validación de emisiones en dinamómetro.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1gEpHqW67vAkCA0MhG8kqwIADPBfYHZMY/view?usp=sharing'
+},
+
+{
+  id:143,
+  carreraId:1,
+  materia:'Inyección Electrónica II',
+  titulo:'Implementación de un Sistema de Inyección Electrónica en un Motor Carburado como Plataforma de Transición Hacia el Uso de Combustibles Alternativos Basados en Hidrógeno',
+  autor:'Kleber Javier Villón Suarez / Byron Francisco Alcivar Calderón',
+  descripcion:'Proyecto de transformación de un motor carburado mediante la instalación de un sistema EFI programable. Integra sensores CKP, MAP, IAT, CHT y O2, actuadores, ECU EMS Plus, diseño de arnés, calibración de mapas de combustible y encendido, control de emisiones y preparación para futuras mezclas gasolina-hidrógeno.',
+  anio:'2026',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1FEaOhcST7iaVPfpynsFp_KWvU2jNhP3g/view?usp=sharing'
+},
+/* ── MANTENIMIENTO AUTOMOTRIZ ── */
+
+{
+  id:144,
+  carreraId:1,
+  materia:'Mantenimiento Automotriz',
+  titulo:'Propuesta de un Sistema de Gestión de Mantenimiento Preventivo para los Equipos y Maquinaria de una Planta Panificadora',
+  autor:'Anthony Alexander Guasgua Guasgua',
+  descripcion:'Trabajo de investigación orientado al diseño de un sistema de gestión de mantenimiento preventivo para 17 máquinas de una planta panificadora. Emplea análisis de criticidad, diagrama de Pareto, observación de campo, entrevistas y el ciclo PHVA para identificar fallas recurrentes, priorizar equipos críticos y reducir interrupciones operativas.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1p1H2_rAUW39-3icPOG25cJoAfadjUG8l/view?usp=sharing'
+},
+
+{
+  id:145,
+  carreraId:1,
+  materia:'Mantenimiento Automotriz',
+  titulo:'Desarrollo de un Sistema Integral de Gestión de Citas y Monitoreo de Vehículos para la Mecánica Automotriz Don Chavo',
+  autor:'Styven Ariel Padilla Torres',
+  descripcion:'Proyecto técnico de desarrollo e implementación de un sistema web con Laravel y Angular para gestionar citas, asignar recursos y monitorear en tiempo real el avance de servicios automotrices. La propuesta busca reducir errores, evitar solapamientos de turnos, mejorar la trazabilidad y aumentar la eficiencia operativa del taller.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/19X2u2piifWONWKcXw2d7VfZolQuxC5kt/view?usp=sharing'
+},
+
+{
+  id:146,
+  carreraId:1,
+  materia:'Mantenimiento Automotriz',
+  titulo:'Gestión del Mantenimiento Vehicular',
+  autor:'Ember Zumba',
+  descripcion:'Libro académico especializado en mantenimiento vehicular. Desarrolla la importancia del mantenimiento preventivo y estudia sistemas de transmisión convencional e híbrida, climatización, dirección y otros conjuntos del automóvil, incluyendo componentes, inspección, diagnóstico y procedimientos orientados a conservar la confiabilidad y disponibilidad del vehículo.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1Duu6GvpP7CBgp7iNqlyjNvQegzYrzrf1/view?usp=sharing'
+},
+
+{
+  id:147,
+  carreraId:1,
+  materia:'Mantenimiento Automotriz',
+  titulo:'Optimización de Procesos y Gestión de Talleres Full Motos',
+  autor:'Juan Diego Delgado Galindo',
+  descripcion:'Investigación aplicada a la optimización de la gestión de un taller mecánico mediante un Cuadro de Mando Integral. Analiza rentabilidad, captación de clientes, procesos internos, talento humano y eficiencia operativa, proponiendo indicadores y estrategias para fortalecer la toma de decisiones y mejorar la satisfacción del cliente.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1x-q375ahni5i9y6MJYm_61Oaih7nAhft/view?usp=sharing'
+},
+
+{
+  id:148,
+  carreraId:1,
+  materia:'Mantenimiento Automotriz',
+  titulo:'Proyecto para Fortalecer los Servicios del Taller de Mantenimiento y Reparación de Camiones en Vihalmotos Grupo Alvarado Ambato - Ecuador',
+  autor:'Verónica Patricia Rosero Cacuango',
+  descripcion:'Proyecto de investigación orientado al fortalecimiento de los servicios de mantenimiento y reparación de camiones. Integra fundamentos de mantenimiento preventivo y correctivo, análisis de mercado, equipos de diagnóstico, planificación administrativa, evaluación financiera e indicadores para mejorar la eficiencia y sostenibilidad del taller.',
+  anio:'2020',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1gmSVQ1qjWOn9C0fowKOONYOGfyybQSI6/view?usp=sharing'
+},
+
+{
+  id:149,
+  carreraId:1,
+  materia:'Mantenimiento Automotriz',
+  titulo:'Desarrollo de un Modelo de Gestión para la Implementación del Sistema de Gestión de Calidad bajo Normas IATF 16949:2016 para Taller Automotriz Multimarca Mecánica Mundial en la Ciudad de Ibarra',
+  autor:'Diego Arturo López Nicolalde',
+  descripcion:'Modelo de gestión aplicado a servicios de mantenimiento preventivo de un taller automotriz multimarca. Utiliza requisitos de IATF 16949:2016, metodología 5S, estandarización y trazabilidad de procesos, análisis financiero, encuestas a clientes y elaboración de un manual de procesos para mejorar productividad, competitividad y calidad del servicio.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1JXQMXhL7DY-noklKlgaVaR4l406Wx77B/view?usp=sharing'
+},
+
+{
+  id:150,
+  carreraId:1,
+  materia:'Mantenimiento Automotriz',
+  titulo:'Desarrollo de un Programa de Mantenimiento y Diagnóstico Posterior al Vencimiento de la Garantía Vehicular Aplicado a Vehículos Livianos de Encendido por Compresión',
+  autor:'Gandy Israel Pozo Pule',
+  descripcion:'Trabajo de posgrado orientado al desarrollo de un programa de mantenimiento y diagnóstico para vehículos diésel livianos después del vencimiento de la garantía. Analiza mantenimiento preventivo y predictivo, fallas mecánicas y electrónicas, nuevas tendencias de diagnóstico, software ESI-Tronic y procedimientos aplicados a sistemas de inyección, frenos, suspensión, escape y climatización.',
+  anio:'2026',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/15fc9rjYMjpvbNRqPQX4ePvYN0tQNczB7/view?usp=sharing'
+},
+
+{
+  id:151,
+  carreraId:1,
+  materia:'Mantenimiento Automotriz',
+  titulo:'Gestión Financiera en Talleres Automotrices Pequeños Utilizando Herramientas Digitales e Implementando Prácticas Eficientes',
+  autor:'Wilson Alexander Ortega Carrillo',
+  descripcion:'Investigación sobre la sostenibilidad financiera de talleres automotrices pequeños y rurales. Evalúa el control de ingresos y egresos, uso de herramientas digitales, planificación operativa, rentabilidad y prácticas administrativas, proponiendo software contable, conciliaciones periódicas y control de gastos para fortalecer la toma de decisiones.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1Ka8ud925JIbUDHMlBohjY0kXsJN-agZX/view?usp=sharing'
+},
+
+{
+  id:152,
+  carreraId:1,
+  materia:'Mantenimiento Automotriz',
+  titulo:'Análisis de la Gestión del Conocimiento en los Talleres de Mantenimiento Automotriz del Sector El Vecino Cuenca - Ecuador',
+  autor:'Daniel Mateo Mendoza Guzmán / Bryan Patricio Vazquez Vazquez',
+  descripcion:'Investigación sobre la gestión del conocimiento en talleres de mantenimiento automotriz. Integra revisión bibliográfica, encuestas y análisis estadístico para identificar patrones organizacionales y proponer mejoras dirigidas a optimizar procesos, facilitar el aprendizaje organizacional y fortalecer la retención y transferencia del conocimiento técnico del personal.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1F5lwhLKQSjZvty1MXPjetMqVGNsX-q0Z/view?usp=sharing'
+},
+
+{
+  id:153,
+  carreraId:1,
+  materia:'Mantenimiento Automotriz',
+  titulo:'Implementación de Mejora Continua en la Gestión de Procesos en el Área de Mantenimiento de una Concesionaria de Vehículos Aplicando la Metodología Kaizen',
+  autor:'Dominic Javier Hernandez Luna / Tanya Melissa Suquinagua Arichabala',
+  descripcion:'Proyecto de mejora continua aplicado a procesos de mantenimiento y posventa de una concesionaria de vehículos. Analiza las áreas de recepción y lavandería mediante entrevistas, observación, diagramas de Pareto y estudios de tiempos, aplicando Kaizen para reducir actividades improductivas, estandarizar procedimientos y desarrollar manuales de funciones y flujogramas.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1W-Cp5ne1Oqjz3DMzgzq6SWCFgPm1E9db/view?usp=sharing'
+},
+/* ── MOTORES I ── */
+
+{
+  id:154,
+  carreraId:1,
+  materia:'Motores I',
+  titulo:'Análisis de Vibraciones Mecánicas en Motores de Encendido por Compresión para Detectar Anomalías, con un Enfoque en la Holgura de las Válvulas',
+  autor:'Andy Bladimir Tugumbango Malte',
+  descripcion:'Investigación orientada al diagnóstico temprano de anomalías en motores de encendido por compresión mediante análisis de vibraciones mecánicas. Evalúa válvulas nuevas, con vida útil cumplida y con falla, aplicando Transformada Rápida de Fourier, indicadores estadísticos y aprendizaje automático para identificar condiciones anómalas y fortalecer el mantenimiento predictivo del motor.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1cKMbbaPhD4AYIaEWutoLzib4q_COoyPo/view?usp=sharing'
+},
+
+{
+  id:155,
+  carreraId:1,
+  materia:'Motores I',
+  titulo:'Optimización del Torque y Potencia a Través del Mapeado de la Unidad de Control Electrónico para Vehículos de Competencia en Condiciones de Altitud Superior a los 2000 Metros Sobre el Nivel del Mar',
+  autor:'Andrés Vladimir Núñez Torres',
+  descripcion:'Investigación sobre la optimización del torque y la potencia de un vehículo de competencia mediante el mapeado de una ECU Racetec R1000. Analiza relación aire-combustible, avance de ignición, inyección, curvas dinamométricas y comportamiento de un motor Suzuki G10 sometido a condiciones de gran altitud y baja densidad de oxígeno.',
+  anio:'2026',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1giNR0j270GWz1VxgCBHDcDEHS2eNeLtq/view?usp=sharing'
+},
+
+{
+  id:156,
+  carreraId:1,
+  materia:'Motores I',
+  titulo:'Estimación de Fallas de Vehículo Mediante Redes Neuronales Artificiales para el Mantenimiento Preventivo',
+  autor:'Luis Anibal Pazmiño Pérez / Rivaldo Leovi Jiménez Jaramillo',
+  descripcion:'Proyecto de investigación que aplica redes neuronales artificiales al diagnóstico y estimación anticipada de fallas vehiculares. Integra datos obtenidos mediante OBD-II, interfaz ELM327 y TorquePro, procesamiento de DataFrames, análisis exploratorio, Python, TensorFlow y una aplicación móvil para apoyar estrategias de mantenimiento preventivo y predictivo.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1OedYZa6xB1c1ctBY_tceT0tiSQTL6yu1/view?usp=sharing'
+},
+
+{
+  id:157,
+  carreraId:1,
+  materia:'Motores I',
+  titulo:'La Ingeniería Automotriz: Clave para el Desarrollo Sostenible de Ecuador',
+  autor:'Renato Fierro J. / Andrés Ordóñez S. (Editores)',
+  descripcion:'Libro académico arbitrado que reúne investigaciones de ingeniería automotriz aplicadas al contexto ecuatoriano. Incluye diseño y simulación automotriz, control de contaminación, fallas en motores, emisiones de fuentes móviles, movilidad, ciclos de conducción, eficiencia energética y evaluación de tecnologías vehiculares sostenibles.',
+  anio:'2018',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1IY29UzbkNTyC2cncncV7ItwzPZ2yg813/view?usp=sharing'
+},
+
+{
+  id:158,
+  carreraId:1,
+  materia:'Motores I',
+  titulo:'Estimación del Consumo Instantáneo de Combustible en una Flota Vehicular Categoría M1 en Rutas Nacionales a Través del Análisis de Señales PID’s Obtenidas del OBD II',
+  autor:'José Enrique Hurtado Revelo / Washington Xavier Yupangui Pruna',
+  descripcion:'Estudio sobre consumo instantáneo de combustible en vehículos categoría M1 mediante adquisición de parámetros PID por OBD-II y dispositivo Freematics One+. Integra dinámica longitudinal, análisis en MATLAB, modelado del área frontal, algoritmo K-means y lógica difusa para estudiar consumo, rendimiento, condiciones de conducción y variables operativas del vehículo.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1q4PFkQVcg6dox2Bs65GCFM9ow2w7Zxcn/view?usp=sharing'
+},
+
+{
+  id:159,
+  carreraId:1,
+  materia:'Motores I',
+  titulo:'Simulación Comparativa del Mecanismo de Leva Seguidor del Sistema de Distribución de un Suzuki Modelo Grand Vitara SZ 2.0',
+  autor:'Cristhian Eduardo Cusme Chinga',
+  descripcion:'Estudio del mecanismo leva-seguidor empleado en el sistema de distribución de un motor de combustión interna. Utiliza Autodesk Inventor, SolidWorks y AutoCAD para modelar, diseñar y simular el movimiento de levas de admisión y escape, analizando la transformación del movimiento rotativo en lineal y su importancia en la sincronización del motor.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/12D31UpFdFFMq0xnNjY-72wQF1hZyQ_uN/view?usp=sharing'
+},
+
+{
+  id:160,
+  carreraId:1,
+  materia:'Motores I',
+  titulo:'Análisis de Gases Contaminantes del Vehículo Chevrolet Sail 1.4 Utilizando Bujías de Iridio y Platino',
+  autor:'Rodic Miguel Cárdenas Sánchez',
+  descripcion:'Investigación experimental sobre emisiones contaminantes de un motor a gasolina Chevrolet Sail 1.4 mediante el uso de bujías de diferentes materiales. Emplea el equipo Bosch FSA 740 para analizar gases de combustión y comparar el comportamiento de bujías de cobre, platino e iridio, considerando emisiones de hidrocarburos y otros parámetros del proceso de combustión.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1NaxymKA7kDtfXDnF9It_nW3MarC9m1zF/view?usp=sharing'
+},
+
+{
+  id:161,
+  carreraId:1,
+  materia:'Motores I',
+  titulo:'Propuesta de un Sistema Inteligente de Prevención de Recalentamiento para Motores a Gasolina en Vehículos Livianos',
+  autor:'Carlos Arturo Astudillo Vargas',
+  descripcion:'Diseño e implementación de un sistema electrónico para prevenir el sobrecalentamiento de motores a gasolina. Integra microcontrolador Arduino, termocuplas de alta precisión, monitoreo de temperatura en tiempo real, alertas visuales y sonoras y una rutina de apagado seguro orientada a prevenir daños estructurales y prolongar la vida útil del motor.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1Ph-4iGGIrrYHGTBEETKqFEZ4xaAb0u18/view?usp=sharing'
+},
+
+{
+  id:162,
+  carreraId:1,
+  materia:'Motores I',
+  titulo:'Detección de Fallas Internas con Poca Accesibilidad en Sistemas del Vehículo por Medio de un Boroscopio Teslong TD450S',
+  autor:'Gilmar Alberto Nimo Campoverde',
+  descripcion:'Investigación sobre la aplicación del boroscopio Teslong TD450S para detectar fallas internas en componentes vehiculares de difícil acceso. Compara esta herramienta óptica no invasiva con métodos convencionales de desmontaje, evaluando precisión, tiempo y costos de diagnóstico en componentes internos del motor y otros sistemas del vehículo.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1TggxX4bb98QA20xY_cyfMvCyVUNNTlJK/view?usp=sharing'
+},
+
+{
+  id:163,
+  carreraId:1,
+  materia:'Motores I',
+  titulo:'Análisis de las Principales Emisiones Contaminantes de un Motor de Combustión Interna Mediante la Variación de la Longitud de las Bujías en la Cámara de Combustión',
+  autor:'Bryan Gonzalo Aguirre Piruch / Nixon Mauricio Campoverde Ramírez',
+  descripcion:'Investigación experimental sobre la influencia de la longitud, calibración y características de las bujías en las emisiones contaminantes de un motor de combustión interna. Evalúa monóxido de carbono, hidrocarburos y óxidos de nitrógeno mediante banco dinamométrico, analizador de gases y escáner automotriz, considerando además los efectos de la altitud.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1sV_XhBjLYvZ93cD53Mr21N-GpabrWhuh/view?usp=sharing'
+},
+
+{
+  id:164,
+  carreraId:1,
+  materia:'Motores I',
+  titulo:'Repotenciación Avanzada del Sistema de Inyección Electrónica del Motor de Encendido Provocado en el Dinamómetro Armfield CM11 Mediante Reprogramación de Módulos de Control Electrónico',
+  autor:'Lenny Arturo Aguirre Bajaña / Manuel Wladimir Rivera Alvarado',
+  descripcion:'Proyecto de repotenciación de un motor Volkswagen 1.6 L mediante una ECU programable. Incluye caracterización de sensores y actuadores, elaboración del arnés eléctrico, estrategias Speed Density y Alpha-N, ajuste de dosificación de combustible y avance de encendido, diagnóstico con osciloscopio y validación de emisiones en dinamómetro.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1joYgoXYnajySF8gZhWsHyMbLwMQY_S0K/view?usp=sharing'
+},
+/* ── MOTORES II ── */
+
+{
+  id:165,
+  carreraId:1,
+  materia:'Motores II',
+  titulo:'Análisis de Vibraciones Mecánicas en Motores de Encendido por Compresión para Detectar Anomalías, con un Enfoque en la Holgura de las Válvulas',
+  autor:'Andy Bladimir Tugumbango Malte',
+  descripcion:'Investigación orientada al diagnóstico temprano de anomalías en motores de encendido por compresión mediante análisis de vibraciones mecánicas. Evalúa condiciones de holgura y estado de válvulas utilizando adquisición masiva de datos, análisis espectral mediante Transformada Rápida de Fourier, indicadores estadísticos y técnicas de aprendizaje automático para fortalecer el mantenimiento predictivo.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/18V5nupqCYyZCoTzGB0vAIPxQ5gnKrNFc/view?usp=sharing'
+},
+
+{
+  id:166,
+  carreraId:1,
+  materia:'Motores II',
+  titulo:'Optimización del Torque y Potencia a Través del Mapeado de la Unidad de Control Electrónico para Vehículos de Competencia en Condiciones de Altitud Superior a los 2000 Metros Sobre el Nivel del Mar',
+  autor:'Andrés Vladimir Núñez Torres',
+  descripcion:'Investigación experimental sobre la optimización del torque y potencia de vehículos de competencia mediante el mapeado de una unidad de control electrónico. Analiza estrategias de calibración, relación aire-combustible, avance de encendido, inyección y comportamiento dinamométrico del motor bajo condiciones de elevada altitud y menor densidad del aire.',
+  anio:'2026',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1j5FarbHDLLQJi7YG6xn0ndzFSbtvVIc9/view?usp=sharing'
+},
+
+{
+  id:168,
+  carreraId:1,
+  materia:'Motores II',
+  titulo:'Estimación de Fallas de Vehículo Mediante Redes Neuronales Artificiales para el Mantenimiento Preventivo',
+  autor:'Luis Anibal Pazmiño Pérez / Rivaldo Leovi Jiménez Jaramillo',
+  descripcion:'Proyecto de investigación que aplica redes neuronales artificiales al diagnóstico y estimación anticipada de fallas vehiculares. Integra parámetros obtenidos mediante OBD-II, sensores y actuadores del motor, procesamiento de datos, aprendizaje automático y herramientas computacionales para apoyar estrategias de mantenimiento preventivo y predictivo.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1X4vCvf1Lt5g2kGVNi5vegQm4h6s2yuPL/view?usp=sharing'
+},
+
+{
+  id:169,
+  carreraId:1,
+  materia:'Motores II',
+  titulo:'Análisis de Movilidad, Proyección del Impacto Ambiental, Alternativas, Retos y Perspectivas Futuras con la Aplicación de la Ley Orgánica de Eficiencia Energética al 2025',
+  autor:'Jorge Andrés Urquizo Iturralde',
+  descripcion:'Investigación de posgrado sobre movilidad, eficiencia energética e impacto ambiental del parque automotor ecuatoriano. Analiza emisiones contaminantes, calidad del aire, mejoras en vehículos de combustión interna, electromovilidad, vehículos híbridos y eléctricos, proyecciones de CO2 y escenarios de transición hacia una movilidad sostenible.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1UpdGt8TLY6hPOJjt4QDeBXU7h3q30cm1/view?usp=sharing'
+},
+
+{
+  id:170,
+  carreraId:1,
+  materia:'Motores II',
+  titulo:'Desarrollo Tecnológico en Ingeniería Automotriz',
+  autor:'Cristian García / Juan Diego Valladolid / Mary Vergara / Francklin Rivas',
+  descripcion:'Libro académico arbitrado que recopila investigaciones avanzadas de ingeniería automotriz. Incluye control de presión de combustible en motores Otto, cartografía de tiempos de inyección ECU, emisiones, sistemas CAN, reducción de NOx en motores CRDi, presión de compresión, diagnóstico inteligente de motores, análisis de vibraciones, termografía y fallas en sistemas de inyección.',
+  anio:'2017',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1jnPPAabjRM_U6Kf0nUXvyzNKVf2beevU/view?usp=sharing'
+},
+
+{
+  id:171,
+  carreraId:1,
+  materia:'Motores II',
+  titulo:'Simulación Comparativa del Mecanismo de Leva Seguidor del Sistema de Distribución de un Suzuki Modelo Grand Vitara SZ 2.0',
+  autor:'Cristhian Eduardo Cusme Chinga',
+  descripcion:'Estudio del mecanismo leva-seguidor del sistema de distribución de un motor de combustión interna. Utiliza herramientas de diseño y simulación asistida por computadora para modelar perfiles de leva de admisión y escape, analizar su movimiento, comparar resultados y estudiar su influencia en la sincronización y funcionamiento del motor.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1BQs-V0VSiGx35fC4b7v9zcINk_kNglZq/view?usp=sharing'
+},
+
+{
+  id:172,
+  carreraId:1,
+  materia:'Motores II',
+  titulo:'Propuesta de un Sistema Inteligente de Prevención de Recalentamiento para Motores a Gasolina en Vehículos Livianos',
+  autor:'Carlos Arturo Astudillo Vargas',
+  descripcion:'Diseño e implementación de un sistema inteligente para prevenir el sobrecalentamiento de motores a gasolina. Integra monitoreo térmico, sensores, microcontrolador, alertas visuales y sonoras y mecanismos de protección orientados a detectar temperaturas críticas, reducir daños mecánicos y prolongar la vida útil del motor.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1oeNSxBJGHF32iOiMj-tSXZU52jyVKGNk/view?usp=sharing'
+},
+
+{
+  id:173,
+  carreraId:1,
+  materia:'Motores II',
+  titulo:'Detección de Fallas Internas con Poca Accesibilidad en Sistemas del Vehículo por Medio de un Boroscopio Teslong TD450S',
+  autor:'Gilmar Alberto Nimo Campoverde',
+  descripcion:'Investigación sobre el uso de un boroscopio automotriz para detectar fallas internas en componentes de difícil acceso sin recurrir inicialmente al desmontaje completo. Analiza inspección visual de sistemas y componentes internos del motor, precisión diagnóstica, tiempos de intervención y ventajas frente a métodos convencionales de mantenimiento.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/14MnBwH5wpkGSKX9P890d_MSXsWkEcw7w/view?usp=sharing'
+},
+
+{
+  id:174,
+  carreraId:1,
+  materia:'Motores II',
+  titulo:'Análisis de las Principales Emisiones Contaminantes de un Motor de Combustión Interna Mediante la Variación de la Longitud de las Bujías en la Cámara de Combustión',
+  autor:'Bryan Gonzalo Aguirre Piruch / Nixon Mauricio Campoverde Ramírez',
+  descripcion:'Investigación experimental sobre la influencia de la longitud y calibración de las bujías y el avance de encendido en las emisiones de un motor de combustión interna. Evalúa CO, HC y NOx mediante banco dinamométrico, analizador de gases y escáner automotriz, considerando además condiciones de operación a elevada altitud.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1riVh3W6wLPOusIHl5flHTZBOQhkvK2aJ/view?usp=sharing'
+},
+
+{
+  id:175,
+  carreraId:1,
+  materia:'Motores II',
+  titulo:'Repotenciación Avanzada del Sistema de Inyección Electrónica del Motor de Encendido Provocado en el Dinamómetro Armfield CM11 Mediante Reprogramación de Módulos de Control Electrónico',
+  autor:'Lenny Arturo Aguirre Bajaña / Manuel Wladimir Rivera Alvarado',
+  descripcion:'Proyecto de repotenciación de un motor Volkswagen 1.6 L mediante una ECU programable. Incluye caracterización de sensores y actuadores, construcción del arnés eléctrico, estrategias Speed Density y Alpha-N, ajuste de mapas de combustible y encendido, diagnóstico con osciloscopio y validación de emisiones y funcionamiento en dinamómetro.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1-yu4xuQUlN9dDDuyRAHqPuj0DBhwFb0O/view?usp=sharing'
+},
+/* ── PROGRAMACIÓN DE MÓDULOS AUTOMOTRICES ── */
+
+{
+  id:176,
+  carreraId:1,
+  materia:'Programación de Módulos Automotrices',
+  titulo:'Decodificación de As Built Data en Vehículos Ford para Modificación de Parámetros de Funcionamiento de Software de Módulos Automotrices',
+  autor:'Néstor Luis Batallas Martínez / Álvaro Renato Noboa Minda',
+  descripcion:'Trabajo técnico sobre programación y configuración de módulos electrónicos Ford mediante decodificación de datos As Built. Desarrolla procedimientos para obtener códigos originales, interpretar valores hexadecimales y modificar parámetros en módulos BCM, PCM e IPC, incluyendo funciones de confort, límites de velocidad y relaciones de transmisión sin alterar el funcionamiento general del vehículo.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1cEiI6u5ojuIZYIqs_YchPmU2To8vGjYB/view?usp=sharing'
+},
+
+{
+  id:177,
+  carreraId:1,
+  materia:'Programación de Módulos Automotrices',
+  titulo:'Optimización del Torque y Potencia a Través del Mapeado de la Unidad de Control Electrónico para Vehículos de Competencia en Condiciones de Altitud Superior a los 2000 Metros Sobre el Nivel del Mar',
+  autor:'Andrés Vladimir Núñez Torres',
+  descripcion:'Investigación experimental sobre optimización del rendimiento de vehículos de competencia mediante mapeado y calibración de una unidad de control electrónico. Analiza modificación de parámetros ECU, relación aire-combustible, avance de encendido, dosificación de combustible y comportamiento dinamométrico del motor en condiciones de elevada altitud.',
+  anio:'2026',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1msqTEDKLyU2HbSmjvEBn9v4zMcL7o_5Y/view?usp=sharing'
+},
+
+{
+  id:178,
+  carreraId:1,
+  materia:'Programación de Módulos Automotrices',
+  titulo:'Repotenciación del Motor de un Vehículo Ford Ranger 2.2L Diésel a Través de la Modificación de Parámetros de la ECU Original del Fabricante',
+  autor:'Jefferson Josue Maridueña Romero / Roger Alfredo Ordoñez Tituana',
+  descripcion:'Investigación experimental sobre reprogramación de la ECU Siemens Continental SID208 de una Ford Ranger 2.2L diésel. Incluye lectura mediante OBD-II y AutoTuner, análisis de mapas internos con WinOLS y archivo DAMOS, modificación de limitadores de torque, presión de turbo, presión de riel y cantidad de inyección, creación de una calibración Stage 1 y validación mediante pruebas dinamométricas.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1X78TojNzYYJZmEUo5T79g3iR8JQuikZt/view?usp=sharing'
+},
+
+{
+  id:179,
+  carreraId:1,
+  materia:'Programación de Módulos Automotrices',
+  titulo:'Enabling Continuous Innovations: 20 Years of AUTOSAR',
+  autor:'AUTOSAR',
+  descripcion:'Libro conmemorativo y técnico sobre veinte años de evolución de AUTOSAR y la estandarización del software automotriz. Aborda Classic Platform, Adaptive Platform, arquitecturas E/E, vehículos definidos por software, ECU virtuales, middleware, protocolos de comunicación, ciberseguridad, sincronización temporal, movilidad conectada y desarrollo colaborativo de sistemas electrónicos vehiculares.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1tZbV8XCZitY8iEFwzSfLSc92z_bWsZE6/view?usp=sharing'
+},
+
+{
+  id:180,
+  carreraId:1,
+  materia:'Programación de Módulos Automotrices',
+  titulo:'Desarrollo Tecnológico en Ingeniería Automotriz',
+  autor:'Cristian García / Juan Diego Valladolid / Mary Vergara / Francklin Rivas',
+  descripcion:'Libro académico arbitrado que reúne investigaciones sobre tecnologías avanzadas de ingeniería automotriz. Incluye control electrónico, cartografía de tiempos de inyección ECU, redes CAN, sistemas de gestión de motor, diagnóstico inteligente, electrónica de potencia, vehículos híbridos y eléctricos, análisis de señales y nuevas tecnologías aplicadas a módulos y sistemas vehiculares.',
+  anio:'2017',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1z2bIewpiLfv-3n97HqbcUKE5iGUGIPl4/view?usp=sharing'
+},
+
+{
+  id:181,
+  carreraId:1,
+  materia:'Programación de Módulos Automotrices',
+  titulo:'Implementación y Ajuste de ECU MicroSquirt en un Auto Renault Clio de Competición de Rally para la Maximización del Potencial de Rendimiento y Control Avanzado del Motor',
+  autor:'Luis Fernando Granda Mosquera',
+  descripcion:'Investigación aplicada a la implementación, configuración y calibración de una ECU programable MicroSquirt en un Renault Clio de rally. Incluye identificación e integración de sensores, ajuste de parámetros electrónicos, elaboración de mapas de inyección y encendido, pruebas en dinamómetro y validación del incremento de potencia, torque y eficiencia del motor.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1RneDGnAFFaoA4SvYBCWlu2XxO3hpWqbo/view?usp=sharing'
+},
+
+{
+  id:182,
+  carreraId:1,
+  materia:'Programación de Módulos Automotrices',
+  titulo:'Conversión de un Vehículo de Rally Forza 1 con Carburador a Inyección para Incrementar su Potencia',
+  autor:'Ricardo Patricio Ruales Villamarin',
+  descripcion:'Proyecto técnico de conversión de un vehículo de competición desde alimentación por carburador hacia un sistema de inyección electrónica. Incluye adaptación y calibración del control electrónico, comparación mediante dinamómetro y análisis del incremento de potencia, torque, respuesta del motor, eficiencia de combustible y desempeño en condiciones de competencia.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/12uRWOYVBj5zeHSOUHcdUMbcSqeCjODcT/view?usp=sharing'
+},
+
+{
+  id:183,
+  carreraId:1,
+  materia:'Programación de Módulos Automotrices',
+  titulo:'Estimación de Emisiones Contaminantes en Motor BMW M50B25 Mediante Computadora Programable',
+  autor:'Willy Jamil Boza Zamora / Santiago Rafael Zambrano Chávez',
+  descripcion:'Proyecto sobre utilización de una computadora programable ECU para gestionar, registrar y analizar parámetros de funcionamiento de un motor BMW M50B25. Estudia programación de inyección y encendido, adquisición de datos en tiempo real, estimación de CO2, NOx, HC y CO y ajustes electrónicos orientados a reducir emisiones sin comprometer el rendimiento del motor.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/11gGkJTjEfIvuP2npOA2B2xVB6jFA_tYw/view?usp=sharing'
+},
+
+{
+  id:184,
+  carreraId:1,
+  materia:'Programación de Módulos Automotrices',
+  titulo:'Propuesta de un Sistema Inteligente de Prevención de Recalentamiento para Motores a Gasolina en Vehículos Livianos',
+  autor:'Carlos Arturo Astudillo Vargas',
+  descripcion:'Diseño e implementación de un sistema electrónico inteligente para prevenir el recalentamiento de motores a gasolina. Integra programación de microcontrolador Arduino, termocuplas de alta precisión, procesamiento de temperaturas en tiempo real, visualización del estado del motor, alertas visuales y sonoras y una estrategia de apagado seguro ante condiciones térmicas críticas.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1OI8mbDVj2eeuR1r92no92V90KqTGHbhB/view?usp=sharing'
+},
+
+{
+  id:185,
+  carreraId:1,
+  materia:'Programación de Módulos Automotrices',
+  titulo:'Metodología para Programación de un Módulo Inmovilizador Usando el Programador UPA V1.3',
+  autor:'Denys Miguel Velasco Uquillas',
+  descripcion:'Metodología especializada para programación y recuperación de módulos inmovilizadores automotrices mediante UPA V1.3. Desarrolla extracción y lectura de memorias EEPROM, edición de registros binarios, escritura de archivos calibrados, sincronización entre ECU y llave codificada, identificación de arquitecturas SPI e I2C y verificación de checksum para preservar la integridad de los datos.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1dg1mgdFQfS9rLf1gJo2lOww9aae6Qyrr/view?usp=sharing'
+},
+
+{
+  id:186,
+  carreraId:1,
+  materia:'Programación de Módulos Automotrices',
+  titulo:'Repotenciación Avanzada del Sistema de Inyección Electrónica del Motor de Encendido Provocado en el Dinamómetro Armfield CM11 Mediante Reprogramación de Módulos de Control Electrónico',
+  autor:'Lenny Arturo Aguirre Bajaña / Manuel Wladimir Rivera Alvarado',
+  descripcion:'Proyecto de reprogramación y calibración electrónica de un motor Volkswagen 1.6L instalado en un dinamómetro Armfield CM11. Incluye caracterización de sensores y actuadores, elaboración del arnés, configuración de ECU programable, estrategias Speed Density y Alpha-N, ajuste de mapas de combustible y encendido, diagnóstico con osciloscopio y validación mediante análisis de emisiones.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1JSgai4z1Dpt7qXZlH5vaf4m-OhZWLtPX/view?usp=sharing'
+},
+/* ── REFRIGERACIÓN Y CLIMATIZACIÓN ── */
+
+{
+  id:187,
+  carreraId:1,
+  materia:'Refrigeración y Climatización',
+  titulo:'Estudio de Diferentes Alternativas de Refrigerantes al R-134a para el Aire Acondicionado Automotriz que Trabaja en Ciclos Subcríticos',
+  autor:'Diego Armando Silva Espinoza / Marcos Efrain Taipe Chariguamán',
+  descripcion:'Investigación sobre alternativas al refrigerante R-134a en sistemas de aire acondicionado automotriz de compresión de vapor. Desarrolla un modelo termodinámico del sistema y compara refrigerantes como R-152a, R-1234yf, R-290, R-410A y R-32 mediante indicadores de desempeño como COP, capacidad frigorífica y consumo del compresor.',
+  anio:'2022',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1TAr7QXpck3jrYnin0SMjJNC9ancHi2l9/view?usp=sharing'
+},
+
+{
+  id:188,
+  carreraId:1,
+  materia:'Refrigeración y Climatización',
+  titulo:'Análisis CFD del Comportamiento Térmico de una Cabina Climatizada de un Vehículo SUV Validado Mediante un Modelo Matemático',
+  autor:'Julio Cesar Almeida Guayasamín',
+  descripcion:'Investigación sobre el comportamiento térmico y la distribución del flujo de aire acondicionado en la cabina de un vehículo SUV Ford Escape. Utiliza Dinámica de Fluidos Computacional con ANSYS 2023 R1 para analizar velocidad del aire, presión, temperatura y confort térmico, validando los resultados mediante un modelo matemático.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1Ze0ybiMXPjwopRgFSX9oAaW_BzdWdqvm/view?usp=sharing'
+},
+
+{
+  id:189,
+  carreraId:1,
+  materia:'Refrigeración y Climatización',
+  titulo:'Diseño del Sistema de Simulación Virtual 3D en SimLab del Sistema de Fluidos del Aire Acondicionado en un Kia Rio 5',
+  autor:'Fausto David Chiluisa Cobo',
+  descripcion:'Proyecto orientado al diseño de una simulación virtual tridimensional del sistema de fluidos del aire acondicionado de un vehículo Kia Rio 5. Emplea herramientas de modelado y simulación para representar componentes, circulación del refrigerante, comportamiento del sistema y procesos asociados a la climatización automotriz.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1wtKjOyup6OPd1lGc4udfLLRUGw1NyxDr/view?usp=sharing'
+},
+
+{
+  id:190,
+  carreraId:1,
+  materia:'Refrigeración y Climatización',
+  titulo:'Climatización del Vehículo: Guía Compacta para el Taller',
+  autor:'MAHLE',
+  descripcion:'Guía técnica especializada para talleres sobre climatización y gestión térmica vehicular. Desarrolla circuitos de aire acondicionado, compresores, condensadores, evaporadores, válvulas de expansión, refrigerantes R12, R134a y R1234yf, aceites, diagnóstico de fallos, detección de fugas, reparación, mantenimiento y gestión térmica en vehículos híbridos y eléctricos.',
+  anio:'2021',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1i-lThC_TURXEJv378vJBy2wiU1WqQOsX/view?usp=sharing'
+},
+
+{
+  id:191,
+  carreraId:1,
+  materia:'Refrigeración y Climatización',
+  titulo:'Fabricación de un Banco de Pruebas de un Sistema Automatizado de Climatización Automotriz Implementando Sensores y Actuadores para la Optimización del Uso de Ductos de Ventilación de un Vehículo',
+  autor:'Sebastian Ronaldo Saltos Altamirano',
+  descripcion:'Proyecto de diseño y fabricación de un banco de pruebas para climatización automotriz automatizada. Integra sensores, actuadores, control electrónico y ductos de ventilación para estudiar y optimizar la distribución del aire dentro del habitáculo, vinculando climatización, automatización y mecatrónica.',
+  anio:'2026',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1hL_bvd0UEbgJDRqQRG1wx2ccdXQoxfAZ/view?usp=sharing'
+},
+
+{
+  id:192,
+  carreraId:1,
+  materia:'Refrigeración y Climatización',
+  titulo:'Incidencia del Sistema de Refrigeración Activa por Líquido en Vehículo Eléctrico Utilizado como Taxi en la Ciudad de Guayaquil',
+  autor:'Abrahan Fernando Tacuri Sarango',
+  descripcion:'Investigación sobre la influencia de los sistemas de refrigeración activa por líquido en la gestión térmica de baterías de vehículos eléctricos utilizados como taxis. Compara métodos de refrigeración pasiva, activa por aire y activa por líquido, analizando temperatura, rendimiento, vida útil de la batería y beneficios operativos, ambientales y económicos.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/143oU22pesboA5WoA3Sdx11PEyLryfQBI/view?usp=sharing'
+},
+
+
+{
+  id:194,
+  carreraId:1,
+  materia:'Refrigeración y Climatización',
+  titulo:'Incidencia del Sistema de Refrigeración Activa por Líquido en Vehículo Eléctrico Utilizado como Taxi en la Ciudad de Guayaquil',
+  autor:'Abrahan Fernando Tacuri Sarango',
+  descripcion:'Investigación sobre la influencia de los sistemas de refrigeración activa por líquido en la gestión térmica de baterías de vehículos eléctricos utilizados como taxis. Compara métodos de refrigeración pasiva, activa por aire y activa por líquido, analizando temperatura, rendimiento, vida útil de la batería y beneficios operativos, ambientales y económicos.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1rN3sQclkrpsloW5uIKfKj-nXJErTFiGc/view?usp=sharing'
+},
+
+
+{
+  id:196,
+  carreraId:1,
+  materia:'Refrigeración y Climatización',
+  titulo:'Implementación de un Sistema de Control de Temperatura Automatizado para Climatización Interna de Cabina Vehicular',
+  autor:'Klever Jesús Suárez Jordán',
+  descripcion:'Proyecto de implementación de un sistema automatizado para controlar la temperatura interior de una cabina vehicular. Integra sensores de temperatura, circuitos electrónicos, conectividad, programación con Arduino y elementos de actuación para monitorear las condiciones térmicas y gestionar automáticamente la climatización del habitáculo.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/14n9zpfSsB0edp6eU53KRHFfyZlJFa5k7/view?usp=sharing'
+},
+/* ── SISTEMAS HÍBRIDOS Y ELÉCTRICOS ── */
+
+{
+  id:197,
+  carreraId:1,
+  materia:'Sistemas Híbridos y Eléctricos',
+  titulo:'Caracterización del Parque Vehicular en Ciudades de Altura como Riobamba y Quito',
+  autor:'Henry Jordan Achache Carrillo / Kevin Washington Alvarez Granda',
+  descripcion:'Investigación sobre la caracterización del parque vehicular en ciudades ecuatorianas de altura. Analiza composición de la flota, tecnologías de propulsión, comportamiento del sector automotor y condiciones asociadas a la transición hacia nuevas tecnologías vehiculares y alternativas de movilidad sostenible.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1XBSWl-wfjXShrv6zFkWNdnfs_T8s9ZlA/view?usp=sharing'
+},
+
+{
+  id:198,
+  carreraId:1,
+  materia:'Sistemas Híbridos y Eléctricos',
+  titulo:'Transición Energética y Electrificación del Transporte Público en América Latina y el Caribe',
+  autor:'Marina Gil / Comisión Económica para América Latina y el Caribe (CEPAL)',
+  descripcion:'Documento técnico sobre electrificación del transporte público y transición energética regional. Analiza energías renovables, eficiencia energética, emisiones del sector transporte, planificación de demanda eléctrica, infraestructura, gobernanza, tecnologías bajas en carbono y estrategias para una movilidad sostenible e inclusiva.',
+  anio:'n/d',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1l3g589tXirm1QEcJt_h0hdSznHbVQvEf/view?usp=sharing'
+},
+
+{
+  id:199,
+  carreraId:1,
+  materia:'Sistemas Híbridos y Eléctricos',
+  titulo:'Estudio de Análisis y Prospectiva de la Electromovilidad en Ecuador y el Mix Energético al 2030',
+  autor:'Paola Quintana Villacis / Henry Acurio Flores / Juan Fonseca Palacios / Angélica Vaca Yánez / Rodrigo Ullauri Guaranga / Santiago Tinajero Álvaro / Sebastián Villacrés Quintana',
+  descripcion:'Libro técnico y prospectivo sobre electromovilidad en Ecuador. Analiza tecnologías de vehículos eléctricos, baterías, sistemas de carga, conectores, transporte público eléctrico, demanda energética, redes eléctricas, marco normativo y escenarios de incorporación de electromovilidad con proyección al año 2030.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1SCzS1-Rf5Du8na01UrqPgFiUNbY5Th7e/view?usp=sharing'
+},
+
+{
+  id:200,
+  carreraId:1,
+  materia:'Sistemas Híbridos y Eléctricos',
+  titulo:'Hacia una Integración Sostenible: el Potencial de la Electromovilidad en América Latina y el Caribe',
+  autor:'Gabriel Michelena / Patricia Iannuzzi / Magdalena Barafani',
+  descripcion:'Nota técnica del Banco Interamericano de Desarrollo sobre el potencial de la electromovilidad regional. Analiza vehículos eléctricos, cadenas productivas, comercio internacional, integración económica, baterías, infraestructura, descarbonización del transporte y oportunidades industriales para América Latina y el Caribe.',
+  anio:'2023',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1Hhr8T4OMcgC8Z7KnhQflG686lrRnSmBJ/view?usp=sharing'
+},
+
+{
+  id:201,
+  carreraId:1,
+  materia:'Sistemas Híbridos y Eléctricos',
+  titulo:'Anuario 2024-2025 de la Movilidad Eléctrica: Análisis y Perspectivas de un Sector en Transformación',
+  autor:'Asociación Empresarial para el Desarrollo e Impulso de la Movilidad Eléctrica (AEDIVE)',
+  descripcion:'Anuario especializado sobre evolución, mercado y perspectivas de la movilidad eléctrica. Incluye infraestructura de recarga, baterías, Plug and Charge, vehículos inteligentes, automatización, conectividad, geopolítica, regulación, innovación tecnológica, flotas eléctricas y evolución del mercado de vehículos electrificados.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1OVTrEcFPqlCn1jq06vJTJKCdLXpjtqCo/view?usp=sharing'
+},
+
+{
+  id:202,
+  carreraId:1,
+  materia:'Sistemas Híbridos y Eléctricos',
+  titulo:'IV Informe: Movilidad Eléctrica en España. Situación Actual, Objetivos y Retos a Abordar',
+  autor:'May López',
+  descripcion:'Informe especializado sobre el estado y evolución de la movilidad eléctrica. Analiza matriculación de vehículos electrificados, infraestructura de recarga, objetivos regulatorios, barreras de adopción, flotas, transporte, sostenibilidad, políticas públicas y retos para acelerar la transición hacia el vehículo eléctrico.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1yeotZko_RxaY02yMTw58xIkO25DAFkV-/view?usp=sharing'
+},
+
+{
+  id:203,
+  carreraId:1,
+  materia:'Sistemas Híbridos y Eléctricos',
+  titulo:'Análisis de la Movilidad Eléctrica en España: Estado Actual, Nudos y Propuestas para el Aumento de Penetración del Vehículo Eléctrico',
+  autor:'alinnea',
+  descripcion:'Informe de análisis y propuestas para acelerar la penetración del vehículo eléctrico. Identifica barreras en ayudas públicas, infraestructura de recarga, fiscalidad, transición empresarial, leasing social, movilidad compartida, coordinación público-privada y transición justa del sector automotor.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1gA8spVrRktP-CSV1ofw9Ae4NF4M212Pf/view?usp=sharing'
+},
+
+{
+  id:204,
+  carreraId:1,
+  materia:'Sistemas Híbridos y Eléctricos',
+  titulo:'Libro Blanco de la Movilidad Sostenible en América Latina y el Caribe 2025',
+  autor:'Organización Latinoamericana de Energía (OLADE)',
+  descripcion:'Libro blanco regional sobre movilidad sostenible y transformación del transporte. Presenta estadísticas de electromovilidad, evolución del parque vehicular electrificado, autobuses eléctricos, infraestructura de carga, tecnologías, políticas públicas, combustibles alternativos, innovación y perspectivas de transición energética en América Latina y el Caribe.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/10RebQX3Kv1sjlBBk6FOE0pUCh6ji42RK/view?usp=sharing'
+},
+
+{
+  id:205,
+  carreraId:1,
+  materia:'Sistemas Híbridos y Eléctricos',
+  titulo:'Movilidad Eléctrica en América Latina y el Caribe: Monitoreando la Electromovilidad',
+  autor:'Fitzgerald Cantero Piali / Fabio García Lucero / Fabricio Ramos Sarango / Katherine Segura González',
+  descripcion:'Nota técnica de OLADE que presenta un monitor regional de electromovilidad. Analiza vehículos eléctricos a batería, híbridos enchufables, autobuses eléctricos, estaciones de carga, evolución del parque electrificado, proyecciones de crecimiento, demanda de generación eléctrica y normativa regional.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1syUQZjYiwWePQOKTmNXKss_ypftCeE0h/view?usp=sharing'
+},
+
+{
+  id:206,
+  carreraId:1,
+  materia:'Sistemas Híbridos y Eléctricos',
+  titulo:'Análisis de las Políticas Públicas del Ecuador en Materia de Comercio Exterior con Perspectiva en la Descarbonización de la Movilidad',
+  autor:'Lisset Dayanara Tinoco Tello',
+  descripcion:'Trabajo de investigación sobre políticas públicas ecuatorianas vinculadas con comercio exterior y descarbonización de la movilidad. Examina transición hacia tecnologías de transporte de bajas emisiones, vehículos eléctricos, incentivos, regulación, importaciones y condiciones institucionales para promover una movilidad más sostenible.',
+  anio:'2025',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1rZw_ytMAr_AMHtyZ5x8-mI5PKyOeU88E/view?usp=sharing'
+},
+
+{
+  id:207,
+  carreraId:1,
+  materia:'Sistemas Híbridos y Eléctricos',
+  titulo:'Incidencia del Sistema de Refrigeración Activa por Líquido en Vehículo Eléctrico Utilizado como Taxi en la Ciudad de Guayaquil',
+  autor:'Abrahan Fernando Tacuri Sarango',
+  descripcion:'Investigación sobre gestión térmica de vehículos eléctricos mediante refrigeración activa por líquido. Analiza comportamiento térmico de baterías, comparación con sistemas pasivos y refrigeración por aire, rendimiento, degradación, autonomía, seguridad y vida útil en vehículos eléctricos sometidos a operación intensiva como taxis.',
+  anio:'2024',
+  tipo:'link',
+  recurso:'https://drive.google.com/file/d/1u8VLSTYQGCFCitRk5ROwoFyVkqEnZWT_/view?usp=sharing'
+}
     ]));
   }
 }
